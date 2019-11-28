@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+.toolbar {
+    --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
+}
+
+.fill-out-message {
+    color: #888;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 100;
+    margin: 20px
+}
+
+.validation-errors {
+    margin-top: 30px;
+}
+
+.error-prompt {
+    background-color: transparent;
+    color: #ff4545;
+    margin: 20px;
+    font-size: 12px;
+    font-family: 'Noto Sans', sans-serif;
+    border-radius: 5px;
+}
+
+.error-message {
+    margin-top: -5px;
+}
+
+.header-text {
+    margin: 20px;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+
+.toolbar-title {
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+
+.register-clinician {
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 120px;
+    border: 1px solid whitesmoke;
+    border-radius: 100px;
+    box-shadow: 0 3px 3px #888;
+}
+
+.register-clinician img {
+    padding: 15px;
+}
+
+ion-item {
+    margin: 20px;
+    border-radius: 5px;
+    --background: whitesmoke;
+    --border-color: white;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.label {
+    font-family: 'Lato', sans-serif;
+}
+
+.terms-conditions {
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 13px;
+    color: #888;
+}
+
+#register-clinician-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #20B2FF;
+    padding: 15px 28px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 30px;
+    // border: 1px solid black;
+    font-size: 15px;
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+.register-btn-container {
+    margin: 10px;
+    margin-bottom: 30px;
+}

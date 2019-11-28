@@ -1,0 +1,210 @@
+<ion-header>
+  <ion-toolbar class='toolbar'>
+      <ion-buttons slot="start">
+        <ion-back-button style="color: white;" defaultHref="/"></ion-back-button>
+      </ion-buttons>
+    <ion-title class="toolbar-title">Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <div class="register-patient">
+        <img src="/assets/img/patient.png">
+    </div>
+
+    <div class="header-text">
+        CREATE AN ACCOUNT FOR PATIENT
+    </div>
+  </ion-card>
+
+    <div class="fill-out-message">
+      Hi, kindly fill out the form below to register as patient.
+    </div>
+
+    <div class="personal-information">
+      I. Login Credentials
+    </div>
+
+    <!-- Sign Up Form -->
+    <div class="sign-up-container">
+      <form>
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Username</ion-label>
+              <ion-input id="username" clearInput type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Password</ion-label>
+              <ion-input id="password" clearInput type="password" required></ion-input>
+          </ion-item>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Confirm Password</ion-label>
+              <ion-input id="password_again" clearInput type="password" required></ion-input>
+          </ion-item>
+      <div class="personal-information">
+          II. Personal Information
+      </div>
+          <ion-item class="first-type">
+            <ion-label position="floating" class="label">Title</ion-label>
+            <ion-select id="title" cancelText="Cancel">
+              <ion-select-option value="ms">Ms.</ion-select-option>
+              <ion-select-option value="mr">Mr.</ion-select-option>
+              <ion-select-option value="mrs">Mrs.</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item class="first-type">
+            <ion-label position="floating" class="label">First Name</ion-label>
+            <ion-input id="first_name" clearInput type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Middle Name</ion-label>
+              <ion-input id="middle_name" clearInput type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Last Name</ion-label>
+              <ion-input id="last_name" clearInput type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item class="second-type">
+            <ion-label class="label">Gender</ion-label>  
+            <ion-radio-group> 
+              <ion-row>
+                <ion-col>
+                  <ion-item class="third-type">
+                    <ion-radio item-right value="male"></ion-radio>
+                    <ion-label class="gender">Male</ion-label>
+                  </ion-item>
+                </ion-col>
+
+                <ion-col>
+                  <ion-item class="third-type">
+                    <ion-radio item-right value="female"></ion-radio>
+                    <ion-label class="gender">Female</ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-radio-group>
+          </ion-item>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Date of Birth</ion-label>
+              <ion-datetime id="birthdate" displayFormat="MM/DD/YYYY"></ion-datetime>
+          </ion-item>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Religion</ion-label>
+              <ion-input id="religion" clearInput type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Marital Status</ion-label>
+              <ion-select id="marital_status" cancelText="Cancel">
+                <ion-select-option value="single">Single</ion-select-option>
+                <ion-select-option value="married">Married</ion-select-option>
+                <ion-select-option value="widowed">Widowed</ion-select-option>
+                <ion-select-option value="divorced">Divorced</ion-select-option>
+                <ion-select-option value="separated">Separated</ion-select-option>
+              </ion-select>
+          </ion-item>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Occupation</ion-label>
+              <ion-input id="occupation" clearInput type="text" required></ion-input>
+          </ion-item>
+
+          <ion-row>
+            <ion-col>
+                <ion-item class="third-type">
+                    <ion-label position="stacked" class="label"># of Kids</ion-label>
+                    <ion-input id="number_of_kids" type="number" required></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item class="third-type">
+                    <ion-label position="floating" class="label">Height</ion-label>
+                    <ion-input id="height" type="number" placeholder="cm" required></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item class="third-type">
+                    <ion-label position="floating" class="label">Weight</ion-label>
+                    <ion-input id="weight" type="number" placeholder="kg" required></ion-input>
+                </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Permanent Address</ion-label>
+              <ion-textarea id="permanent_address" required></ion-textarea>
+          </ion-item>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Telephone Number</ion-label>
+              <ion-input id="tel" type="tel" maxlength="8" clearInput></ion-input>
+          </ion-item>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Phone Number</ion-label>
+              <ion-input id="phone" type="tel" maxlength="11" clearInput></ion-input>
+          </ion-item>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">Email Address</ion-label>
+              <ion-input type="email" placeholder="example@email.com" clearInput></ion-input>
+          </ion-item>
+
+          <div class="emergency-contact">
+            II. Emergency Contact Person
+          </div>
+
+          <ion-item class="first-type">
+              <ion-label position="floating" class="label">First Name</ion-label>
+              <ion-input id="emergency_first_name" clearInput type="text" required></ion-input>
+            </ion-item>
+  
+            <ion-item class="first-type">
+                <ion-label position="floating" class="label">Middle Name</ion-label>
+                <ion-input id="emergency_middle_name" clearInput type="text" required></ion-input>
+            </ion-item>
+  
+            <ion-item class="first-type">
+                <ion-label position="floating" class="label">Last Name</ion-label>
+                <ion-input id="emergency_last_name" clearInput type="text" required></ion-input>
+            </ion-item>
+
+            <ion-item class="first-type">
+                <ion-label position="floating" class="label">Relationship to patient</ion-label>
+                <ion-input id="relation_to_patient" clearInput type="text" required></ion-input>
+            </ion-item>
+
+            <ion-item class="first-type">
+                <ion-label position="floating" class="label">Address</ion-label>
+                <ion-textarea id="emergency_address" required></ion-textarea>
+            </ion-item>
+
+            <ion-item class="first-type">
+                <ion-label position="floating" class="label">Telephone Number</ion-label>
+                <ion-input id="emergency_tel" type="tel" maxlength="8" clearInput></ion-input>
+            </ion-item>
+  
+            <ion-item class="first-type">
+                <ion-label position="floating" class="label">Phone Number</ion-label>
+                <ion-input id="emergency_phone" type="tel" maxlength="11" clearInput></ion-input>
+            </ion-item>
+
+            <div class="terms-conditions">
+                <ion-checkbox [checked]='check_check_box' disabled='disabled' style="float: left;"></ion-checkbox> By tapping "Sign Up" you agree to the <a (click)="present_terms_conditions()">terms & conditions</a>
+            </div>
+    
+            <div class="register-btn-container">
+                <button id="register-patient-btn">SIGN UP</button>
+            </div>
+      </form>
+    </div>
+
+</ion-content>

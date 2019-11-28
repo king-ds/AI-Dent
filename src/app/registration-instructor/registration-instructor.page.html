@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar class='toolbar'>
+      <ion-buttons slot="start">
+        <ion-back-button style="color: white;" defaultHref="/"></ion-back-button>
+      </ion-buttons>
+    <ion-title class="toolbar-title">Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="register-clinician-instructor">
+    <img src="/assets/img/register-clinician-instructor.png">
+  </div>
+
+  <div class="header-text">
+      CREATE AN ACCOUNT FOR CLINICAL INSTRUCTOR
+  </div>
+
+  <!-- Sign up Form -->
+
+  <div class="sign-up-container">
+    <form>
+        <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input id="username" clearInput type="text" required></ion-input>
+        </ion-item>
+        
+        <ion-item>
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input id="first_name" clearInput type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Middle Name</ion-label>
+            <ion-input id="middle_name" clearInput type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input id="last_name" clearInput type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input id="password" clearInput type="password" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Password again</ion-label>
+            <ion-input id="password_again" clearInput type="password" required></ion-input>
+        </ion-item>
+
+        <div class="terms-conditions">
+            <ion-checkbox [checked]='check_check_box' disabled='disabled' style="float: left;"></ion-checkbox> By tapping "Sign Up" you agree to the <a (click)="present_terms_conditions()">terms & conditions</a>
+        </div>
+
+        <div class="register-btn-container">
+            <button id="register-clinician-btn">SIGN UP</button>
+        </div>
+    </form>
+  </div>
+
+</ion-content>

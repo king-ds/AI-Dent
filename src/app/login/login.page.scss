@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
+
+ion-content {
+    --background: linear-gradient(180deg, rgba(56,170,255,1) 19%, rgba(34,34,34,1) 74%);
+}
+
+ion-item {
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.alert_radio{
+    background-color: black;
+}
+
+ion-icon {
+    color: #20B2FF;
+}
+
+// .clinician-forms{
+//     display: none;
+// }
+
+.logo {
+    margin-top: 40px;
+    width: 150px;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+.app-name{
+    text-align: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 30px;
+    color: white;
+}
+
+.welcome {
+    text-align: center;
+    margin-bottom: 80px;
+    margin-top: 5px;
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+
+.login-card {
+    margin: 20px;
+}
+
+#username{
+    font-family: 'Lato', sans-serif;
+}
+
+.contact {
+    margin-bottom: 10px;
+}
+
+#login-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #20B2FF;
+    padding: 15px 28px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 30px;
+    // border: 1px solid black;
+    font-size: 15px;
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+.forgot-password-container{
+    margin-top: -10px;
+    color: white;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+
+.login-btn-container {
+    margin: 10px;
+}
+
+#login-clinician-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #20B2FF;
+    padding: 15px 28px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 30px;
+    // border: 1px solid black;
+    font-size: 15px;
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+#login-clinician-instructor-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #2be35c;
+    padding: 15px 28px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 30px;
+    // border: 1px solid black;
+    font-size: 15px;
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+#login-patient-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: white;
+    padding: 15px 28px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 30px;
+    // border: 1px solid black;
+    font-size: 15px;
+    color: black;
+    font-family: 'Lato', sans-serif;
+}
+
+#selection-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: white;
+    padding: 15px 28px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 30px;
+    // border: 1px solid black;
+    font-size: 15px;
+    color: black;
+    font-family: 'Lato', sans-serif;
+}
+
+.register-btn-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding-bottom: 20px;
+    font-family: 'Lato', sans-serif;
+}

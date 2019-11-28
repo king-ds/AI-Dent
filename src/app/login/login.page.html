@@ -1,0 +1,120 @@
+<ion-content>
+
+<!-- Header -->
+  <div class="logo">
+    <img src="/assets/draft_logo.png" alt="" />
+  </div>
+  <div class="app-name">
+    Sample App
+  </div>
+  <div class="welcome">
+    Welcome! Login to Your Sample Account
+  </div>
+<!-- End of Header -->
+
+
+<div class="login-btn" *ngIf='selection_button'>
+  <div class="login-btn-container">
+      <button id="login-clinician-btn" (click)='login_as_clinician()'>LOGIN AS CLINICIAN</button>
+  </div>
+  <div class="login-btn-container">
+      <button id="login-clinician-instructor-btn" (click)='login_as_clinician_instructor()'>LOGIN AS CLINICAL INSTRUCTOR</button>
+  </div>
+  <div class="login-btn-container">
+      <button id="login-patient-btn" (click)='login_as_patient()'>LOGIN AS PATIENT</button>
+  </div>
+</div>
+
+
+
+
+<!-- Clinician Login Form -->
+<div class="clinician-forms" *ngIf='clinician_login_form'>
+  <form>
+    <ion-item>
+      <ion-label position="stacked">Student Number</ion-label>
+      <ion-input id="username" clearInput type="text"></ion-input>
+      <ion-icon name="contact" slot="start" ion-align-self-center></ion-icon>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input id="password" type="password" clearInput></ion-input>
+        <ion-icon name="key"slot="start" ion-align-self-center></ion-icon>
+    </ion-item>
+
+  <div class="login-btn-container">
+    <button id="login-clinician-btn">LOGIN AS CLINICIAN</button>
+  </div>
+  </form>
+
+  <div class="login-btn-container" (click)='back_to_selection()'>
+      <button id="selection-btn"><ion-icon name="arrow-dropleft-circle" style="float: left;"></ion-icon>GO BACK TO SELECTION</button>
+  </div>
+</div>
+<!-- End of Clinician Login Form -->
+
+<!-- Clinician Instructor Login Form -->
+<div class="clinician-forms" *ngIf='clinician_instructor_login_form'>
+    <form>
+      <ion-item>
+        <ion-label position="stacked">Username</ion-label>
+        <ion-input id="username" clearInput type="text"></ion-input>
+        <ion-icon name="contact" slot="start" ion-align-self-center></ion-icon>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input id="password" type="password" clearInput></ion-input>
+          <ion-icon name="key"slot="start" ion-align-self-center></ion-icon>
+      </ion-item>
+  
+    <div class="login-btn-container">
+      <button id="login-clinician-instructor-btn">LOGIN AS CLINICAL INSTRUCTOR</button>
+    </div>
+    </form>
+  
+    <div class="login-btn-container" (click)='back_to_selection()'>
+        <button id="selection-btn"><ion-icon name="arrow-dropleft-circle" style="float: left;"></ion-icon>GO BACK TO SELECTION</button>
+    </div>
+  </div>
+  <!-- End of Clinician Instructor Login Form -->
+
+  <!-- Patient Login Form -->
+<div class="clinician-forms" *ngIf='patient'>
+  <form>
+    <ion-item>
+      <ion-label position="stacked">Username</ion-label>
+      <ion-input id="username" clearInput type="text"></ion-input>
+      <ion-icon name="contact" slot="start" ion-align-self-center></ion-icon>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input id="password" type="password" clearInput></ion-input>
+      <ion-icon name="key"slot="start" ion-align-self-center></ion-icon>
+    </ion-item>
+  
+  <div class="login-btn-container">
+    <button id="login-patient-btn">LOGIN AS PATIENT</button>
+  </div>
+  </form>
+  
+  <div class="login-btn-container" (click)='back_to_selection()'>
+      <button id="selection-btn"><ion-icon name="arrow-dropleft-circle" style="float: left;"></ion-icon>GO BACK TO SELECTION</button>
+  </div>
+</div>
+<!-- End of Patient Login Form -->
+
+
+
+<!-- Sign Up Button -->
+<div class="register-btn-container">
+  <div class="register-text">
+  Don't have an account? <a id="register-btn" (click)='presentAlertRadio()'>Sign up here</a>
+  </div>
+</div>
+
+<!-- End of Sign Up Button -->
+
+</ion-content>
