@@ -14,6 +14,16 @@
     margin: 20px
 }
 
+.personal-information {
+    background-color: #20B2FF;
+    color: white;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 1000;
+}
+
 .validation-errors {
     margin-top: 30px;
 }
@@ -47,7 +57,7 @@
     margin: 0 auto;
     margin-top: 30px;
     width: 120px;
-    border: 1px solid whitesmoke;
+    border: 5px solid #20B2FF;
     border-radius: 100px;
     box-shadow: 0 3px 3px #888;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController} from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
-
+import { StudentNumberValidator } from '../validators/student_number';
 
 @Component({
   selector: 'app-registration-clinician',
@@ -21,6 +21,7 @@ export class RegistrationClinicianPage implements OnInit {
       { type : 'pattern', message : 'Student Number must contain only numbers.' },
       { type : 'maxlength', message : 'Student Number must be exactly 8 numbers long.' },
       { type : 'minlength', message : 'Student Number must be exactly 8 numbers long.' },
+      { type : 'student_numberInUse', message : 'Student Number is not available' }
     ],
 
     'first_name' : [
@@ -48,10 +49,11 @@ export class RegistrationClinicianPage implements OnInit {
   constructor(public alert_controller : AlertController,
               public form_builder : FormBuilder,
               public api_service : ApiService,
+              public student_validator : StudentNumberValidator,
               ){
 
     this.register_form = form_builder.group({
-      student_number : ['', Validators.compose([Validators.minLength(8) ,Validators.maxLength(8), Validators.pattern('[0-9]*'), Validators.required ])],
+      student_number : ['', Validators.compose([Validators.minLength(8) ,Validators.maxLength(8), Validators.pattern('[0-9]*'), Validators.required ]), student_validator.check_student_number.bind(student_validator)],
       clinic_level : ['', Validators.required],
       first_name : ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       middle_name : ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -92,6 +94,9 @@ export class RegistrationClinicianPage implements OnInit {
     if(!this.register_form.valid || !this.check_check_box){
       console.log('invalid');
     }else{
+      // this.api_service.create_clinician(register_data).subscribe((response) => {
+      //   console.log('amp');
+      // });
       this.api_service.post_register_clinician(register_data);
       this.submit_attempt = false;
       this.register_form.reset();

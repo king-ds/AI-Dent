@@ -9,53 +9,99 @@
 
 <ion-content>
 
-  <div class="register-clinician-instructor">
-    <img src="/assets/img/register-clinician-instructor.png">
+  <ion-card class="header-card">
+    <div class="register-clinician-instructor">
+      <img src="/assets/img/register-clinician-instructor.png">
+    </div>
+
+    <div class="header-text">
+        CREATE AN ACCOUNT FOR CLINICAL INSTRUCTOR
+    </div>
+  </ion-card>
+
+  <div class="fill-out-message">
+      Hi, kindly fill out the form below to register as clinician.
   </div>
 
-  <div class="header-text">
-      CREATE AN ACCOUNT FOR CLINICAL INSTRUCTOR
+  <div class="personal-information">
+      I. Login Credentials
   </div>
 
   <!-- Sign up Form -->
-
   <div class="sign-up-container">
-    <form>
+    <form [formGroup] = 'register_form'>
         <ion-item>
             <ion-label position="floating">Username</ion-label>
-            <ion-input id="username" clearInput type="text" required></ion-input>
+            <ion-input formControlName="username" id="username" clearInput type="text" required></ion-input>
         </ion-item>
-        
-        <ion-item>
-            <ion-label position="floating">First Name</ion-label>
-            <ion-input id="first_name" clearInput type="text" required></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label position="floating">Middle Name</ion-label>
-            <ion-input id="middle_name" clearInput type="text" required></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label position="floating">Last Name</ion-label>
-            <ion-input id="last_name" clearInput type="text" required></ion-input>
-        </ion-item>
+        <div class="error-prompt">
+          <ng-container *ngFor="let validation of validation_messages.username">
+            <div class="error-message" *ngIf="register_form.get('username').hasError(validation.type) && (register_form.get('username').touched || register_form.controls.username.dirty || submit_attempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
 
         <ion-item>
             <ion-label position="floating">Password</ion-label>
-            <ion-input id="password" clearInput type="password" required></ion-input>
+            <ion-input formControlName="password" id="password" clearInput type="password" required></ion-input>
         </ion-item>
 
+        <div class="error-prompt">
+            <ng-container *ngFor="let validation of validation_messages.password">
+                <div class="error-message" *ngIf="register_form.get('password').hasError(validation.type) && (register_form.get('password').touched || register_form.controls.password.dirty || submit_attempt)">
+                    &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+                  </div> 
+            </ng-container> 
+        </div>
+
         <ion-item>
-            <ion-label position="floating">Password again</ion-label>
-            <ion-input id="password_again" clearInput type="password" required></ion-input>
+            <ion-label position="floating">Confirm password</ion-label>
+            <ion-input formControlName="password_again" id="password_again" clearInput type="password" required></ion-input>
         </ion-item>
+        <div class="error-prompt" *ngIf="register_form.hasError('mismatchedPasswords') && (register_form.get('password_again').touched || submit_attempt )">
+            &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp;Password mismatch
+        </div>
+
+        <div class="personal-information">
+            II. Personal Information
+        </div>
+
+        <ion-item>
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input formControlName="first_name" id="first_name" clearInput type="text" required></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.first_name">
+            <div class="error-prompt" *ngIf="register_form.get('first_name').hasError(validation.type) && (register_form.get('first_name').touched || register_form.controls.first_name.dirty || submit_attempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item>
+            <ion-label position="floating">Middle Name</ion-label>
+            <ion-input formControlName="middle_name" id="middle_name" clearInput type="text" required></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.middle_name">
+            <div class="error-prompt" *ngIf="register_form.get('middle_name').hasError(validation.type) && (register_form.get('middle_name').touched || register_form.controls.middle_name.dirty || submit_attempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item>
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input formControlName="last_name" id="last_name" clearInput type="text" required></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.last_name">
+            <div class="error-prompt" *ngIf="register_form.get('last_name').hasError(validation.type) && (register_form.get('last_name').touched || register_form.controls.last_name.dirty || submit_attempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
 
         <div class="terms-conditions">
             <ion-checkbox [checked]='check_check_box' disabled='disabled' style="float: left;"></ion-checkbox> By tapping "Sign Up" you agree to the <a (click)="present_terms_conditions()">terms & conditions</a>
         </div>
 
-        <div class="register-btn-container">
+        <div class="register-btn-container" (click)="register()">
             <button id="register-clinician-btn">SIGN UP</button>
         </div>
     </form>

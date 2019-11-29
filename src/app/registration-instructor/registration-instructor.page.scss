@@ -7,17 +7,48 @@
     --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
 }
 
+.error-prompt {
+    background-color: transparent;
+    color: #ff4545;
+    margin: 20px;
+    font-size: 12px;
+    font-family: 'Noto Sans', sans-serif;
+    border-radius: 5px;
+}
+
+.fill-out-message {
+    color: #888;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 100;
+    margin: 20px
+}
+
+.error-message {
+    margin-top: -5px;
+}
+
 .toolbar-title {
     font-family: 'Lato', sans-serif;
     color: white;
+}
+
+.personal-information {
+    background-color: #20B2FF;
+    color: white;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 1000;
 }
 
 .register-clinician-instructor {
     margin: 0 auto;
     margin-top: 30px;
     width: 120px;
-    border: 1px solid whitesmoke;
+    border: 5px solid #20B2FF;
     border-radius: 100px;
+    background-color: white;
     box-shadow: 0 3px 3px #888;
 }
 

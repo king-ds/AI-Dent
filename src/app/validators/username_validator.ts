@@ -4,7 +4,7 @@ import { ApiService } from '../services/api.service';
 
 @Injectable()
 
-export class StudentNumberValidator {
+export class UsernameValidator {
   
   debouncer : any;
 
@@ -12,15 +12,14 @@ export class StudentNumberValidator {
 
   }
 
-  check_student_number(control : FormControl): any {
+  check_username(control : FormControl): any {
     clearTimeout(this.debouncer);
 
     return new Promise(resolve => {
       this.debouncer = setTimeout(() => {
-        this.api_service.validate_student_number(control.value).subscribe((res) => {
+        this.api_service.validate_username(control.value).subscribe((res) => {
           if(res){
-            // resolve({'student_numberInUse': true});
-            resolve({'student_numberInUse': true});
+            resolve({'username_InUse': true});
             console.log(res)
           }
         }, (err) => {

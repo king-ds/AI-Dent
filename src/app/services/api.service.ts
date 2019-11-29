@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { reject } from 'q';
-import { LoaderService } from '../services/loader.service';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { reject, resolve } from 'q';
+import { map } from "rxjs/operators";
 import { LoadingController } from '@ionic/angular';
 import { AlertController, ToastController} from '@ionic/angular';
 
@@ -31,10 +29,7 @@ export class ApiService {
   constructor(private http_client : HttpClient,
               private loading_controller : LoadingController,
               private alert_controller : AlertController) { }
-  
-  /** Post data to dentistry api 
-  * @param {data} personal information of clinician 
-  */
+
   async post_register_clinician(data){
     const loading = await this.loading_controller.create({
       message: 'Loading',
@@ -43,32 +38,74 @@ export class ApiService {
     await loading.present();
  
     return new Promise(resolve=> {
-      this.http_client.post(this.url+'register_as_clinician', JSON.stringify(data), http_options)
+      this.http_client.post(this.url+'register/clinician', JSON.stringify(data), http_options)
       .subscribe(res => {
         resolve(res);
         loading.dismiss();
         this.present_successful_registration_clinician();
-      }), (err) => {
-        reject(err);
+      },
+      (error) => {
+        reject(error);
+        this.present_something_went_wrong();
         loading.dismiss();
-      }
+      })
     });
+  }
+  async post_register_clinical_instructor(data){
+    const loading = await this.loading_controller.create({
+      message: 'Loading',
+      spinner : 'bubbles',
+    });
+    await loading.present();
+ 
+    return new Promise(resolve=> {
+      this.http_client.post(this.url+'register/instructor', JSON.stringify(data), http_options)
+      .subscribe(res => {
+        resolve(res);
+        loading.dismiss();
+        this.present_successful_registration_clinical_instructor();
+      },
+      (error) => {
+        reject(error);
+        this.present_something_went_wrong();
+        loading.dismiss();
+      })
+    });
+  }
+
+
+  async present_successful_registration_clinical_instructor() {
+    const alert = await this.alert_controller.create({
+      header: 'Registration Successful!',
+      message: 'Congratulations! You are now successfully registered as clnicial instructor to App Name. You may now login your account.',
+      buttons: ['Ok'],
+    });
+    await alert.present();
   }
 
   async present_successful_registration_clinician() {
     const alert = await this.alert_controller.create({
       header: 'Registration Successful!',
-      message: 'Congratulations! You are now successfully registered as clinician to App. You may now login your account.',
+      message: 'Congratulations! You are now successfully registered as clinician to App Name. You may now login your account.',
       buttons: ['Ok'],
     });
     await alert.present();
   }
 
-  async something_went_wrong(){
+  async present_something_went_wrong(){
     const alert = await this.alert_controller.create({
       header: 'Something Went Wrong!',
+      message : 'Sorry for inconvience please check your internet connection and try again.',
       buttons: ['Ok'],
     });
     await alert.present();
+  }
+
+  validate_student_number(student_number){
+    return this.http_client.get(this.url+'clinicians/'+student_number).pipe(map(res => res));
+  }
+
+  validate_username(username){
+    return this.http_client.get(this.url+'clinical-instructors/'+username).pipe(map(res => res));
   }
 }

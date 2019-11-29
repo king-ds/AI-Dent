@@ -20,8 +20,13 @@
   </ion-card>
 
   <div class="fill-out-message">
-    Hi, kindly fill out the form below to register as clinician.
+      Hi, kindly fill out the form below to register as clinical instructor.
   </div>
+
+  <div class="personal-information">
+      I. Login Credentials
+  </div>
+
   <!-- Sign up form -->
   <div class="sign-up-container">
     <form [formGroup] = 'register_form'>
@@ -35,6 +40,30 @@
                   &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
                 </div> 
           </ng-container> 
+        </div>
+
+        <ion-item>
+            <ion-label class="label" position="floating">Password</ion-label>
+            <ion-input formControlName="password" id="password" clearInput type="password" required></ion-input>
+        </ion-item>
+        <div class="error-prompt">
+            <ng-container *ngFor="let validation of validation_messages.password">
+                <div class="error-message" *ngIf="register_form.get('password').hasError(validation.type) && (register_form.get('password').touched || register_form.controls.password.dirty || submit_attempt)">
+                    &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+                  </div> 
+            </ng-container> 
+          </div>
+
+        <ion-item>
+            <ion-label class="label" position="floating">Confirm password</ion-label>
+            <ion-input formControlName="password_again" id="password_again" clearInput type="password" required></ion-input>
+        </ion-item>
+        <div class="error-prompt" *ngIf="register_form.hasError('mismatchedPasswords') && (register_form.get('password_again').touched || submit_attempt )">
+            &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp;Password mismatch
+        </div>
+
+        <div class="personal-information">
+            II. Personal Information
         </div>
 
         <ion-item>
@@ -83,26 +112,6 @@
                 &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
             </div>
         </ng-container>
-
-        <ion-item>
-            <ion-label class="label" position="floating">Password</ion-label>
-            <ion-input formControlName="password" id="password" clearInput type="password" required></ion-input>
-        </ion-item>
-        <div class="error-prompt">
-            <ng-container *ngFor="let validation of validation_messages.password">
-                <div class="error-message" *ngIf="register_form.get('password').hasError(validation.type) && (register_form.get('password').touched || register_form.controls.password.dirty || submit_attempt)">
-                    &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
-                  </div> 
-            </ng-container> 
-          </div>
-        
-        <ion-item>
-            <ion-label class="label" position="floating">Confirm password</ion-label>
-            <ion-input formControlName="password_again" id="password_again" clearInput type="password" required></ion-input>
-        </ion-item>
-        <div class="error-prompt" *ngIf="register_form.hasError('mismatchedPasswords') && (register_form.get('password_again').touched || submit_attempt )">
-            &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp;Password mismatch
-        </div>
 
         <div class="terms-conditions">
           <ion-checkbox [checked]='check_check_box' disabled='disabled' style="float: left;"></ion-checkbox> By tapping "Sign Up" you agree to the <a (click)="present_terms_conditions()">terms & conditions</a>
