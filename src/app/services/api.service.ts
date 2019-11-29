@@ -4,6 +4,7 @@ import { reject, resolve } from 'q';
 import { map } from "rxjs/operators";
 import { LoadingController } from '@ionic/angular';
 import { AlertController, ToastController} from '@ionic/angular';
+import { Router } from '@angular/router';
 
 // Typescript for search
 export enum SearchType {
@@ -28,7 +29,8 @@ export class ApiService {
 
   constructor(private http_client : HttpClient,
               private loading_controller : LoadingController,
-              private alert_controller : AlertController) { }
+              private alert_controller : AlertController,
+              private router: Router) { }
 
   async post_register_clinician(data){
     const loading = await this.loading_controller.create({
@@ -77,8 +79,13 @@ export class ApiService {
   async present_successful_registration_clinical_instructor() {
     const alert = await this.alert_controller.create({
       header: 'Registration Successful!',
-      message: 'Congratulations! You are now successfully registered as clnicial instructor to App Name. You may now login your account.',
-      buttons: ['Ok'],
+      message: 'Congratulations! You are now successfully registered as clinical instructor to App Name. You may now login your account.',
+      buttons: [{
+        text:'Ok',
+        handler: () => {
+          this.router.navigate(['login']);
+        }
+      }],
     });
     await alert.present();
   }
@@ -87,7 +94,12 @@ export class ApiService {
     const alert = await this.alert_controller.create({
       header: 'Registration Successful!',
       message: 'Congratulations! You are now successfully registered as clinician to App Name. You may now login your account.',
-      buttons: ['Ok'],
+      buttons: [{
+        text:'Ok',
+        handler: () => {
+          this.router.navigate(['login']);
+        }
+      }],
     });
     await alert.present();
   }
