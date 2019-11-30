@@ -53,6 +53,19 @@ ion-radio {
     --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
 }
 
+.error-prompt {
+    background-color: transparent;
+    color: #ff4545;
+    margin: 20px;
+    font-size: 12px;
+    font-family: 'Noto Sans', sans-serif;
+    border-radius: 5px;
+}
+
+.error-message { 
+    margin-top: -5px;
+}
+
 .personal-information {
     background-color: #20B2FF;
     color: white;

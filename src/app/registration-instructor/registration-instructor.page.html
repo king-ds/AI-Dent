@@ -46,7 +46,6 @@
             <ion-label position="floating">Password</ion-label>
             <ion-input formControlName="password" id="password" clearInput type="password" required></ion-input>
         </ion-item>
-
         <div class="error-prompt">
             <ng-container *ngFor="let validation of validation_messages.password">
                 <div class="error-message" *ngIf="register_form.get('password').hasError(validation.type) && (register_form.get('password').touched || register_form.controls.password.dirty || submit_attempt)">

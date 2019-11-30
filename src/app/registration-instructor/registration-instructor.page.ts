@@ -13,7 +13,7 @@ export class RegistrationInstructorPage implements OnInit {
 
   public register_form : FormGroup;
   public submit_attempt : boolean = false;
-  check_check_box = false
+  check_check_box = false;
 
   validation_messages = {
     'username' : [
