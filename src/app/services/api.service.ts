@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { reject, resolve } from 'q';
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { LoadingController } from '@ionic/angular';
 import { AlertController, ToastController} from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -26,12 +26,16 @@ const http_options = {
 export class ApiService {
   url = 'http://127.0.0.1:8000/';
   loading : any;
+  public success : boolean = false;
 
   constructor(private http_client : HttpClient,
               private loading_controller : LoadingController,
               private alert_controller : AlertController,
               private router: Router) { }
 
+  /*
+  * REGISTRATION
+  */
   async post_register_clinician(data){
     const loading = await this.loading_controller.create({
       message: 'Loading',
@@ -98,6 +102,37 @@ export class ApiService {
     });
   }
 
+  /*
+  * LOGIN
+  */
+  login_clinician(data){
+    return new Promise(resolve=> {
+      this.http_client.post(this.url+'authenticate/clinicians', JSON.stringify(data), http_options)
+      .subscribe(res => {
+        resolve(res);
+        this.success = true;
+      },
+      (error) => {
+        reject(error);
+        console.log(error);
+        this.success = false;
+      });
+    });
+  }
+
+  loginAsClinician(data){
+    this.success = false;
+    return this.http_client.post(this.url+'authenticate/clinicians', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+        this.success = true;
+      })
+    )
+    .toPromise();
+  }
+
+  /*
+  * MESSAGE ALERT
+  */
   async present_successful_registration_clinical_instructor() {
     const alert = await this.alert_controller.create({
       header: 'Registration Successful!',
@@ -149,6 +184,9 @@ export class ApiService {
     await alert.present();
   }
 
+  /* 
+  * Validators
+  */
   validate_student_number(student_number){
     return this.http_client.get(this.url+'clinicians/'+student_number).pipe(map(res => res));
   }

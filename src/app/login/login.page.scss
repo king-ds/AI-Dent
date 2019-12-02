@@ -11,6 +11,17 @@ ion-item {
     border-radius: 20px;
 }
 
+.sign-in-loader {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100%;
+}
+
+.sign-in-text {
+    margin-top: 50px;
+}
+
 .alert_radio{
     background-color: black;
 }
