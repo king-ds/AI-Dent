@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button style="color: black;" defaultHref="/"></ion-back-button>
+      </ion-buttons>
+    <ion-title>Add Patient</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-item button *ngFor="let item of (results | async)" [routerLink]="[item.id]" >
+      <ion-avatar slot="start">
+        <img src='/assets/img/patient.png/'>
+      </ion-avatar>
+
+      <ion-label class="ion-text-wrap">
+        <h3>{{ item.first_name }} {{ item.last_name }}</h3>
+        <h4>{{ item.datetime_joined }}</h4>
+      </ion-label>
+
+      <ion-icon slot="end" *ngIf="item.gender == 'female'" name="female"></ion-icon>
+      <ion-icon slot="end" *ngIf="item.gender == 'male'" name="male"></ion-icon>
+      <ion-icon slot="end" name="arrow-dropright"></ion-icon>
+    </ion-item>
+    
+  </ion-list>
+</ion-content>

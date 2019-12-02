@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { reject, resolve } from 'q';
 import { map, tap } from "rxjs/operators";
 import { LoadingController } from '@ionic/angular';
@@ -32,6 +33,24 @@ export class ApiService {
               private loading_controller : LoadingController,
               private alert_controller : AlertController,
               private router: Router) { }
+  
+  /*
+  * ADD PATIENT
+  */
+
+  searchPatient(title : string) : Observable<any> {
+    return this.http_client.get(this.url+'patients-list/?search='+title).pipe(
+      map(results => results)
+    )
+  }
+
+  getPatientDetails(id){
+    return this.http_client.get(this.url+'patients-list/'+id);
+  }
+
+  addPatient(patient_id, clinician_id){
+    // return this.http_client.post()
+  }
 
   /*
   * REGISTRATION
@@ -105,26 +124,12 @@ export class ApiService {
   /*
   * LOGIN
   */
-  login_clinician(data){
-    return new Promise(resolve=> {
-      this.http_client.post(this.url+'authenticate/clinicians', JSON.stringify(data), http_options)
-      .subscribe(res => {
-        resolve(res);
-        this.success = true;
-      },
-      (error) => {
-        reject(error);
-        console.log(error);
-        this.success = false;
-      });
-    });
-  }
-
   loginAsClinician(data){
     this.success = false;
     return this.http_client.post(this.url+'authenticate/clinicians', JSON.stringify(data), http_options)
     .pipe( tap(res => {
         this.success = true;
+        console.log(res);
       })
     )
     .toPromise();

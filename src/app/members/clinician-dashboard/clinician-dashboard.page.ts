@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './../../services/authentication.service';
 import { StorageService } from './../../services/storage.service';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clinician-dashboard',
@@ -17,7 +18,7 @@ export class ClinicianDashboardPage implements OnInit {
 
   constructor(private authService : AuthenticationService,
               private storageService : StorageService,
-              private storage : Storage) { }
+              private router : Router) { }
 
   ngOnInit() {
     this.getUserDetails();
@@ -35,5 +36,10 @@ export class ClinicianDashboardPage implements OnInit {
         this.student_number = result['student_number'];
       })
     }, 2000);
+  }
+
+
+  initiateAddPatient(){
+    this.router.navigate(['members', 'add-patients']);
   }
 }

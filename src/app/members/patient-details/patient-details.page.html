@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="addPatient()">
+          <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ information?.username }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="information">
+      {{ information.first_name }}
+      {{ information.middle_name }} 
+      {{ information.last_name }}
+      {{ information.gender }}
+      {{ information.permanent_address }}
+  </div>
+</ion-content>
