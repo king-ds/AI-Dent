@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { StorageService } from '../services/storage.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -26,14 +27,16 @@ export class AuthenticationService {
 
     constructor(private storage : Storage, 
                 private plt : Platform,
-                private httpClient : HttpClient) {
+                private httpClient : HttpClient,
+                private storageService : StorageService,
+                ) {
       this.plt.ready().then(() =>{
-        this.checkId();
+        this.checkToken();
       })
     }
 
-  checkId(){
-    this.storage.get('id').then(res => {
+  checkToken(){
+    this.storage.get('token').then(res => {
       if(res){
         this.authenticationState.next(true);
       }
@@ -43,9 +46,15 @@ export class AuthenticationService {
   loginAsClinician(data) {
     return this.httpClient.post(this.url+'authenticate/clinicians', JSON.stringify(data), httpOptions)
     .pipe( tap(res => {
-        this.success = true;
-        this.authenticationState.next(true);
-        this.isClinician.next(true);
+      this.success = true;
+      this.authenticationState.next(true);
+      this.isClinician.next(true);
+      // Save clinician details to data storage
+      this.storageService.setObject('clinician', res);
+      // var resKeys = Object.keys(res);
+      // for( var i in resKeys ){
+      //   this.storage.set(resKeys[i], res[resKeys[i]]);
+      // }
       })
     )
     .toPromise();
@@ -57,6 +66,11 @@ export class AuthenticationService {
         this.success = true;
         this.authenticationState.next(true);
         this.isInstructor.next(true);
+        // Save instructor details to data storage
+        var resKeys = Object.keys(res);
+        for( var i in resKeys ){
+          this.storage.set(resKeys[i], res[resKeys[i]]);
+        }
       })
     )
     .toPromise();
@@ -68,14 +82,19 @@ export class AuthenticationService {
         this.success = true;
         this.authenticationState.next(true);
         this.isPatient.next(true);
-        console.log(res);
+        // Save instructor details to data storage
+        var resKeys = Object.keys(res);
+        for( var i in resKeys ){
+          this.storage.set(resKeys[i], res[resKeys[i]]);
+        }
       })
+
     )
     .toPromise();
   }
 
   logoutAnyUser(){
-    return this.storage.remove('id').then(() => {
+    return this.storage.remove('token').then(() => {
       this.authenticationState.next(false);
       this.isPatient.next(false);
       this.isClinician.next(false);

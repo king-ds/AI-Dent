@@ -9,10 +9,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  },
-  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
@@ -33,19 +29,6 @@ const routes: Routes = [
     canActivate : [AuthGuard],
     loadChildren : './members/member-routing.module#MemberRoutingModule'
   }
-  // {
-  //   path: 'clinician-dashboard',
-  //   loadChildren: () => import('./members/clinician-dashboard/clinician-dashboard.module').then( m => m.ClinicianDashboardPageModule)
-  // },
-  // {
-  //   path: 'instructor-dashboard',
-  //   loadChildren: () => import('./members/instructor-dashboard/instructor-dashboard.module').then( m => m.InstructorDashboardPageModule)
-  // },
-  // {
-  //   path: 'patient-dashboard',
-  //   loadChildren: () => import('./members/patient-dashboard/patient-dashboard.module').then( m => m.PatientDashboardPageModule)
-  // }
-
 ];
 
 @NgModule({

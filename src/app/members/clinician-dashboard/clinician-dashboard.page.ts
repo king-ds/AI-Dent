@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './../../services/authentication.service';
+import { StorageService } from './../../services/storage.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-clinician-dashboard',
@@ -8,14 +10,30 @@ import { AuthenticationService } from './../../services/authentication.service';
 })
 export class ClinicianDashboardPage implements OnInit {
 
-  constructor(private authService : AuthenticationService) { }
+  first_name : string;
+  last_name : string;
+  student_number : string;
+  debouncer : any;
+
+  constructor(private authService : AuthenticationService,
+              private storageService : StorageService,
+              private storage : Storage) { }
 
   ngOnInit() {
+    this.getUserDetails();
   }
 
   logout(){
     this.authService.logoutAnyUser();
   }
 
-
+  getUserDetails(){
+    this.debouncer = setTimeout(() =>{
+      this.storageService.getObject('clinician').then(result => {
+        this.first_name = result['first_name'];
+        this.last_name = result['last_name'];
+        this.student_number = result['student_number'];
+      })
+    }, 2000);
+  }
 }

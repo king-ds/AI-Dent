@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,8 @@ export class LoginPage implements OnInit {
               public toast_controller : ToastController,
               public form_builder : FormBuilder,
               public api_service : ApiService,
-              private authService : AuthenticationService,) { 
+              private authService : AuthenticationService,
+              private storage : Storage) { 
 
     this.login_clinician_form = form_builder.group({
       student_number : [''],
@@ -49,7 +51,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-
+    // this.storage.clear();
   }
 
   loginClinician(){
@@ -65,6 +67,7 @@ export class LoginPage implements OnInit {
       this.login_loader = false;
       this.success = true;
       this.back_to_selection();
+      this.login_clinician_form.reset();
       console.log(res);
     })
     .catch(error => {
@@ -88,6 +91,7 @@ export class LoginPage implements OnInit {
       this.login_loader = false;
       this.success = true;
       this.back_to_selection();
+      this.login_instructor_form.reset();
       console.log(res);
     })
     .catch(error => {
@@ -111,6 +115,7 @@ export class LoginPage implements OnInit {
       this.login_loader = false;
       this.success = true;
       this.back_to_selection();
+      this.login_patient_form.reset();
       console.log(res);
     })
     .catch(error => {
@@ -213,6 +218,4 @@ export class LoginPage implements OnInit {
     });
     await alert.present();
   }
-
-
 }

@@ -50,7 +50,7 @@ export class AppComponent {
           });
         } else {
           this.router.navigate(['login']);
-          console.log('error')
+          console.log('User has not authenticated yet.')
         }
       });
     });
