@@ -14,7 +14,7 @@
     A.I. Dent
   </div>
   <div class="welcome">
-    Welcome! Login to your A.I. Dent Account
+    Welcome! Login to your A.I. Dent account
   </div>
 <!-- End of Header -->
 
@@ -30,9 +30,6 @@
       <button id="login-patient-btn" (click)='login_as_patient()'>LOGIN AS PATIENT</button>
   </div>
 </div>
-
-
-
 
 <!-- Clinician Login Form -->
 <div class="clinician-forms" *ngIf='clinician_login_form'>
@@ -111,16 +108,15 @@
   </div>
 </div>
 <!-- End of Patient Login Form -->
-
-
-
-<!-- Sign Up Button -->
-<div class="register-btn-container">
-  <div class="register-text">
-  Don't have an account? <a id="register-btn" (click)='presentAlertRadio()'>Sign up here</a>
-  </div>
 </div>
-</div>
-<!-- End of Sign Up Button -->
-
 </ion-content>
+
+<ion-footer no-border *ngIf='!login_loader'>
+    <ion-toolbar class="footer">
+      <ion-title size="small">
+        <div class="register-text">
+          Don't have an account? <a id="register-btn" (click)='presentAlertRadio()'>Sign up here</a>
+        </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

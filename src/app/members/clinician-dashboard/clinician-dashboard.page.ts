@@ -38,7 +38,6 @@ export class ClinicianDashboardPage implements OnInit {
     }, 2000);
   }
 
-
   initiateAddPatient(){
     this.router.navigate(['members', 'add-patients']);
   }

@@ -1,22 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button style="color: black;" defaultHref="/"></ion-back-button>
-      </ion-buttons>
-    <ion-title>Patient Lists</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="header">
+    <div class="header-text">PATIENT LISTS</div>
 
-  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+    <div class="greet-user" *ngIf="clinician">
+      Hi {{ clinician.last_name }}, here is the current list of your patients.
+    </div>
+
+    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+    <ion-item-divider></ion-item-divider>
+  </div>
+
+  
+<div class="container">
+
+  <div class="no-patient-available" *ngIf="(!loader && empty)">
+    NO PATIENT YET
+  </div>
+
   <!-- Loader -->
-  <div *ngIf="loader">
-      <ion-spinner name="crescent"></ion-spinner>
+  <div class="loader" *ngIf="loader">
+    <ion-spinner name="crescent"></ion-spinner>
   </div>
 
   <ion-list *ngIf="!loader">
-    <ion-item button *ngFor="let item of (results | async)" [routerLink]="['/', 'members', 'selection', item.id]">
+    <ion-item class="item" button *ngFor="let item of (results | async)" [routerLink]="['/', 'members', 'selection', item.id]">
+      
       <!-- Female Avatar -->
       <ion-avatar *ngIf="item.gender == 'female'" slot="start">
         <img src='/assets/img/girl.png/'>
@@ -29,9 +37,12 @@
 
       <ion-label class="ion-text-wrap">
           <h3>{{ item.first_name }} {{ item.last_name }}</h3>
+          <h3>{{ item.phone_num }}</h3>
       </ion-label>
 
       <ion-icon slot="end" name="arrow-dropright"></ion-icon>
     </ion-item>
   </ion-list>
+
+</div>
 </ion-content>

@@ -1,39 +1,43 @@
-<ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button style="color: black;" defaultHref="/"></ion-back-button>
-      </ion-buttons>
-    <ion-title>Add Patient</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+  <div class="header">
+    <div class="header-text">ADD NEW PATIENT</div>
 
-  <!-- Loader -->
-  <div *ngIf="loader">
-    <ion-spinner name="crescent"></ion-spinner>
+    <div class="greet-user" *ngIf="clinician">
+      Hi {{ clinician.last_name }}, would you like to add more patient?
+    </div>
+
+    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)" animated></ion-searchbar>
+    <ion-item-divider></ion-item-divider>
   </div>
+  
+  <div class="container">
 
-  <ion-list *ngIf="!loader">
-    <ion-item button *ngFor="let item of (results | async)" [routerLink]="[item.id]" >
+    <div class="no-patient-available" *ngIf="(!loader && empty)">
+      NO PATIENT AVAILABLE RIGHT NOW
+    </div>
+    <!-- Loader -->
+    <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    
+    <ion-list *ngIf="(!loader && !empty)">
+      <ion-item class="item" button *ngFor="let item of (results | async)" [routerLink]="['/', 'members', 'add-patients', item.id]">
+        <!-- Female Avatar -->
+        <ion-avatar *ngIf="item.gender == 'female'" slot="start">
+          <img src='/assets/img/girl.png/'>
+        </ion-avatar>
 
-      <!-- Female Avatar -->
-      <ion-avatar *ngIf="item.gender == 'female'" slot="start">
-        <img src='/assets/img/girl.png/'>
-      </ion-avatar>
+        <!-- Male Avatar -->
+        <ion-avatar *ngIf="item.gender == 'male'" slot="start">
+            <img src='/assets/img/boy.png/'>
+        </ion-avatar>
 
-      <!-- Male Avatar -->
-      <ion-avatar *ngIf="item.gender == 'male'" slot="start">
-          <img src='/assets/img/boy.png/'>
-      </ion-avatar>
-
-      <!-- Patient Details -->
-      <ion-label class="ion-text-wrap">
-        <h3>{{ item.first_name }} {{ item.last_name }}</h3>
-      </ion-label>
-
-      <ion-icon slot="end" name="arrow-dropright"></ion-icon>
-    </ion-item>
-  </ion-list>
+        <!-- Patient Details -->
+        <ion-label class="ion-text-wrap">
+          <h3>{{ item.first_name }} {{ item.last_name }}</h3>
+        </ion-label>
+        <ion-icon slot="end" name="arrow-dropright"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

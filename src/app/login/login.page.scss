@@ -11,6 +11,13 @@ ion-item {
     border-radius: 20px;
 }
 
+ion-toolbar {
+    --background : #222222;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+}
+
 .sign-in-loader {
     display: flex !important;
     justify-content: center !important;
@@ -30,10 +37,6 @@ ion-icon {
     color: #20B2FF;
 }
 
-// .clinician-forms{
-//     display: none;
-// }
-
 .logo {
     margin-top: 40px;
     width: 150px;
@@ -43,7 +46,7 @@ ion-icon {
 
 .app-name{
     text-align: center;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     color: white;
 }
@@ -151,15 +154,5 @@ ion-icon {
     // border: 1px solid black;
     font-size: 15px;
     color: black;
-    font-family: 'Lato', sans-serif;
-}
-
-.register-btn-container {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    color: white;
-    padding-bottom: 20px;
     font-family: 'Lato', sans-serif;
 }

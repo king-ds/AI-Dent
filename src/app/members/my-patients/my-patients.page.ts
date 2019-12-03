@@ -16,6 +16,7 @@ export class MyPatientsPage implements OnInit {
   clinician : string;
   debouncer : any;
   loader : boolean = false;
+  empty : boolean;
 
   constructor(private apiService : ApiService,
               private storageService : StorageService,
@@ -23,12 +24,12 @@ export class MyPatientsPage implements OnInit {
 
   ngOnInit() {
       this.storageService.getObject('clinician').then((result) => {
-      this.clinician = result['id'];
+      this.clinician = result;
       console.log(this.clinician);
       this.loader = true;
 
       this.debouncer = setTimeout(() => {
-        this.getMyPatient();
+        this.checkMyPatient();
         this.loader = false;
       }, 2000)
     });
@@ -36,12 +37,25 @@ export class MyPatientsPage implements OnInit {
 
   searchChanged(){
     this.loader = true;
-    this.results = this.apiService.searchMyPatient(this.searchTerm, this.clinician);
+    console.log(this.searchTerm);
+    this.results = this.apiService.searchMyPatient(this.searchTerm, this.clinician['id']);
     this.loader = false;
   }
 
   getMyPatient(){
-    this.results = this.apiService.getMyPatient(this.clinician);
+    this.results = this.apiService.getMyPatient(this.clinician['id']);
+    console.log(this.results);
+  }
+
+  checkMyPatient(){
+    this.apiService.getMyPatient(this.clinician['id']).subscribe(val => {
+      if(val == ''){
+        this.empty = true;
+      }else{
+        this.empty = false;
+        this.getMyPatient();
+      }
+    });
   }
 
   trackRecord(){

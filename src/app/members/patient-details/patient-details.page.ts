@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { StorageService } from './../../services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-details',
@@ -15,7 +16,8 @@ export class PatientDetailsPage implements OnInit {
 
   constructor(private activatedRoute : ActivatedRoute,
               private apiService : ApiService,
-              private storageService : StorageService,) { }
+              private storageService : StorageService,
+              private router : Router) { }
 
   ngOnInit() {
     this.getCurrentClinician();
@@ -28,10 +30,10 @@ export class PatientDetailsPage implements OnInit {
       'has_doctor' : true,
     }
     let patient_id = this.information['id'];
-    console.log(patient_id)
 
     this.apiService.addPatient(patient_id, assignedData).then(res => {
       console.log(res);
+      this.router.navigate(['members', 'clinician-dashboard'])
     })
     .catch(error => {
       console.log(error);
