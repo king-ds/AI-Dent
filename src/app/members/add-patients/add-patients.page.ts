@@ -11,13 +11,25 @@ export class AddPatientsPage implements OnInit {
 
   results : Observable<any>;
   searchTerm : string = '';
+  debouncer : any;
+  loader : boolean = true;
 
   constructor(private apiService : ApiService) { }
 
   ngOnInit() {
+
+    this.debouncer = setTimeout(() => {
+      this.getPatientList();
+      this.loader = false;
+    }, 2000)
   }
 
   searchChanged(){
     this.results = this.apiService.searchPatient(this.searchTerm);
+  }
+
+  getPatientList(){
+    this.results = this.apiService.getPatientList();
+    console.log(this.results);
   }
 }

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="addPatient()">
+          <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Track Record</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="information">
+    {{ information.first_name }}
+    {{ information.middle_name }} 
+    {{ information.last_name }}</div>
+
+    <ion-button>Additional Personal Data</ion-button>
+    <ion-button>Vital Sign</ion-button>
+    <ion-button>Medical History</ion-button>
+    <ion-button>Medical Health Questionnaire</ion-button>
+    <ion-button>Allergies</ion-button>
+    <ion-button>Dental Chart</ion-button>
+</ion-content>

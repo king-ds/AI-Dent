@@ -32,7 +32,7 @@ export class ClinicianDashboardPage implements OnInit {
     this.debouncer = setTimeout(() =>{
       this.storageService.getObject('clinician').then(result => {
         this.first_name = result['first_name'];
-        this.last_name = result['last_name'];
+        this.last_name = result['id'];
         this.student_number = result['student_number'];
       })
     }, 2000);
@@ -41,5 +41,9 @@ export class ClinicianDashboardPage implements OnInit {
 
   initiateAddPatient(){
     this.router.navigate(['members', 'add-patients']);
+  }
+
+  viewMyPatients(){
+    this.router.navigate(['members', 'my-patients']);
   }
 }

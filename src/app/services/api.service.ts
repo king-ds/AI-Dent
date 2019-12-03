@@ -44,12 +44,52 @@ export class ApiService {
     )
   }
 
+  getPatientList(){
+    return this.http_client.get(this.url+'patients-list/').pipe(
+      map(results => results)
+    )
+  }
+
+  searchMyPatient(title : string, clinician_id : string) : Observable<any> {
+    return this.http_client.get(this.url+'my-patients-list/'+clinician_id+'?search='+title).pipe(
+      map(results => results)
+    )
+  }
+
+  getMyPatient(clinician_id : string){
+    return this.http_client.get(this.url+'my-patients-list/'+clinician_id).pipe(
+      map(results => results)
+    )
+  }
+
   getPatientDetails(id){
     return this.http_client.get(this.url+'patients-list/'+id);
   }
 
-  addPatient(patient_id, clinician_id){
-    // return this.http_client.post()
+  addPatient(id, data){
+    return this.http_client.put(this.url+'update/patient/'+id, JSON.stringify(data),http_options)
+    .pipe( tap(res => {
+      console.log(res);
+      })
+    )
+    .toPromise();
+  }
+
+  addAdditionalData(data){
+    this.success = false;
+    return this.http_client.post(this.url+'add/additional-personal-data', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+        this.success = true;
+        console.log(res);
+      })
+    )
+    .toPromise();
+  }
+
+  myPatientList(clinician_id : string){
+    return this.http_client.get(this.url+'my-patients-list/'+clinician_id).pipe(
+      map(results => results)
+    )
   }
 
   /*

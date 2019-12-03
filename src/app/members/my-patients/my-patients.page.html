@@ -3,21 +3,20 @@
       <ion-buttons slot="start">
           <ion-back-button style="color: black;" defaultHref="/"></ion-back-button>
       </ion-buttons>
-    <ion-title>Add Patient</ion-title>
+    <ion-title>Patient Lists</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
 
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
   <!-- Loader -->
   <div *ngIf="loader">
-    <ion-spinner name="crescent"></ion-spinner>
+      <ion-spinner name="crescent"></ion-spinner>
   </div>
 
   <ion-list *ngIf="!loader">
-    <ion-item button *ngFor="let item of (results | async)" [routerLink]="[item.id]" >
-
+    <ion-item button *ngFor="let item of (results | async)" [routerLink]="['/', 'members', 'selection', item.id]">
       <!-- Female Avatar -->
       <ion-avatar *ngIf="item.gender == 'female'" slot="start">
         <img src='/assets/img/girl.png/'>
@@ -28,9 +27,8 @@
           <img src='/assets/img/boy.png/'>
       </ion-avatar>
 
-      <!-- Patient Details -->
       <ion-label class="ion-text-wrap">
-        <h3>{{ item.first_name }} {{ item.last_name }}</h3>
+          <h3>{{ item.first_name }} {{ item.last_name }}</h3>
       </ion-label>
 
       <ion-icon slot="end" name="arrow-dropright"></ion-icon>

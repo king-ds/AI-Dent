@@ -20,7 +20,7 @@ export class StorageService {
     }
   }
 
-  async get(key : string){
+  async get(key : string) : Promise <any>{
     try{
       const result = await this.storage.get(key);
       console.log('Get storage with key: '+key+' and value : '+result);
