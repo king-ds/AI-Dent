@@ -14,7 +14,7 @@
 <div class="container">
 
   <div class="no-patient-available" *ngIf="(!loader && empty)">
-    NO PATIENT YET
+    NO AVAILABLE PATIENT <br>PLEASE ADD A PATIENT FIRST
   </div>
 
   <!-- Loader -->
@@ -27,12 +27,12 @@
       
       <!-- Female Avatar -->
       <ion-avatar *ngIf="item.gender == 'female'" slot="start">
-        <img src='/assets/img/girl.png/'>
+        <img src='/assets/img/girl.png'>
       </ion-avatar>
 
       <!-- Male Avatar -->
       <ion-avatar *ngIf="item.gender == 'male'" slot="start">
-          <img src='/assets/img/boy.png/'>
+          <img src='/assets/img/boy.png'>
       </ion-avatar>
 
       <ion-label class="ion-text-wrap">

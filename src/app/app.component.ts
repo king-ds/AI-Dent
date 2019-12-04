@@ -32,7 +32,7 @@ export class AppComponent {
         if(state){
           this.authenticationService.isClinician.subscribe(clinician => {
             if(clinician){
-              this.router.navigate(['members', 'clinician-dashboard']);
+              this.router.navigate(['members', 'menu', 'clinician-dashboard']);
               console.log('clinician')
             }
           });

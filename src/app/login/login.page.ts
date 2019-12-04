@@ -68,7 +68,6 @@ export class LoginPage implements OnInit {
       this.success = true;
       this.back_to_selection();
       this.login_clinician_form.reset();
-      console.log(res);
     })
     .catch(error => {
       this.login_loader = false;

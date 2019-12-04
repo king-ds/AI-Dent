@@ -18,7 +18,9 @@ const httpOptions = {
 export class AuthenticationService {
 
   url = 'http://127.0.0.1:8000/';
+  // url = 'http://192.168.43.37:8000/';
   public success : boolean = false;
+  debouncer : any;
 
   authenticationState = new BehaviorSubject(false);
   isClinician = new BehaviorSubject(false);
@@ -47,6 +49,7 @@ export class AuthenticationService {
   loginAsClinician(data) {
     return this.httpClient.post(this.url+'authenticate/clinicians', JSON.stringify(data), httpOptions)
     .pipe( tap(res => {
+      // this.storageService.storage.clear();
       this.success = true;
       this.authenticationState.next(true);
       this.isClinician.next(true);
