@@ -2,8 +2,9 @@
   <ion-menu contentId="content">
 
     <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Menu</ion-title>
+      <ion-toolbar class="menu-toolbar" color="primary">
+        <ion-avatar class="logo" slot="start"><img src="/assets/draft_logo.png"></ion-avatar>
+        <ion-title class="menu-toolbar-title">Menu</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -11,18 +12,21 @@
     <ion-list>
       <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
         <ion-item [routerLink]="p.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(p.url)">
-          <ion-label>
+          <ion-icon *ngIf="p.title == 'Home'" name="home" slot="start"></ion-icon>
+          <ion-icon *ngIf="p.title == 'Instructor'" name="contacts" slot="start"></ion-icon>
+          <ion-label class="label">
             {{ p.title }}
           </ion-label>
         </ion-item>
       </ion-menu-toggle>
 
-      <ion-item tappable routerDirection="root" (click)="logoutUser()">
-        <ion-icon name="log-out" slot="start"></ion-icon>Logout
-      </ion-item>
-
     </ion-list>
   </ion-content>
+  
+  <ion-item class="label" tappable routerDirection="root" (click)="logoutUser()">
+      <ion-icon name="log-out" slot="start"></ion-icon>Logout
+  </ion-item>
+
   </ion-menu>
   <ion-router-outlet id="content" main></ion-router-outlet>
 </ion-split-pane>

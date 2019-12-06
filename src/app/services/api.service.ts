@@ -26,7 +26,7 @@ const http_options = {
 
 export class ApiService {
   url = 'http://127.0.0.1:8000/';
-  // url = 'http://192.168.43.37:8000/';
+  // url = 'http://192.168.0.106:8000/';
   loading : any;
   public success : boolean = false;
 
@@ -34,7 +34,63 @@ export class ApiService {
               private loading_controller : LoadingController,
               private alert_controller : AlertController,
               private router: Router) { }
-  
+
+  /*
+  * SETUP TRACK RECORD
+  */
+ addComplaint(data){
+   return this.http_client.post(this.url+'track-record/additional-personal-data', JSON.stringify(data),http_options)
+   .pipe( tap(res => {
+     console.log(res);
+    })
+   )
+  .toPromise();
+ }
+
+ addMedicalHistory(data){
+  return this.http_client.post(this.url+'track-record/medical-history', JSON.stringify(data),http_options)
+  .pipe( tap(res => {
+    console.log(res);
+   })
+  )
+ .toPromise();
+ }
+
+ addMedicalHistoryQuestionnaire(data){
+   return this.http_client.post(this.url+'track-record/medical-history-questionnaire', JSON.stringify(data), http_options)
+   .pipe( tap ( res =>{
+     console.log(res);
+    })
+   )
+   .toPromise();
+ }
+
+ addVitalSign(data){
+  return this.http_client.post(this.url+'track-record/vital-sign', JSON.stringify(data), http_options)
+  .pipe( tap ( res =>{
+    console.log(res);
+   })
+  )
+  .toPromise();
+ }
+
+ addTrackRecord(data){
+   return this.http_client.post(this.url+'track-record/track-record',JSON.stringify(data), http_options)
+   .pipe( tap(res =>{
+     console.log(res);
+    })
+   )
+   .toPromise();
+ }
+
+ addAllergies(data){
+  return this.http_client.post(this.url+'track-record/allergies',JSON.stringify(data), http_options)
+  .pipe( tap(res =>{
+    console.log(res);
+   })
+  )
+  .toPromise();
+ }
   /*
   * ADD PATIENT
   */
@@ -76,16 +132,16 @@ export class ApiService {
     .toPromise();
   }
 
-  addAdditionalData(data){
-    this.success = false;
-    return this.http_client.post(this.url+'add/additional-personal-data', JSON.stringify(data), http_options)
-    .pipe( tap(res => {
-        this.success = true;
-        console.log(res);
-      })
-    )
-    .toPromise();
-  }
+  // addAdditionalData(data){
+  //   this.success = false;
+  //   return this.http_client.post(this.url+'add/additional-personal-data', JSON.stringify(data), http_options)
+  //   .pipe( tap(res => {
+  //       this.success = true;
+  //       console.log(res);
+  //     })
+  //   )
+  //   .toPromise();
+  // }
 
   myPatientList(clinician_id : string){
     return this.http_client.get(this.url+'my-patients-list/'+clinician_id).pipe(
@@ -182,7 +238,7 @@ export class ApiService {
   async present_successful_registration_clinical_instructor() {
     const alert = await this.alert_controller.create({
       header: 'Registration Successful!',
-      message: 'Congratulations! You are now successfully registered as clinical instructor to App Name. You may now login your account.',
+      message: 'Congratulations! You are now successfully registered as clinical instructor to A.I. Dent. You may now login your account.',
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -196,7 +252,7 @@ export class ApiService {
   async present_successful_registration_clinician() {
     const alert = await this.alert_controller.create({
       header: 'Registration Successful!',
-      message: 'Congratulations! You are now successfully registered as clinician to App Name. You may now login your account.',
+      message: 'Congratulations! You are now successfully registered as clinician to A.I. Dent. You may now login your account.',
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -210,7 +266,7 @@ export class ApiService {
   async present_successful_registration_patient() {
     const alert = await this.alert_controller.create({
       header: 'Registration Successful!',
-      message: 'Congratulations! You are now successfully registered as patient to App Name. You may now login your account.',
+      message: 'Congratulations! You are now successfully registered as patient to A.I. Dent. You may now login your account.',
       buttons: [{
         text:'Ok',
         handler: () => {

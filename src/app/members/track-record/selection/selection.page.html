@@ -1,22 +1,44 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
+  <ion-toolbar class="toolbar">
+    <ion-buttons class="toolbar-button" slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Track Record</ion-title>
+    <ion-title class="toolbar-title" *ngIf="information">{{ information.first_name }} {{ information.last_name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf="information">
-    {{ information.first_name }}
-    {{ information.middle_name }} 
-    {{ information.last_name }}</div>
+  <ion-list>
+    <ion-card class="selections">
+      <img src="/assets/add_complaint.jpg/">
+      <ion-card-title>COMPLAINT</ion-card-title>
+      <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+    </ion-card>
 
-    <ion-button>Additional Personal Data</ion-button>
-    <ion-button>Vital Sign</ion-button>
-    <ion-button>Medical History</ion-button>
-    <ion-button>Medical Health Questionnaire</ion-button>
-    <ion-button>Allergies</ion-button>
-    <ion-button>Dental Chart</ion-button>
+    <ion-card class="selections">
+      <img src="/assets/vital_sign.png/">
+      <ion-card-title>VITAL SIGN</ion-card-title>
+    </ion-card>
+
+    <ion-card class="selections">
+      <img src="/assets/medical_history.png/">
+      <ion-card-title>MEDICAL HISTORY</ion-card-title>
+    </ion-card>
+
+    <ion-card class="selections">
+      <img src="/assets/medical_history_questionnaire.jpg/">
+      <ion-card-title>MEDICAL HISTORY QUESTIONNAIRE</ion-card-title>
+    </ion-card>
+
+    <ion-card class="selections">
+      <img src="/assets/allergies.png/">
+      <ion-card-title>ALLERGIES</ion-card-title>
+    </ion-card>
+  
+    <ion-card class="selections">
+      <img src="/assets/dental_chart.png/">
+      <ion-card-title>DENTAL CHART</ion-card-title>
+    </ion-card>
+
+  </ion-list>
 </ion-content>

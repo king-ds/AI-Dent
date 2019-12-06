@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+.toolbar {
+    --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
+}
+
+.toolbar-button {
+    color: white;
+}
+
+.toolbar-title {
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+
+.selections img{
+    width: 100px;
+    display: block;
+    margin: 10px auto;
+}
+
+.selections {
+    --background : #fefff2;
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-right: 10px
+}
+
+ion-card-title {
+    --color : black;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}

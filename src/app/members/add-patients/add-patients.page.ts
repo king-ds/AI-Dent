@@ -14,23 +14,27 @@ export class AddPatientsPage implements OnInit {
   clinician : string;
   searchTerm : string = '';
   debouncer : any;
-  loader : boolean = true;
+  loader : boolean;
   empty : boolean;
 
   constructor(private apiService : ApiService,
               private storageService : StorageService) { }
 
   ngOnInit() {
-    
+  
+  }
+
+  ionViewWillEnter(){
+    this.loader = true;
     this.storageService.getObject('clinician').then((result) => {
-    this.clinician = result;
-    console.log(this.clinician);
-    
-    this.debouncer = setTimeout(() => {
-        this.checkPatientList();
-        this.loader = false;
-      }, 2000)
-    });
+      this.clinician = result;
+      console.log(this.clinician);
+      
+      this.debouncer = setTimeout(() => {
+          this.checkPatientList();
+          this.loader = false;
+        }, 2000)
+      });
   }
 
   searchChanged(){

@@ -1,3 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
 .active-item {
     border-left: 8px solid var(--ion-color-primary);
+}
+
+.menu-toolbar { 
+    --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
+}
+
+.menu-toolbar-title {
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+
+.label {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.logo {
+    margin-left: 10px;
+    height: 45px;
+    width: 45px;
 }

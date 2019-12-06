@@ -20,7 +20,7 @@
       <ion-spinner name="crescent"></ion-spinner>
     </div>
     
-    <ion-list *ngIf="(!loader && !empty)">
+    <ion-list class="list" *ngIf="(!loader && !empty)">
       <ion-item class="item" button *ngFor="let item of (results | async)" [routerLink]="['/', 'members', 'add-patients', item.id]">
         <!-- Female Avatar -->
         <ion-avatar *ngIf="item.gender == 'female'" slot="start">

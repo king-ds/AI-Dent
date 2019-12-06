@@ -15,25 +15,17 @@ export class MyPatientsPage implements OnInit {
   searchTerm : string = '';
   clinician : string;
   debouncer : any;
-  loader : boolean = false;
+  loader : boolean;
   empty : boolean;
 
   constructor(private apiService : ApiService,
-              private storageService : StorageService,
-              private router : Router,) { }
+              private storageService : StorageService,) { }
 
   ngOnInit() {
+  }
 
+  ionViewWillEnter() {
     this.loader = true;
-    //     this.checkMyPatient();
-    //     this.loader = false;
-
-    // this.debouncer = setTimeout(() => {
-    //   this.storageService.getObject('clinician').then((result) => {
-    //     this.clinician = result;
-    //     console.log(this.clinician);
-    //     this.loader = true;
-    // })
     this.debouncer = setTimeout(() => {
       this.storageService.getObject('clinician').then((result) => {
         this.clinician = result;
@@ -65,6 +57,7 @@ export class MyPatientsPage implements OnInit {
       if(val == ''){
         this.empty = true;
       }else{
+        console.log(val)
         this.empty = false;
         this.getMyPatient();
       }
