@@ -40,4 +40,14 @@ export class SelectionPage implements OnInit {
 
     this.router.navigate(['members', 'complaint'], navigationExtras);
   }
+
+  goToMedicalHistory(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        patient : this.information
+      }
+    };
+    
+    this.router.navigate(['members', 'medical-history'], navigationExtras);
+  }
 }

@@ -1,20 +1,28 @@
 <ion-header>
   <ion-toolbar class="toolbar">
+
     <ion-buttons class="toolbar-button" slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-buttons class="menu-button" slot="end" *ngIf="isReadOnly">
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
       <ion-button (click)="editComplaint()">
           <ion-icon name="create"></ion-icon>
       </ion-button>
     </ion-buttons>
 
-    <ion-buttons class="menu-button" slot="end" *ngIf="!isReadOnly">
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+        <ion-button (click)="cancelEdit()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
         <ion-button (click)="confirmationMessage()">
             <ion-icon name="checkmark-circle-outline"></ion-icon>
         </ion-button>
     </ion-buttons>
-
+    
     <ion-title class="toolbar-title">Complaint</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -26,18 +34,18 @@
   </div>
 
   <div *ngIf="!loader">
-  <ion-list *ngIf="results">
-    <!-- <form> -->
-      <ion-item class="first-type">
+  <ion-list>
+
+      <ion-item>
           <ion-label position="floating">Chief Complaint</ion-label>
-          <ion-textarea [(ngModel)]="chiefComplaint" [readonly] = "isReadOnly"></ion-textarea>
+          <ion-textarea rows="3" [(ngModel)]="chiefComplaint" [readonly] = "isReadOnly" placeholder="Enter chief complaint here..."></ion-textarea>
       </ion-item>
 
-      <ion-item class="first-type">
+      <ion-item>
           <ion-label position="floating">History of Present Illness</ion-label>
-          <ion-textarea [(ngModel)]="historyOfPresentIllness" [readonly] = "isReadOnly"></ion-textarea>
+          <ion-textarea rows="3" [(ngModel)]="historyOfPresentIllness" [readonly] = "isReadOnly" placeholder="Enter history of present illness here..."></ion-textarea>
       </ion-item>
-    <!-- </form> -->
+
   </ion-list>
   </div>
 </ion-content>

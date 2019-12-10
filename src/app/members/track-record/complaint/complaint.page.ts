@@ -11,7 +11,6 @@ import { AlertController } from '@ionic/angular';
 export class ComplaintPage implements OnInit {
 
   patient : any;
-  results : null;
   debouncer : any;
   loader : boolean;
   isReadOnly = true;
@@ -37,7 +36,6 @@ export class ComplaintPage implements OnInit {
     this.loader = true;
     this.debouncer = setTimeout(() => {
       this.apiService.getComplaint(this.patient['track_record']).subscribe((val) => {
-        this.results = val;
         this.chiefComplaint = val['chief_complaint']
         this.historyOfPresentIllness = val['history_of_present_illness']
         this.loader = false;
@@ -74,6 +72,10 @@ export class ComplaintPage implements OnInit {
     }, 2000)
   }
 
+  cancelEdit(){
+    this.isReadOnly = true;
+  }
+  
   async successMessage() {
     const alert = await this.alertController.create({
       header: 'Success',

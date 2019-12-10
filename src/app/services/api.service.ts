@@ -44,12 +44,27 @@ export class ApiService {
    )
  }
 
+ getMedicalHistory(track_record){
+   return this.http_client.get(this.url+'track-record/'+track_record).pipe(
+     map ( results => results['medical_history'])
+   )
+ }
+
   /*
   * UPDATE TRACK RECORD
   */
  updateComplaint(data, track_record){
    return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
    .pipe( tap(res =>{
+     console.log(res);
+   })
+   )
+   .toPromise();
+ }
+
+ updateMedicalHistory(data, track_record){
+   return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+   .pipe( tap(res => {
      console.log(res);
    })
    )
