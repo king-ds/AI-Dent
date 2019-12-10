@@ -9,6 +9,7 @@ const routes: Routes = [
   { path : 'add-patients/:id', loadChildren: './patient-details/patient-details.module#PatientDetailsPageModule' },
   { path : 'selection/:id', loadChildren: './track-record/selection/selection.module#SelectionPageModule' },
   { path : 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
+  { path : 'complaint', loadChildren: './track-record/complaint/complaint.module#ComplaintPageModule' },
   {
     path: 'clinician-viewer',
     loadChildren: () => import('./clinician-viewer/clinician-viewer.module').then( m => m.ClinicianViewerPageModule)
@@ -17,7 +18,6 @@ const routes: Routes = [
     path: 'instructor-viewer',
     loadChildren: () => import('./instructor-viewer/instructor-viewer.module').then( m => m.InstructorViewerPageModule)
   },
-
 ];
 
 

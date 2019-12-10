@@ -36,6 +36,27 @@ export class ApiService {
               private router: Router) { }
 
   /*
+  * GET TRACK RECORD
+  */
+ getComplaint(track_record){
+   return this.http_client.get(this.url+'track-record/'+track_record).pipe(
+     map( results => results['additional_personal_data'] )
+   )
+ }
+
+  /*
+  * UPDATE TRACK RECORD
+  */
+ updateComplaint(data, track_record){
+   return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+   .pipe( tap(res =>{
+     console.log(res);
+   })
+   )
+   .toPromise();
+ }
+  
+  /*
   * SETUP TRACK RECORD
   */
  addComplaint(data){
