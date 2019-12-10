@@ -1,0 +1,244 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+  
+      <ion-buttons class="toolbar-button" slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+  
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
+        <ion-button (click)="editMedicalHealthQuestionnaire()">
+            <ion-icon name="create"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+          <ion-button (click)="cancelEdit()">
+              <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+          <ion-button (click)="confirmationMessage()">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      
+      <ion-title class="toolbar-title">Questionnaire</ion-title>
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+  <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <div *ngIf="!loader">
+    <div class="header">
+      CHECK IF YOU HAVE BEEN/ARE DIAGNOSE/ARE FEELING ANY OF THE FOLLOWING:
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-card>
+              <ion-item>
+                  <ion-label readonly>High Blood Pressure</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="highBloodPressure" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Diabetes</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="diabetes" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Osteoporosis</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="osteoporosis" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Herpes</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="herpes" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Radiation Treatments</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="radiationTreatments" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Chemotheraphy</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="chemotherapy" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Artificial Heart Valves</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="artificialHeartValves" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Heart Attack</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="heartAttack" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Pacemaker</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="pacemaker" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Angioplasty</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="angioplasty" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Stroke</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="stroke" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Angina Pectrosis</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="anginaPectrosis" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Frequent High Fever</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="freqeuntHighFever" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Sinusitis</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="sinusitis" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Empyema</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="empyema" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Asthma</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="asthma" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Breathing Problems</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="breathingProblems" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Afternoon Fever</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="afternoonFever" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Chronic Cough</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="chronicCough" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Bloody Sputum</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="bloodySputum" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Tuberculosis</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="tuberculosis" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Frequent Heartaches</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="frequentHeartAches" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+            </ion-card>
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <div>
+            <ion-card>
+              <ion-item>
+                  <ion-label>Visual Impairment</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="visualImpairment" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Hearing Impairment</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="hearingImpairment" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Athritis</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="athritis" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Pain in Joints</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="painInJoints" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Tumors</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="tumors" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Swollen Ankles</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="swollenAnkles" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Goiter</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="goiter" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Frequent Thirst</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="frequentThirst" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Frequent Hunger</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="frequentHunger" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Frequent Urination</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="frequentUrination" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Sudden Weight Loss</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="suddenWeightLoss" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Abdominal Discomfort</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="abdominalDiscomfort" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Acidic Reflux</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="acidicReflux" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Bleeding Bruining Easily</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="bleedingBruiningEasily" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Recreational Drugs</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="recreationalDrugs" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Steroid Theraphy</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="steroidTherapy" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Blood</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="blood" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Pain Upon Urination</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="painUponUrination" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Kidney Liver Problems</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="kindeyLiverProblems" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Hepatitis</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="hepatitis" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Sexually Transmitted Disease</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="sexuallyTransmittedDisease" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>HIV Positive</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="hivPositive" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Fainting Spells</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="faintingSpells" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Depression</ion-label>
+                  <ion-checkbox color="light" [(ngModel)]="depression" [disabled] = "isReadOnly"></ion-checkbox>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Others:</ion-label>
+                  <ion-input placeholder="Please specify..." [(ngModel)]="others" [readonly] = "isReadOnly"></ion-input>
+              </ion-item>
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

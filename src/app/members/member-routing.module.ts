@@ -11,6 +11,7 @@ const routes: Routes = [
   { path : 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
   { path : 'complaint', loadChildren: './track-record/complaint/complaint.module#ComplaintPageModule' },
   { path : 'medical-history', loadChildren : './track-record/medical-history/medical-history.module#MedicalHistoryPageModule'},
+  { path : 'medical-health-questionnaire', loadChildren : './track-record/medical-health-questionnaire/medical-health-questionnaire.module#MedicalHealthQuestionnairePageModule'},
   {
     path: 'clinician-viewer',
     loadChildren: () => import('./clinician-viewer/clinician-viewer.module').then( m => m.ClinicianViewerPageModule)
@@ -19,8 +20,8 @@ const routes: Routes = [
     path: 'instructor-viewer',
     loadChildren: () => import('./instructor-viewer/instructor-viewer.module').then( m => m.InstructorViewerPageModule)
   },
-];
 
+];
 
 @NgModule({
   imports : [RouterModule.forChild(routes)],

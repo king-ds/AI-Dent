@@ -50,6 +50,12 @@ export class ApiService {
    )
  }
 
+ getMedicalHealthQuestionnaire(track_record){
+   return this.http_client.get(this.url+'track-record/'+track_record).pipe(
+     map ( results => results['medical_health_questionnaire'])
+   )
+ }
+
   /*
   * UPDATE TRACK RECORD
   */
@@ -69,6 +75,15 @@ export class ApiService {
    })
    )
    .toPromise();
+ }
+
+ updateMedicalHealthQuestionnaire(data, track_record){
+  return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+  .pipe( tap(res => {
+    console.log(res);
+  })
+  )
+  .toPromise(); 
  }
   
   /*
