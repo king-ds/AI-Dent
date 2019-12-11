@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+  
+      <ion-buttons class="toolbar-button" slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+  
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
+        <ion-button *ngIf="!loader" (click)="editAllergies()">
+            <ion-icon name="create"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+          <ion-button *ngIf="!loader" (click)="cancelEdit()">
+              <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+          <ion-button *ngIf="!loader" (click)="confirmationMessage()">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      
+      <ion-title class="toolbar-title">Allergies</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+  <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+  
+  <div *ngIf="!loader">
+  <ion-list>
+      <ion-item>
+          <ion-label>Aspirin</ion-label>
+          <ion-checkbox color="light" [(ngModel)]="aspirin" [disabled] = "isReadOnly"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+          <ion-label>Penicillin</ion-label>
+          <ion-checkbox color="light" [(ngModel)]="penicillin" [disabled] = "isReadOnly"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+          <ion-label>Metal</ion-label>
+          <ion-checkbox color="light" [(ngModel)]="metal" [disabled] = "isReadOnly"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+          <ion-label>Latex</ion-label>
+          <ion-checkbox color="light" [(ngModel)]="latex" [disabled] = "isReadOnly"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+          <ion-label>None</ion-label>
+          <ion-checkbox color="light" [(ngModel)]="none" [disabled] = "isReadOnly"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+          <ion-label>Others:</ion-label>
+          <ion-input placeholder="Please specify..." [(ngModel)]="others" [readonly] = "isReadOnly"></ion-input>
+      </ion-item>
+  </ion-list>
+  </div>
+</ion-content>

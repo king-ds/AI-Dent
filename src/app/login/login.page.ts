@@ -181,7 +181,7 @@ export class LoginPage implements OnInit {
         {
           name: 'clinician_instructor',
           type: 'radio',
-          label: 'Clinicial Instructor',
+          label: 'Clinical Instructor',
           value: 'clinician_instructor'
         },
         {

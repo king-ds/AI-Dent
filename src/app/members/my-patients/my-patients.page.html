@@ -26,19 +26,19 @@
     <ion-item class="item" button *ngFor="let item of (results | async)" [routerLink]="['/', 'members', 'selection', item.id]">
       
       <!-- Female Avatar -->
-      <ion-avatar *ngIf="item.gender == 'female'" slot="start">
+      <ion-avatar *ngIf="item.patient.gender == 'Female'" slot="start">
         <img src='/assets/img/girl.png'>
       </ion-avatar>
 
       <!-- Male Avatar -->
-      <ion-avatar *ngIf="item.gender == 'male'" slot="start">
+      <ion-avatar *ngIf="item.patient.gender == 'Male'" slot="start">
           <img src='/assets/img/boy.png'>
       </ion-avatar>
 
       <ion-label class="ion-text-wrap">
-          <h3>Control Number : {{ item.track_record }}</h3>
-          <h3>{{ item.first_name }} {{ item.last_name }}</h3>
-          <h3>{{ item.phone_num }}</h3>
+          <h3>Control Number : {{ item.id }}</h3>
+          <h3>{{ item.patient.first_name }} {{ item.patient.last_name }}</h3>
+          <h3>{{ item.patient.phone_num }}</h3>
       </ion-label>
 
       <ion-icon slot="end" name="arrow-dropright"></ion-icon>

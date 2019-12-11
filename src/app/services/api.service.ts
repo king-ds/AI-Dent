@@ -56,35 +56,66 @@ export class ApiService {
    )
  }
 
+ getAllergies(track_record){
+   return this.http_client.get(this.url+'track-record/'+track_record).pipe(
+     map ( results => results['allergy'])
+   )
+ }
+
+ getTrackRecord(track_record){
+   return this.http_client.get(this.url+'track-record/'+track_record).pipe(
+     map ( results => results)
+   )
+ }
+
   /*
   * UPDATE TRACK RECORD
   */
- updateComplaint(data, track_record){
-   return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
-   .pipe( tap(res =>{
-     console.log(res);
-   })
-   )
-   .toPromise();
- }
 
- updateMedicalHistory(data, track_record){
-   return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
-   .pipe( tap(res => {
-     console.log(res);
-   })
-   )
-   .toPromise();
- }
+  updateTrackRecord(data, track_record){
+    return this.http_client.put(this.url+'update/track-record/'+track_record, JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
+  
+  updateComplaint(data, track_record){
+    return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+    .pipe( tap(res =>{
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
 
- updateMedicalHealthQuestionnaire(data, track_record){
-  return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
-  .pipe( tap(res => {
-    console.log(res);
-  })
-  )
-  .toPromise(); 
- }
+  updateMedicalHistory(data, track_record){
+    return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
+
+  updateMedicalHealthQuestionnaire(data, track_record){
+    return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise(); 
+  }
+
+  updateAllergies(data, track_record){
+    return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
   
   /*
   * SETUP TRACK RECORD
@@ -182,17 +213,6 @@ export class ApiService {
     )
     .toPromise();
   }
-
-  // addAdditionalData(data){
-  //   this.success = false;
-  //   return this.http_client.post(this.url+'add/additional-personal-data', JSON.stringify(data), http_options)
-  //   .pipe( tap(res => {
-  //       this.success = true;
-  //       console.log(res);
-  //     })
-  //   )
-  //   .toPromise();
-  // }
 
   myPatientList(clinician_id : string){
     return this.http_client.get(this.url+'my-patients-list/'+clinician_id).pipe(

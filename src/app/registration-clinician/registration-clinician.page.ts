@@ -19,8 +19,8 @@ export class RegistrationClinicianPage implements OnInit {
     'student_number' : [
       { type : 'required', message : 'Student Number is required.' },
       { type : 'pattern', message : 'Student Number must contain only numbers.' },
-      { type : 'maxlength', message : 'Student Number must be exactly 8 numbers long.' },
-      { type : 'minlength', message : 'Student Number must be exactly 8 numbers long.' },
+      { type : 'maxlength', message : 'Student Number must be exactly 6 numbers long.' },
+      { type : 'minlength', message : 'Student Number must be exactly 6 numbers long.' },
       { type : 'student_numberInUse', message : 'Student Number is not available' }
     ],
 
@@ -53,7 +53,7 @@ export class RegistrationClinicianPage implements OnInit {
               ){
 
     this.register_form = form_builder.group({
-      student_number : ['', Validators.compose([Validators.minLength(8) ,Validators.maxLength(8), Validators.pattern('[0-9]*'), Validators.required ]), student_validator.check_student_number.bind(student_validator)],
+      student_number : ['', Validators.compose([Validators.minLength(6) ,Validators.maxLength(6), Validators.pattern('[0-9]*'), Validators.required ]), student_validator.check_student_number.bind(student_validator)],
       clinic_level : ['', Validators.required],
       first_name : ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       middle_name : ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],

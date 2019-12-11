@@ -23,13 +23,13 @@
     <ion-list class="list" *ngIf="(!loader && !empty)">
       <ion-item class="item" button *ngFor="let item of (results | async)" [routerLink]="['/', 'members', 'add-patients', item.id]">
         <!-- Female Avatar -->
-        <ion-avatar *ngIf="item.gender == 'female'" slot="start">
-          <img src='/assets/img/girl.png/'>
+        <ion-avatar *ngIf="item.gender == 'Female'" slot="start">
+          <img src='/assets/img/girl.png'>
         </ion-avatar>
 
         <!-- Male Avatar -->
-        <ion-avatar *ngIf="item.gender == 'male'" slot="start">
-            <img src='/assets/img/boy.png/'>
+        <ion-avatar *ngIf="item.gender == 'Male'" slot="start">
+            <img src='/assets/img/boy.png'>
         </ion-avatar>
 
         <!-- Patient Details -->

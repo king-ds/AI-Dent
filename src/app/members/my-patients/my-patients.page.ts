@@ -42,14 +42,12 @@ export class MyPatientsPage implements OnInit {
 
   searchChanged(){
     this.loader = true;
-    console.log(this.searchTerm);
     this.results = this.apiService.searchMyPatient(this.searchTerm, this.clinician['id']);
     this.loader = false;
   }
 
   getMyPatient(){
     this.results = this.apiService.getMyPatient(this.clinician['id']);
-    console.log(this.results);
   }
 
   checkMyPatient(){

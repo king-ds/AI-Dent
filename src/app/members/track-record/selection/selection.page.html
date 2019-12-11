@@ -3,7 +3,7 @@
     <ion-buttons class="toolbar-button" slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title class="toolbar-title" *ngIf="information">{{ information.first_name }} {{ information.last_name }}</ion-title>
+    <ion-title class="toolbar-title" *ngIf="track_record">{{ track_record.patient.first_name }} {{ track_record.patient.last_name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +15,7 @@
       <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
     </ion-card>
 
-    <ion-card class="selections">
+    <ion-card class="selections" (click)="goToVitalSign()">
       <img src="/assets/vital_sign.png/">
       <ion-card-title>VITAL SIGN</ion-card-title>
     </ion-card>
@@ -27,10 +27,10 @@
 
     <ion-card class="selections" (click)="goToMedicalHealthQuestionnaire()">
       <img src="/assets/medical_history_questionnaire.jpg/">
-      <ion-card-title>MEDICAL HISTORY QUESTIONNAIRE</ion-card-title>
+      <ion-card-title>MEDICAL HEALTH QUESTIONNAIRE</ion-card-title>
     </ion-card>
 
-    <ion-card class="selections">
+    <ion-card class="selections" (click)="goToAllergies()">
       <img src="/assets/allergies.png/">
       <ion-card-title>ALLERGIES</ion-card-title>
     </ion-card>

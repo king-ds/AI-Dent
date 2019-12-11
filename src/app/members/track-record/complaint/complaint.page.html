@@ -6,19 +6,19 @@
     </ion-buttons>
 
     <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
-      <ion-button (click)="editComplaint()">
+      <ion-button *ngIf="!loader" (click)="editComplaint()">
           <ion-icon name="create"></ion-icon>
       </ion-button>
     </ion-buttons>
 
     <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
-        <ion-button (click)="cancelEdit()">
+        <ion-button *ngIf="!loader" (click)="cancelEdit()">
             <ion-icon name="close-circle-outline"></ion-icon>
         </ion-button>
     </ion-buttons>
 
     <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
-        <ion-button (click)="confirmationMessage()">
+        <ion-button *ngIf="!loader" (click)="confirmationMessage()">
             <ion-icon name="checkmark-circle-outline"></ion-icon>
         </ion-button>
     </ion-buttons>

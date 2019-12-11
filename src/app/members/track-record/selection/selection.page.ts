@@ -10,8 +10,8 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 export class SelectionPage implements OnInit {
 
   clinician : string;
-  information = null;
-  patient_id : string;
+  track_record = null;
+  track_record_id : string;
 
   constructor(private apiService : ApiService,
               private activatedRoute : ActivatedRoute,
@@ -22,19 +22,17 @@ export class SelectionPage implements OnInit {
   }
 
   getPatientDetails(){
-    this.patient_id = this.activatedRoute.snapshot.paramMap.get('id');
-
-    console.log(this.patient_id);
-
-    this.apiService.getPatientDetails(this.patient_id).subscribe(result => {
-      this.information = result;
+    this.track_record_id = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(this.track_record_id)
+    this.apiService.getTrackRecord(this.track_record_id).subscribe(result => {
+      this.track_record = result;
     });
   }
 
   goToComplaint(){
     let navigationExtras : NavigationExtras = {
       state : {
-        patient : this.information
+        track_record : this.track_record
       }
     };
 
@@ -44,7 +42,7 @@ export class SelectionPage implements OnInit {
   goToMedicalHistory(){
     let navigationExtras : NavigationExtras = {
       state : {
-        patient : this.information
+        track_record : this.track_record
       }
     };
     
@@ -54,10 +52,30 @@ export class SelectionPage implements OnInit {
   goToMedicalHealthQuestionnaire(){
     let navigationExtras : NavigationExtras = {
       state : {
-        patient : this.information
+        track_record : this.track_record
       }
     };
 
-    this.router.navigate(['members', 'medical-health-questionnaire'], navigationExtras)
+    this.router.navigate(['members', 'medical-health-questionnaire'], navigationExtras);
+  }
+
+  goToAllergies(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+
+    this.router.navigate(['members', 'allergies'], navigationExtras);
+  }
+
+  goToVitalSign(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+
+    this.router.navigate(['members', 'vital-sign'], navigationExtras);
   }
 }

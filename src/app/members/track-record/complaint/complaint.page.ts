@@ -10,12 +10,14 @@ import { AlertController } from '@ionic/angular';
 })
 export class ComplaintPage implements OnInit {
 
-  patient : any;
+  track_record : any;
   debouncer : any;
   loader : boolean;
   isReadOnly = true;
   chiefComplaint : string;
   historyOfPresentIllness : string;
+  hasComplaint : boolean;
+  complaintId : string;
 
   constructor(private router : Router,
               private activatedRoute : ActivatedRoute,
@@ -24,7 +26,7 @@ export class ComplaintPage implements OnInit {
  
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
-        this.patient = this.router.getCurrentNavigation().extras.state.patient;
+        this.track_record = this.router.getCurrentNavigation().extras.state.track_record;
       }
     });
   }
@@ -35,9 +37,14 @@ export class ComplaintPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.apiService.getComplaint(this.patient['track_record']).subscribe((val) => {
-        this.chiefComplaint = val['chief_complaint']
-        this.historyOfPresentIllness = val['history_of_present_illness']
+      this.apiService.getComplaint(this.track_record['id']).subscribe((val) => {
+        if(val==null){
+          this.hasComplaint = false;
+        }else{
+          this.hasComplaint = true;
+          this.chiefComplaint = val['chief_complaint']
+          this.historyOfPresentIllness = val['history_of_present_illness']
+        }
         this.loader = false;
       })
     }, 2000)
@@ -51,25 +58,51 @@ export class ComplaintPage implements OnInit {
     this.loader = true;
     this.isReadOnly = true;
 
-    let complaintData = {
-      "additional_personal_data" : {
+    if(this.hasComplaint){
+      this.debouncer = setTimeout(() =>{
+
+        let complaintData = {
+          "additional_personal_data": {
+            "chief_complaint": this.chiefComplaint,
+            "history_of_present_illness": this.historyOfPresentIllness,
+          }
+        }
+
+        this.apiService.updateComplaint(complaintData, this.track_record['id']).then(res => {
+          this.loader = false;
+          this.successMessage();
+          this.ionViewWillEnter();
+        })
+        .catch(error => {
+          this.loader = false;
+          this.errorMessage();
+          console.log(error);
+        })
+      }, 2000)
+    }else{
+
+      let complaintData = {
         "chief_complaint" : this.chiefComplaint,
         "history_of_present_illness" : this.historyOfPresentIllness,
       }
-    }
 
-    this.debouncer = setTimeout(() =>{
-      this.apiService.updateComplaint(complaintData, this.patient['track_record']).then(res => {
-        this.loader = false;
-        this.successMessage();
-        this.ionViewWillEnter();
+      this.apiService.addComplaint(complaintData).then(res => {
+        this.complaintId = res['id']
+        let trackRecordData = {
+          "additional_personal_data" : this.complaintId
+        }
+        this.apiService.updateTrackRecord(trackRecordData, this.track_record['id']).then(res => {
+          this.loader = false;
+          this.successMessage();
+          this.ionViewWillEnter();
+        })
       })
       .catch(error => {
         this.loader = false;
         this.errorMessage();
         console.log(error);
-      })
-    }, 2000)
+      });
+    }
   }
 
   cancelEdit(){

@@ -45,170 +45,37 @@ export class PatientDetailsPage implements OnInit {
   }
 
   addPatient(){
-
     this.loader = true;
-    
     let patient_id = this.information['id'];
 
-    let additionalPersonalData = {
-      'chief_complaint' : '',
-      'history_of_present_illness' : '',
-    }
-
-    let medicalHistory = {
-        'physician_care': false,
-        'hospitalization': '',
-        'allergies': '',
-        'illnesses': '',
-        'medications': '',
-        'childhood_disease_history': '',
-  
-    }
-
-    let medicalHistoryQuestionnaire = {
-      "others": "",
-      "high_blood_pressure": false,
-      "diabetes": false,
-      "osteoporosis": false,
-      "herpes": false,
-      "radiation_treatments": false,
-      "chemotherapy": false,
-      "artificial_heart_valves": false,
-      "heart_attack": false,
-      "pacemaker": false,
-      "angioplasty": false,
-      "stroke": false,
-      "angina_pectrosis": false,
-      "frequent_high_fever": false,
-      "sinusitis": false,
-      "empyema": false,
-      "asthma": false,
-      "breathing_problems": false,
-      "afternoon_fever": false,
-      "chronic_cough": false,
-      "bloody_sputum": false,
-      "tuberculosis": false,
-      "frequent_heartaches": false,
-      "visual_impairment": false,
-      "hearing_impairment": false,
-      "athritis": false,
-      "pain_in_joints": false,
-      "tumors": false,
-      "swollen_ankles": false,
-      "goiter": false,
-      "frequent_thirst": false,
-      "frequent_hunger": false,
-      "frequent_urination": false,
-      "sudden_weight_loss": false,
-      "abdominal_discomfort": false,
-      "acidic_reflux": false,
-      "bleeding_bruining_easily": false,
-      "recreational_drugs": false,
-      "steroid_therapy": false,
-      "blood": false,
-      "pain_upon_urination": false,
-      "kidney_liver_problems": false,
-      "hepatitis": false,
-      "sexually_transmitted_disease": false,
-      "hiv_positive": false,
-      "fainting_spells": false,
-      "depression": false
-    }
-
-    let allergies = {
-      "others": "",
-      "aspirin": false,
-      "penicillin": false,
-      "latex": false,
-      "metal": false,
-      "none": false
-    }
-
-    // Add empty complaint data
-    this.apiService.addComplaint(additionalPersonalData).then(res => {
-      this.complaint_id = res['id']
-      this.add_complaint = true;
-    })
-    .catch(error => {
-      console.log(error);
-      this.add_complaint = false;
-    });
-
-    // Add empty medical history
-    this.apiService.addMedicalHistory(medicalHistory).then(res => {
-      this.medical_history_id = res['id']
-      this.add_medical_history = true;
-    })
-    .catch(error => {
-      console.log(error);
-      this.add_medical_history = false;
-    });
-
-    // Add empty medical history questionnaire
-    this.apiService.addMedicalHistoryQuestionnaire(medicalHistoryQuestionnaire).then(res => {
-      this.medical_history_questionnaire_id = res['id']
-      this.add_medical_history_questionnaire = true;
-    })
-    .catch(error => {
-      console.log(error);
-      this.add_medical_history_questionnaire = false;
-    });
-
-    // Add empty allergies
-    this.apiService.addAllergies(allergies).then(res => {
-      this.allergies_id = res['id']
-      this.add_allergies = true;
-    })
-    .catch(error => {
-      console.log(error);
-      this.add_allergies = false;
-    });
-
-    // Set delay when adding track record
+    // Add track record
     this.debouncer = setTimeout(() => {
-      
-      let trackRecord = {
-        "is_approved": false,
-        "additional_personal_data": this.complaint_id,
-        "medical_history": this.medical_history_id,
-        "medical_health_questionnaire": this.medical_history_questionnaire_id,
-        "allergies": this.allergies_id
-      }
-
+    let trackRecord = {
+      "is_approved": false,
+      "patient" : patient_id,
+      "clinician" : this.clinician,
+    }
       this.addTrackRecord(trackRecord);
     }, 2000)
 
+    // Update patient status
     this.debouncer = setTimeout(() =>{
-      if (this.add_complaint != true){
-        console.log('Add Complaint Failed');
-        this.errorMessage();
-      } else if (this.add_medical_history != true){
-        console.log('Add Medical History Failed');
-        this.errorMessage();
-      } else if (this.add_medical_history_questionnaire != true){
-        console.log('Add Medical History Questionnaire Failed');
-        this.errorMessage();
-      } else {
-
-        let assignedData = {
-          'assigned_to' : this.clinician,
-          'has_doctor' : true,
-          'track_record' : this.track_record_id,
-        }
-
-        // Update patient status
-        this.apiService.addPatient(patient_id, assignedData).then(res => {
-          console.log(res);
-          this.add_patient = true;
-          this.successMessage();
-        })
-        .catch(error => {
-          console.log(error);
-          this.add_patient = false;
-          this.errorMessage();
-        });
-        
+      let assignedData = {
+        'assigned_to' : this.clinician,
+        'has_doctor' : true,
       }
+
+      this.apiService.addPatient(patient_id, assignedData).then(res => {
+        console.log(res);
+        this.add_patient = true;
+        this.successMessage();
+      })
+      .catch(error => {
+        console.log(error);
+        this.add_patient = false;
+        this.errorMessage();
+      });
+
       this.loader = false;
     }, 4000);
   }
@@ -239,8 +106,6 @@ export class PatientDetailsPage implements OnInit {
 
   getPatientDetails(){
     let patient_id = this.activatedRoute.snapshot.paramMap.get('id');
-
-    console.log(patient_id);
 
     this.apiService.getPatientDetails(patient_id).subscribe(result => {
       this.information = result;
