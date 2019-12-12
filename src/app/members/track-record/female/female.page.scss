@@ -24,11 +24,7 @@
     transform: translate(-50%, -50%);
 }
 
-.no-border {
-    --border-color : white;
-}
-
-.medical-history-logo {
+.female-logo {
     margin: 0 auto;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -39,6 +35,14 @@
     background-color: whitesmoke;
 }
 
-.medical-history-logo img {
+.female-logo img {
     padding: 15px;
+}
+
+ion-card-content {
+    font-family: 'Montserrat', sans-serif;
+}
+
+ion-label {
+    font-family: 'Lato', sans-serif;
 }

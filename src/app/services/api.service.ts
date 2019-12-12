@@ -68,6 +68,18 @@ export class ApiService {
    )
  }
 
+ getVitalSign(track_record){
+   return this.http_client.get(this.url+'track-record/vital-sign/'+track_record).pipe(
+     map ( results => results)
+   )
+ }
+
+ getFemale(track_record){
+   return this.http_client.get(this.url+'track-record/'+track_record).pipe(
+     map (results => results['female'])
+   )
+ }
+
   /*
   * UPDATE TRACK RECORD
   */
@@ -109,6 +121,15 @@ export class ApiService {
   }
 
   updateAllergies(data, track_record){
+    return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
+
+  updateFemale(data, track_record){
     return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
     .pipe( tap(res => {
       console.log(res);
@@ -173,6 +194,25 @@ export class ApiService {
   )
   .toPromise();
  }
+
+ addFemale(data){
+   return this.http_client.post(this.url+'track-record/female', JSON.stringify(data), http_options)
+   .pipe( tap(res => {
+     console.log(res);
+   })
+   )
+   .toPromise();
+ }
+
+ deleteVitalSign(vitalSignId){
+   return this.http_client.delete(this.url+'track-record/vital-sign-detail/'+vitalSignId, http_options)
+   .pipe( tap(res => {
+     console.log(res);
+   })
+   )
+   .toPromise();
+ }
+
   /*
   * ADD PATIENT
   */

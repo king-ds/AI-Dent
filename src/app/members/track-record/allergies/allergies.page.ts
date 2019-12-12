@@ -70,7 +70,7 @@ export class AllergiesPage implements OnInit {
       this.debouncer = setTimeout(() => {
         
         let allergiesData = {
-          "allergies": {
+          "allergy": {
             "others": this.others,
             "aspirin": this.aspirin,
             "penicillin": this.penicillin,

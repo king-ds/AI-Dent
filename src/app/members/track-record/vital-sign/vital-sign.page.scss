@@ -19,7 +19,85 @@
 .loader {
     position: relative;
     float: left;
-    top: 50%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#add-vital-sign-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #20B2FF;
+    padding: 15px 28px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 30px;
+    font-size: 15px;
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+#cancel-vital-sign-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #ff4f61;
+    padding: 15px 28px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 30px;
+    font-size: 15px;
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+.add-vital-sign-container {
+    margin: 10px;
+    margin-bottom: 10px;
+}
+
+.cancel-vital-sign-container {
+    margin: 10px;
+    margin-bottom: 15px;
+}
+
+.vital-sign-logo {
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 130px;
+    border: 5px solid #20B2FF;
+    border-radius: 100px;
+    box-shadow: 0 3px 3px #888;
+    background-color: whitesmoke;
+}
+
+.vital-sign-logo img {
+    padding: 15px;
+}
+
+.new-vital-sign-form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+ion-card-content {
+    font-family: 'Montserrat', sans-serif;
+}
+
+ion-card-title {
+    font-family: 'Montserrat', sans-serif;
+}
+
+ion-label {
+    font-family: 'Lato', sans-serif;
+}
+
+h3 {
+    font-family: 'Lato', sans-serif;
+}
+
+ion-input {
+    font-family: 'Lato', sans-serif;    
 }

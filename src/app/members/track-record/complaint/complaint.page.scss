@@ -23,3 +23,30 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.complaint-logo {
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 130px;
+    border: 5px solid #20B2FF;
+    border-radius: 100px;
+    box-shadow: 0 3px 3px #888;
+    background-color: whitesmoke;
+}
+
+.complaint-logo img {
+    padding: 15px;
+}
+
+ion-card-content {
+    font-family: 'Montserrat', sans-serif;
+}
+
+ion-label {
+    font-family: 'Lato', sans-serif;
+}
+
+ion-textarea {
+    font-family: 'Lato', sans-serif;
+}

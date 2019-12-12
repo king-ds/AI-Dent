@@ -34,31 +34,42 @@
   </div>
   
   <div *ngIf="!loader">
-  <ion-list>
-      <ion-item>
-          <ion-label>Aspirin</ion-label>
-          <ion-checkbox color="light" [(ngModel)]="aspirin" [disabled] = "isReadOnly"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-          <ion-label>Penicillin</ion-label>
-          <ion-checkbox color="light" [(ngModel)]="penicillin" [disabled] = "isReadOnly"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-          <ion-label>Metal</ion-label>
-          <ion-checkbox color="light" [(ngModel)]="metal" [disabled] = "isReadOnly"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-          <ion-label>Latex</ion-label>
-          <ion-checkbox color="light" [(ngModel)]="latex" [disabled] = "isReadOnly"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-          <ion-label>None</ion-label>
-          <ion-checkbox color="light" [(ngModel)]="none" [disabled] = "isReadOnly"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-          <ion-label>Others:</ion-label>
-          <ion-input placeholder="Please specify..." [(ngModel)]="others" [readonly] = "isReadOnly"></ion-input>
-      </ion-item>
-  </ion-list>
+
+    <ion-card>
+    <div class="allergies-logo">
+        <img src="/assets/allergies.png">
+    </div>
+    <ion-card-content>
+        Check only the applicable fields.
+    </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-list>
+            <ion-item>
+                <ion-label>Aspirin</ion-label>
+                <ion-checkbox color="light" [(ngModel)]="aspirin" [disabled] = "isReadOnly"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Penicillin</ion-label>
+                <ion-checkbox color="light" [(ngModel)]="penicillin" [disabled] = "isReadOnly"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Metal</ion-label>
+                <ion-checkbox color="light" [(ngModel)]="metal" [disabled] = "isReadOnly"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Latex</ion-label>
+                <ion-checkbox color="light" [(ngModel)]="latex" [disabled] = "isReadOnly"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>None</ion-label>
+                <ion-checkbox color="light" [(ngModel)]="none" [disabled] = "isReadOnly"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Others:</ion-label>
+                <ion-input placeholder="Please specify..." [(ngModel)]="others" [readonly] = "isReadOnly"></ion-input>
+            </ion-item>
+        </ion-list>
+    </ion-card>
   </div>
 </ion-content>

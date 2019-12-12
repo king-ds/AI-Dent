@@ -34,8 +34,18 @@
   </div>
 
   <div *ngIf="!loader">
-  <ion-list>
+    <ion-card>
+      <div class="complaint-logo">
+        <img src="/assets/add_complaint.jpg">
+      </div>
+      <ion-card-content>
+          Please fill out the following fields appropriately.
+      </ion-card-content>
+    </ion-card>
 
+  <ion-item-divider></ion-item-divider>
+
+  <ion-list>
       <ion-item>
           <ion-label position="floating">Chief Complaint</ion-label>
           <ion-textarea rows="3" [(ngModel)]="chiefComplaint" [readonly] = "isReadOnly" placeholder="Enter chief complaint here..."></ion-textarea>

@@ -32,16 +32,23 @@
   </div>
 
   <div *ngIf="!loader">
-    <div class="header">
-      CHECK IF YOU HAVE BEEN/ARE DIAGNOSE/ARE FEELING ANY OF THE FOLLOWING:
-    </div>
+
+    <ion-card>
+        <div class="medical-health-questionnaire-logo">
+            <img src="/assets/medical_history_questionnaire.jpg">
+        </div>
+        <ion-card-content>
+            Please fill out the following fields appropriately. Check if you have been/are diagnose/are feeling any of the following:
+        </ion-card-content>
+    </ion-card>
+
     <ion-grid>
       <ion-row>
         <ion-col>
           <div>
             <ion-card>
               <ion-item>
-                  <ion-label readonly>High Blood Pressure</ion-label>
+                  <ion-label>High Blood Pressure</ion-label>
                   <ion-checkbox color="light" [(ngModel)]="highBloodPressure" [disabled] = "isReadOnly"></ion-checkbox>
               </ion-item>
               <ion-item>

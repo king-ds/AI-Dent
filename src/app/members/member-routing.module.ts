@@ -14,6 +14,7 @@ const routes: Routes = [
   { path : 'medical-health-questionnaire', loadChildren : './track-record/medical-health-questionnaire/medical-health-questionnaire.module#MedicalHealthQuestionnairePageModule'},
   { path : 'allergies', loadChildren : './track-record/allergies/allergies.module#AllergiesPageModule' },
   { path : 'vital-sign', loadChildren : './track-record/vital-sign/vital-sign.module#VitalSignPageModule' },
+  { path : 'female', loadChildren : './track-record/female/female.module#FemalePageModule' },
   {
     path: 'clinician-viewer',
     loadChildren: () => import('./clinician-viewer/clinician-viewer.module').then( m => m.ClinicianViewerPageModule)
@@ -22,6 +23,7 @@ const routes: Routes = [
     path: 'instructor-viewer',
     loadChildren: () => import('./instructor-viewer/instructor-viewer.module').then( m => m.InstructorViewerPageModule)
   },
+
 ];
 
 @NgModule({

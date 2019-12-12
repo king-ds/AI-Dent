@@ -12,6 +12,7 @@ export class SelectionPage implements OnInit {
   clinician : string;
   track_record = null;
   track_record_id : string;
+  isFemale : boolean = false;
 
   constructor(private apiService : ApiService,
               private activatedRoute : ActivatedRoute,
@@ -26,6 +27,9 @@ export class SelectionPage implements OnInit {
     console.log(this.track_record_id)
     this.apiService.getTrackRecord(this.track_record_id).subscribe(result => {
       this.track_record = result;
+      if(this.track_record['patient']['gender'] == 'Female'){
+        this.isFemale = true;
+      }
     });
   }
 
@@ -77,5 +81,27 @@ export class SelectionPage implements OnInit {
     };
 
     this.router.navigate(['members', 'vital-sign'], navigationExtras);
+  }
+
+  goToFemale(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+
+    this.router.navigate(['members', 'female'], navigationExtras);
+  }
+
+  goToDentalChart(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+
+    
+
+
   }
 }

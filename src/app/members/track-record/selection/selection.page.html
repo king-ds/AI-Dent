@@ -34,6 +34,11 @@
       <img src="/assets/allergies.png/">
       <ion-card-title>ALLERGIES</ion-card-title>
     </ion-card>
+
+    <ion-card class="selections" *ngIf="isFemale" (click)="goToFemale()">
+      <img src="/assets/female.png/">
+      <ion-card-title>FEMALE</ion-card-title>
+    </ion-card>
   
     <ion-card class="selections">
       <img src="/assets/dental_chart.png/">

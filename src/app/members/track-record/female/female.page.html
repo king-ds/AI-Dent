@@ -1,0 +1,80 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+  
+      <ion-buttons class="toolbar-button" slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+  
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
+        <ion-button *ngIf="!loader" (click)="editFemale()">
+            <ion-icon name="create"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+          <ion-button *ngIf="!loader" (click)="cancelEdit()">
+              <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+          <ion-button *ngIf="!loader" (click)="confirmationMessage()">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      
+      <ion-title class="toolbar-title">Female</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+  <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <ion-card *ngIf="!loader">
+    <div class="female-logo">
+        <img src="/assets/female.png">
+    </div>
+    <ion-card-content>
+        Check only the applicable fields. If yes, specify the number of months.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item-divider *ngIf="!loader"></ion-item-divider>
+
+  <ion-list *ngIf="!loader">
+    <ion-item>
+      <ion-label class="ion-text-wrap">Are you pregnant now?</ion-label>
+      <ion-checkbox [(ngModel)]="isPregnant" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item *ngIf="isPregnant">
+      <ion-input [(ngModel)]="pregnant" type="number" placeholder="How many months?" [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label class="ion-text-wrap">Are you breast feeding?</ion-label>
+        <ion-checkbox [(ngModel)]="isBreastFeeding" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item *ngIf="isBreastFeeding">
+      <ion-input [(ngModel)]="breastFeeding" type="number" placeholder="How many months?" [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label class="ion-text-wrap">Are you menopause?</ion-label>
+        <ion-checkbox [(ngModel)]="isMenopause" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item *ngIf="isMenopause">
+      <ion-input [(ngModel)]="menopause" type="number" placeholder="How many months?" [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label class="ion-text-wrap">Are you under hormone replacement therapy?</ion-label>
+        <ion-checkbox [(ngModel)]="isUnderHormone" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item *ngIf="isUnderHormone">
+      <ion-input [(ngModel)]="underHormone" type="number" placeholder="How many months?" [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
