@@ -25,7 +25,8 @@ const http_options = {
 })
 
 export class ApiService {
-  url = 'http://127.0.0.1:8000/';
+  // url = 'http://127.0.0.1:8000/';
+  url = 'http://192.168.43.37:8000/';
   // url = 'http://192.168.0.106:8000/';
   loading : any;
   public success : boolean = false;
@@ -86,6 +87,24 @@ export class ApiService {
    )
  }
 
+ getDentalChartQ2(track_record){
+  return this.http_client.get(this.url+'track-record/dental-chart-q2/'+track_record).pipe(
+    map ( results => results)
+  )
+}
+
+getDentalChartQ3(track_record){
+  return this.http_client.get(this.url+'track-record/dental-chart-q3/'+track_record).pipe(
+    map ( results => results)
+  )
+}
+
+getDentalChartQ4(track_record){
+  return this.http_client.get(this.url+'track-record/dental-chart-q4/'+track_record).pipe(
+    map ( results => results)
+  )
+}
+
  getFemale(track_record){
    return this.http_client.get(this.url+'track-record/'+track_record).pipe(
      map (results => results['female'])
@@ -143,6 +162,15 @@ export class ApiService {
 
   updateFemale(data, track_record){
     return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
+
+  updateDentalChart(data, dental_chart){
+    return this.http_client.patch(this.url+'track-record/dental-chart-detail/'+dental_chart, JSON.stringify(data), http_options)
     .pipe( tap(res => {
       console.log(res);
     })

@@ -45,11 +45,23 @@ export class AdultDentalChartPage implements OnInit {
   }
 
   goToQuadrant3(){
-    this.router.navigate(['members', 'adult-dental-chart', 'quadrant-three']);   
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+
+    this.router.navigate(['members', 'adult-dental-chart', 'quadrant-three'], navigationExtras);   
   }
 
   goToQuadrant4(){
-    this.router.navigate(['members', 'adult-dental-chart', 'quadrant-four']);   
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+
+    this.router.navigate(['members', 'adult-dental-chart', 'quadrant-four'], navigationExtras);   
   }
 
 }

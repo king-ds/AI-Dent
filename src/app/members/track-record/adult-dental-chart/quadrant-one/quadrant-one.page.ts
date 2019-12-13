@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
-import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
@@ -97,22 +97,26 @@ export class QuadrantOnePage implements OnInit {
       
       this.debouncer = setTimeout(() => {
         this.apiService.addDentalChart(dentalChartData).then(() => {
-          this.loader = false;
         })
         .catch(error => {
           this.loader = false;
+          this.errorMessage();
         });
       }, 2000)
     }
 
-    this.dentalCharts = this.apiService.getDentalChartQ1(this.trackRecord['id']);
-    });
-    this.loader = false;
+    this.debouncer = setTimeout(() => {
+      this.dentalCharts = this.apiService.getDentalChartQ1(this.trackRecord['id']);
+      this.loader = false;
+      }, 4000);
+    })
   }
 
   editTeethNumber(teethNumber){
     this.editMode = true;
     this.editData = teethNumber;
+
+    console.log(this.editData);
 
     this.APC = teethNumber['APC']
     this.Ab = teethNumber['Ab']
@@ -271,76 +275,174 @@ export class QuadrantOnePage implements OnInit {
     var selectedData = event.target.value;
     if(selectedData.includes(1)){
       this.APC = true;
+    }else{
+      this.APC = false;
     }
     if(selectedData.includes(2)){
       this.Ab = true;
+    }else{
+      this.Ab = false;
     }
     if(selectedData.includes(3)){
       this.Am = true;
+    }else{
+      this.Am = false;
     }
     if(selectedData.includes(4)){
       this.C = true;
+    }else{
+      this.C = false;
     }
     if(selectedData.includes(5)){
       this.CD = true;
+    }else{
+      this.CD = false;
     }
     if(selectedData.includes(6)){
       this.CF = true;
+    }else{
+      this.CF = false;
     }
     if(selectedData.includes(7)){
       this.Co = true;
+    }else{
+      this.Co = false;
     }
     if(selectedData.includes(8)){
       this.F = true;
+    }else{
+      this.F = false;
     }
     if(selectedData.includes(9)){
       this.GC = true;
+    }else{
+      this.GC = false;
     }
     if(selectedData.includes(10)){
       this.GI = true;
+    }else{
+      this.GI = false;
     }
     if(selectedData.includes(11)){
       this.Imp = true;
+    }else{
+      this.Imp = false;
     }
     if(selectedData.includes(12)){
       this.In = true;
+    }else{
+      this.In = false;
     }
     if(selectedData.includes(13)){
       this.M = true;
+    }else{
+      this.M = false;
     }
     if(selectedData.includes(14)){
       this.MC = true;
+    }else{
+      this.MC = false;
     }
     if(selectedData.includes(15)){
       this.P = true;
+    }else{
+      this.P = false;
     }
     if(selectedData.includes(16)){
       this.PFG = true;
+    }else{
+      this.PFG = false;
     }
     if(selectedData.includes(17)){
       this.PFM = true;
+    }else{
+      this.PFM = false;
     }
     if(selectedData.includes(18)){
       this.PFS = true;
+    }else{
+      this.PFS = false;
     }
     if(selectedData.includes(19)){
       this.RC = true;
+    }else{
+      this.RC = false;
     }
     if(selectedData.includes(20)){
       this.RPD = true;
+    }else{
+      this.RPD = false;
     }
     if(selectedData.includes(21)){
       this.SS = true;
+    }else{
+      this.SS = false;
     }
     if(selectedData.includes(22)){
       this.Un = true;
+    }else{
+      this.Un = false;
     }
     if(selectedData.includes(23)){
       this.X = true;
+    }else{
+      this.X = false;
     }
   }
 
   submitEditedTeethNumber(){
+    this.loader = true;
+    let dentalChart = {
+      "teeth_number": this.editData['teeth_number'],
+      "left": this.left,
+      "right": this.right,
+      "bottom": this.bottom,
+      "top": this.top,
+      "CF": this.CF,
+      "Ab": this.Ab,
+      "Am": this.Am,
+      "APC": this.APC,
+      "C": this.C,
+      "Co": this.Co,
+      "CD": this.CD,
+      "GC": this.GC,
+      "GI": this.GI,
+      "Imp": this.Imp,
+      "In": this.In,
+      "M": this.M,
+      "MC": this.MC,
+      "P": this.P,
+      "PFG": this.PFG,
+      "F": this.F,
+      "PFM": this.PFM,
+      "PFS": this.PFS,
+      "RC": this.RC,
+      "RPD": this.RPD,
+      "SS": this.SS,
+      "Un": this.Un,
+      "X": this.X,
+      "middle": this.middle,
+      "track_record": this.trackRecordId,
+    }
+    this.debouncer = setTimeout(()=> {
+      this.apiService.updateDentalChart(dentalChart, this.id).then((res) => {
+        this.loader = false;
+        this.successMessage();
+        this.ionViewWillEnter();
+        this.editMode = false;
+        console.log(res);
+      })
+      .catch(error => {
+        this.loader = false;
+        this.errorMessage();
+        console.log(error);
+      });
+    }, 2000)
+  }
+
+  cancelEditTeethNumber(){
+    this.editMode = false
+    this.editData = '';
   }
 
   topButton(){
@@ -481,6 +583,32 @@ export class QuadrantOnePage implements OnInit {
           }
         }
       ]
+    });
+    await alert.present();
+  }
+
+  async successMessage() {
+    const alert = await this.alertController.create({
+      header: 'Dental Chart',
+      message: 'Successfully updated',
+      buttons: [{
+        text:'Ok',
+        handler: () => {
+        }
+      }],
+    });
+    await alert.present();
+  }
+
+  async errorMessage() {
+    const alert = await this.alertController.create({
+      header: 'Ooooops',
+      message: 'Something went wrong. Please try again later.',
+      buttons: [{
+        text:'Ok',
+        handler: () => {
+        }
+      }],
     });
     await alert.present();
   }
