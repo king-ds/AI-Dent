@@ -15,6 +15,8 @@ const routes: Routes = [
   { path : 'allergies', loadChildren : './track-record/allergies/allergies.module#AllergiesPageModule' },
   { path : 'vital-sign', loadChildren : './track-record/vital-sign/vital-sign.module#VitalSignPageModule' },
   { path : 'female', loadChildren : './track-record/female/female.module#FemalePageModule' },
+  { path : 'child-dental-chart', loadChildren : './track-record/child-dental-chart/child-dental-chart.module#ChildDentalChartPageModule' },
+  { path : 'adult-dental-chart', loadChildren : './track-record/adult-dental-chart/adult-dental-chart.module#AdultDentalChartPageModule' },
   {
     path: 'clinician-viewer',
     loadChildren: () => import('./clinician-viewer/clinician-viewer.module').then( m => m.ClinicianViewerPageModule)
@@ -23,7 +25,6 @@ const routes: Routes = [
     path: 'instructor-viewer',
     loadChildren: () => import('./instructor-viewer/instructor-viewer.module').then( m => m.InstructorViewerPageModule)
   },
-
 ];
 
 @NgModule({

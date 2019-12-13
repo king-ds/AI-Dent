@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title class="toolbar-title">Adult Dental Chart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="cards">
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+              <img src="/assets/quadrant_1.png" (click)="goToQuadrant1()">
+              <ion-card-title>Quadrant 1</ion-card-title>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card>
+            <img src="/assets/quadrant_2.png" (click)="goToQuadrant2()">
+            <ion-card-title>Quadrant 2</ion-card-title>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <img src="/assets/quadrant_4.png" (click)="goToQuadrant4()">
+            <ion-card-title>Quadrant 4</ion-card-title>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card>
+            <img src="/assets/quadrant_3.png" (click)="goToQuadrant3()">
+            <ion-card-title>Quadrant 3</ion-card-title>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+</ion-content>

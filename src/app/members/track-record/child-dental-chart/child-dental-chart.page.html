@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
+      <ion-button *ngIf="!loader" (click)="editAllergies()">
+          <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+        <ion-button *ngIf="!loader" (click)="cancelEdit()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+        <ion-button *ngIf="!loader" (click)="confirmationMessage()">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    
+    <ion-title class="toolbar-title">Child Dental Chart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>

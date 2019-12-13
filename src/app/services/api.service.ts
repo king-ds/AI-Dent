@@ -74,6 +74,18 @@ export class ApiService {
    )
  }
 
+ getDentalChart(track_record){
+   return this.http_client.get(this.url+'track-record/dental-chart/'+track_record).pipe(
+     map ( results => results)
+   )
+ }
+
+ getDentalChartQ1(track_record){
+   return this.http_client.get(this.url+'track-record/dental-chart-q1/'+track_record).pipe(
+     map ( results => results)
+   )
+ }
+
  getFemale(track_record){
    return this.http_client.get(this.url+'track-record/'+track_record).pipe(
      map (results => results['female'])
@@ -175,6 +187,15 @@ export class ApiService {
    })
   )
   .toPromise();
+ }
+
+ addDentalChart(data){
+   return this.http_client.post(this.url+'track-record/dental-chart', JSON.stringify(data), http_options)
+   .pipe( tap ( res => {
+     console.log(res);
+   })
+   )
+   .toPromise();
  }
 
  addTrackRecord(data){
