@@ -18,16 +18,8 @@ export class PatientDetailsPage implements OnInit {
   debouncer : any;
   add_patient : boolean;
   add_complaint : boolean;
-  add_medical_history : boolean;
-  add_medical_history_questionnaire : boolean;
   add_track_record : boolean;
-  add_allergies : boolean;
-  complaint_id : string;
-  medical_history_id : string;
-  medical_history_questionnaire_id : string;
   track_record_id : string;
-  allergies_id : string;
-
 
   constructor(private activatedRoute : ActivatedRoute,
               private apiService : ApiService,

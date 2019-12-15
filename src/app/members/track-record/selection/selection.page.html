@@ -9,39 +9,45 @@
 
 <ion-content>
   <ion-list>
+
+    <ion-card class="selections" (click)="goToPatientInformation()">
+      <img src="assets/personal_information.png">
+      <ion-card-title>PERSONAL INFORMATION</ion-card-title>
+    </ion-card>
+
     <ion-card class="selections" (click)="goToComplaint()">
-      <img src="/assets/add_complaint.jpg/">
+      <img src="/assets/add_complaint.jpg">
       <ion-card-title>COMPLAINT</ion-card-title>
       <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
     </ion-card>
 
     <ion-card class="selections" (click)="goToVitalSign()">
-      <img src="/assets/vital_sign.png/">
+      <img src="/assets/vital_sign.png">
       <ion-card-title>VITAL SIGN</ion-card-title>
     </ion-card>
 
     <ion-card class="selections" (click)="goToMedicalHistory()">
-      <img src="/assets/medical_history.png/">
+      <img src="/assets/medical_history.png">
       <ion-card-title>MEDICAL HISTORY</ion-card-title>
     </ion-card>
 
     <ion-card class="selections" (click)="goToMedicalHealthQuestionnaire()">
-      <img src="/assets/medical_history_questionnaire.jpg/">
+      <img src="/assets/medical_history_questionnaire.jpg">
       <ion-card-title>MEDICAL HEALTH QUESTIONNAIRE</ion-card-title>
     </ion-card>
 
     <ion-card class="selections" (click)="goToAllergies()">
-      <img src="/assets/allergies.png/">
+      <img src="/assets/allergies.png">
       <ion-card-title>ALLERGIES</ion-card-title>
     </ion-card>
 
     <ion-card class="selections" *ngIf="isFemale" (click)="goToFemale()">
-      <img src="/assets/female.png/">
+      <img src="/assets/female.png">
       <ion-card-title>FEMALE</ion-card-title>
     </ion-card>
   
     <ion-card class="selections" (click)="goToDentalChart()">
-      <img src="/assets/dental_chart.png/">
+      <img src="/assets/dental_chart.png">
       <ion-card-title>DENTAL CHART</ion-card-title>
     </ion-card>
 

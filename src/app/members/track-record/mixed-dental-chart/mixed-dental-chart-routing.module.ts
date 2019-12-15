@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ChildDentalChartPage } from './child-dental-chart.page';
+import { MixedDentalChartPage } from './mixed-dental-chart.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ChildDentalChartPage
+    component: MixedDentalChartPage
   },
   {
     path: 'quadrant-one',
@@ -30,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ChildDentalChartPageRoutingModule {}
+export class MixedDentalChartPageRoutingModule {}

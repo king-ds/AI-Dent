@@ -129,6 +129,7 @@ export class VitalSignPage implements OnInit {
       this.loader = true;
       this.apiService.addVitalSign(vitalSignData).then((val) =>{
         this.loader = false;
+        this.vitalSignForm.reset();
         this.addSuccessMessage();
       })
       .catch(error => {

@@ -1,0 +1,157 @@
+<ion-header *ngIf="!loader">
+    <ion-toolbar class="toolbar">
+      <ion-buttons class="menu-button" slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="toolbar-title" >Personal Information</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+  
+    <div class="loader" *ngIf="loader">
+        <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+    </div>
+  
+    <div *ngIf="!loader">
+      <ion-card>
+        <div class="patient-avatar" *ngIf="information">
+            <img *ngIf="information.gender == 'Male'" src="/assets/img/boy.png">
+            <img *ngIf="information.gender == 'Female'" src="/assets/img/girl.png">
+        </div>
+        <ion-card-content>
+          This is the current details of the patient. If sudden changes needed, please contact him.
+        </ion-card-content>
+      </ion-card>
+  
+      <div class="personal-information">
+        Personal Information
+      </div>
+  
+      <div *ngIf="information">
+        <ion-list>
+          <ion-item class="first-type">
+            <ion-icon name="person" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Full Name</ion-label>
+            <ion-input *ngIf="information.title == 'ms'" value="Ms. {{ information.first_name }} {{ information.last_name }}" readonly></ion-input>
+            <ion-input *ngIf="information.title == 'mr'" value="Mr. {{ information.first_name }} {{ information.last_name }}" readonly></ion-input>
+            <ion-input *ngIf="information.title == 'mrs'" value="Mrs. {{ information.first_name }} {{ information.last_name }}" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item class="first-type">
+              <ion-icon name="pin" slot="start" ion-align-self-center></ion-icon>
+              <ion-label position="floating">Permanent Address</ion-label>
+              <ion-textarea value="{{ information.permanent_address }}" readonly></ion-textarea>
+          </ion-item>
+  
+          <ion-item class="first-type">
+              <ion-icon *ngIf="information.gender == 'Male'" name="male" slot="start" ion-align-self-center></ion-icon>  
+              <ion-icon *ngIf="information.gender == 'Female'" name="female" slot="start" ion-align-self-center></ion-icon>      
+              <ion-label position="floating">Gender</ion-label>
+              <ion-input *ngIf="information.gender == 'Male'" value="Male" readonly></ion-input>
+              <ion-input *ngIf="information.gender == 'Female'" value="Female" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item class="first-type">
+            <ion-icon name="calendar" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Date of Birth</ion-label>
+            <ion-input value="{{ information.birthdate }}" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item class="first-type">
+              <ion-icon name="information-circle" slot="start" ion-align-self-center></ion-icon>
+              <ion-label position="floating">Religion</ion-label>
+              <ion-input value="{{ information.religion }}" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item class="first-type">
+              <ion-icon name="information-circle" slot="start" ion-align-self-center></ion-icon>
+              <ion-label position="floating">Marital Status</ion-label>
+              <ion-input value="{{ information.marital_status }}" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item class="first-type">
+              <ion-icon name="briefcase" slot="start" ion-align-self-center></ion-icon>
+              <ion-label position="floating">Occupation</ion-label>
+              <ion-input value="{{ information.occupation }}" readonly></ion-input>
+          </ion-item>
+  
+          <ion-row>
+            <ion-col>
+                <ion-item class="second-type">
+                    <ion-label position="floating"># of Kids</ion-label>
+                    <ion-input value="{{ information.number_of_kids }}" readonly></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item class="second-type">
+                    <ion-label position="floating">Height (cm)</ion-label>
+                    <ion-input value="{{ information.height }}" readonly></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item class="second-type">
+                    <ion-label position="floating">Weight (kg)</ion-label>
+                    <ion-input value="{{ information.weight }}" readonly></ion-input>
+                </ion-item>
+            </ion-col>
+          </ion-row>
+  
+          <ion-item class="first-type">
+              <ion-icon name="call" slot="start" ion-align-self-center></ion-icon>
+              <ion-label position="floating">Telephone Number</ion-label>
+              <ion-input value="{{ information.telephone_num }}" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item class="first-type">
+              <ion-icon name="phone-portrait" slot="start" ion-align-self-center></ion-icon>
+              <ion-label position="floating">Phone Number</ion-label>
+              <ion-input value="{{ information.phone_num }}" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item class="first-type">
+              <ion-icon name="mail" slot="start" ion-align-self-center></ion-icon>
+              <ion-label position="floating">Email Address</ion-label>
+              <ion-input value="{{ information.email_address }}" readonly></ion-input>
+          </ion-item>
+        </ion-list>
+  
+        <div class="personal-information">
+          In Case of Emergency
+        </div>
+  
+        <ion-list>
+            <ion-item class="first-type">
+                <ion-icon name="person" slot="start" ion-align-self-center></ion-icon>
+                <ion-label position="floating">Full Name</ion-label>
+                <ion-input value="{{ information.emergency_first_name }} {{ information.emergency_last_name }}" readonly></ion-input>
+            </ion-item>
+  
+            <ion-item class="first-type">
+                <ion-icon name="pin" slot="start" ion-align-self-center></ion-icon>
+                <ion-label position="floating">Address</ion-label>
+                <ion-textarea value="{{ information.emergency_address }}" readonly></ion-textarea>
+            </ion-item>
+  
+            <ion-item class="first-type">
+                <ion-icon name="information-circle" slot="start" ion-align-self-center></ion-icon>
+                <ion-label position="floating">Relationship to patient</ion-label>
+                <ion-input value="{{ information.relation_to_patient }}" readonly></ion-input>
+            </ion-item>
+  
+            <ion-item class="first-type">
+                <ion-icon name="call" slot="start" ion-align-self-center></ion-icon>
+                <ion-label position="floating">Telephone Number</ion-label>
+                <ion-input value="{{ information.emergency_telephone_num }}" readonly></ion-input>
+            </ion-item>
+  
+            <ion-item class="first-type">
+                <ion-icon name="phone-portrait" slot="start" ion-align-self-center></ion-icon>
+                <ion-label position="floating">Phone Number</ion-label>
+                <ion-input value="{{ information.emergency_phone_num }}" readonly></ion-input>
+            </ion-item>
+        </ion-list>
+  
+      </div>
+    </div>
+  </ion-content>

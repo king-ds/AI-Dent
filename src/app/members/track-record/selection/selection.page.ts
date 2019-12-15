@@ -35,6 +35,16 @@ export class SelectionPage implements OnInit {
     });
   }
 
+  goToPatientInformation(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+
+    this.router.navigate(['members', 'personal-information'], navigationExtras)
+  }
+
   goToComplaint(){
     let navigationExtras : NavigationExtras = {
       state : {
@@ -105,10 +115,12 @@ export class SelectionPage implements OnInit {
       if(val == ''){
         this.presentAlertRadio();
       }else{
-        if(val[0]['kind'] == 'child'){
+        if(val[0]['kind'] == 'Pediatric'){
           this.router.navigate(['members', 'child-dental-chart'], navigationExtras);
-        }else{
+        }else if( val[0]['kind'] == 'Adult' ){
           this.router.navigate(['members', 'adult-dental-chart'], navigationExtras);
+        }else{
+          this.router.navigate(['members', 'mixed-dental-chart'], navigationExtras);
         }
       }
     })
@@ -121,10 +133,10 @@ export class SelectionPage implements OnInit {
       cssClass: 'alert-radio',
       inputs: [
         {
-          name: 'child',
+          name: 'pediatric',
           type: 'radio',
-          label: 'Child',
-          value: 'child'
+          label: 'Pediatric',
+          value: 'pediatric'
         },
         {
           name: 'adult',
@@ -132,6 +144,12 @@ export class SelectionPage implements OnInit {
           label: 'Adult',
           value: 'adult'
         },
+        {
+          name: 'mixed',
+          type: 'radio',
+          label: 'Mixed',
+          value: 'mixed'
+        }
       ],
       buttons: [
         {
@@ -150,12 +168,12 @@ export class SelectionPage implements OnInit {
               }
             };
 
-            if(data == 'child'){
+            if(data == 'pediatric'){
               let dentalChartData = {
                 "track_record" : this.track_record['id'],
                 "teeth_number" : 55,
                 "quadrant" : 1,
-                "kind" : "child",
+                "kind" : "Pediatric",
               }
 
               this.apiService.addDentalChart(dentalChartData).then((res) => {
@@ -165,13 +183,27 @@ export class SelectionPage implements OnInit {
                 this.errorMessage();
                 console.log(error);
               });
+            }else if(data == 'mixed'){
+              let dentalChartData = {
+                "track_record" : this.track_record['id'],
+                "teeth_number" : 18,
+                "quadrant" : 1,
+                "kind" : "Mixed",
+              }
 
+              this.apiService.addDentalChart(dentalChartData).then((res) => {
+                this.router.navigate(['members', 'mixed-dental-chart'], navigationExtras);
+              })
+              .catch(error => {
+                this.errorMessage();
+                console.log(error);
+              })
             }else{
               let dentalChartData = {
                 "track_record" : this.track_record['id'],
                 "teeth_number" : 18,
                 "quadrant" : 1,
-                "kind" : "adult",
+                "kind" : "Adult",
               }
 
               this.apiService.addDentalChart(dentalChartData).then((res) => {
