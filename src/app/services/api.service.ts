@@ -123,6 +123,13 @@ getSocialHistory(track_record){
   )
 }
 
+getDentalHistory(track_record){
+  return this.http_client.get(this.url+'track-record/'+track_record).pipe(
+    map (results => results['dental_history'])
+  )
+}
+
+
   /*
   * UPDATE TRACK RECORD
   */
@@ -191,6 +198,15 @@ getSocialHistory(track_record){
   }
 
   updateSocialHistory(data, track_record){
+    return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
+
+  updateDentalHistory(data, track_record){
     return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
     .pipe( tap(res => {
       console.log(res);
@@ -300,6 +316,15 @@ getSocialHistory(track_record){
    )
    .toPromise();
  }
+
+ addDentalHistory(data){
+  return this.http_client.post(this.url+'track-record/dental-history', JSON.stringify(data), http_options)
+  .pipe( tap(res => {
+    console.log(res);
+  })
+  )
+  .toPromise();
+}
 
  deleteVitalSign(vitalSignId){
    return this.http_client.delete(this.url+'track-record/vital-sign-detail/'+vitalSignId, http_options)

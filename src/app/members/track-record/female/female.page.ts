@@ -35,7 +35,7 @@ export class FemalePage implements OnInit {
         this.track_record = this.router.getCurrentNavigation().extras.state.track_record;
         console.log(this.track_record);
       }
-    })
+    });
   }
 
   ngOnInit() {
@@ -101,7 +101,7 @@ export class FemalePage implements OnInit {
           this.errorMessage();
           console.log(error);
         })
-      })
+      }, 2000)
     }else{
       let femaleData = {
 

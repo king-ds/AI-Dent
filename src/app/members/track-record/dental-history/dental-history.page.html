@@ -1,0 +1,180 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
+      <ion-button *ngIf="!loader" (click)="editDentalHistory()">
+          <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+        <ion-button *ngIf="!loader" (click)="cancelEdit()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+        <ion-button *ngIf="!loader" (click)="confirmationMessage()">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    
+    <ion-title class="toolbar-title">Dental History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="loader" *ngIf="loader">
+    <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <ion-card *ngIf="!loader">
+    <div class="dental-history-logo">
+        <img src="/assets/dental_history.png">
+    </div>
+    <ion-card-content>
+        Please fill out the following fields accordingly.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item-divider *ngIf="!loader"></ion-item-divider>
+  <ion-list *ngIf="!loader">
+
+    <ion-item>
+      <ion-label>Date of Last visit:</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)] = "dateLastVisit" [readonly] = "isReadOnly"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Frequency of dental visit:</ion-label>
+      <ion-input type="number" style="text-align: center;" [(ngModel)] = "freqDentalVisit" [readonly] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item class="no-border">
+      <ion-label id="label" class="ion-text=wrap">Procedure/s done on the last visit:</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea rows="3" [(ngModel)] = "procLastVisit" placeholder="Enter here..." [readonly] = "isReadOnly"></ion-textarea>
+    </ion-item>
+
+    <ion-item class="no-border">
+      <ion-label id="label" class="ion-text-wrap">Exposure and response to local anesthesia:</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea rows="3" [(ngModel)] = "exposureAnesthesia" placeholder="Enter here..." [readonly] = "isReadOnly"></ion-textarea>
+    </ion-item>
+
+    <ion-item class="no-border">
+      <ion-label id="label" class="ion-text-wrap">Complications during and or after dental procedure:</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea rows="3" [(ngModel)] = "dentalComplications" placeholder="Enter here..." [readonly] = "isReadOnly"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      I brush <ion-input type="number" [(ngModel)] = "brush" style="text-align: center" placeholder="Enter here..." [readonly] = "isReadOnly"></ion-input> times a day.
+    </ion-item>
+    <ion-item>
+      I floss <ion-input type="number" [(ngModel)] = "floss" style="text-align: center" placeholder="Enter here..." [readonly] = "isReadOnly"></ion-input> times a day.
+    </ion-item>
+    <ion-item>
+      I use mouth rinse <ion-input type="number" [(ngModel)] = "rinse" style="text-align: center" placeholder="Enter here..." [readonly] = "isReadOnly"></ion-input> times a day.
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="!loader">
+    <ion-item-divider>If yes, put check on checkbox.</ion-item-divider>
+    <ion-item>
+      <ion-label class="ion-text-wrap">1.) Do you like your smile? If no, why not?</ion-label>
+      <ion-checkbox [(ngModel)]="smile" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="relevantSmile" placeholder="Other relevant information here..." [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">2.) Do your gums bleed when you brush?</ion-label>
+      <ion-checkbox [(ngModel)]="gumsBleedBrush" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="relevantGumsBleedBrush" placeholder="Other relevant information here..." [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">3.) Have you ever had experienced tooth extraction?</ion-label>
+      <ion-checkbox [(ngModel)]="toothExtraction" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="relevantToothExtraction" placeholder="Other relevant information here..." [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">4.) Have you bled too much after tooth extraction?</ion-label>
+      <ion-checkbox [(ngModel)]="bledExtraction" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="relevantBledExtraction" placeholder="Other relevant information here..." [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">5.) Have you ever had orthodomic treatment?</ion-label>
+      <ion-checkbox [(ngModel)]="orthodomic" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="relevantOrthodomic" placeholder="Other relevant information here..." [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">6.) Are your teeth sensitive to cold, hot, sweets and pressure?</ion-label>
+      <ion-checkbox [(ngModel)]="cold" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="relevantCold" placeholder="Other relevant information here..." [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">7.) Have you had any periodental (gum) problems?</ion-label>
+      <ion-checkbox [(ngModel)]="periodental" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="relevantPeriodental" placeholder="Other relevant information here..." [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">8.) Do your gums bleed?</ion-label>
+      <ion-checkbox [(ngModel)]="bleed" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="relevantBleed" placeholder="Other relevant information here..." [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">9.) Do you wear any denture? If yes, what type of denture?</ion-label>
+      <ion-checkbox [(ngModel)]="denture" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="relevantDenture" placeholder="Other relevant information here..." [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">10.) Do you experience jaw pain? If yes, when?</ion-label>
+      <ion-checkbox [(ngModel)]="jawPain" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="relevantJawPain" placeholder="Other relevant information here..." [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">11.) Does food catch in your teeth? If yes, where?</ion-label>
+      <ion-checkbox [(ngModel)]="foodCatch" [disabled] = "isReadOnly"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="relevantFoodCatch" placeholder="Other relevant information here..." [disabled] = "isReadOnly"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>

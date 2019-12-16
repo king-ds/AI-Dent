@@ -20,6 +20,8 @@ const routes: Routes = [
   { path : 'mixed-dental-chart', loadChildren : './track-record/mixed-dental-chart/mixed-dental-chart.module#MixedDentalChartPageModule' },
   { path : 'personal-information', loadChildren : './track-record/personal-information/personal-information.module#PersonalInformationPageModule' },
   { path : 'oral-assessment', loadChildren : './track-record/oral-assessment/oral-assessment.module#OralAssessmentPageModule' },
+  { path : 'social-history', loadChildren : './track-record/social-history/social-history.module#SocialHistoryPageModule' },
+  { path : 'dental-history', loadChildren : './track-record/dental-history/dental-history.module#DentalHistoryPageModule' },
   {
     path: 'clinician-viewer',
     loadChildren: () => import('./clinician-viewer/clinician-viewer.module').then( m => m.ClinicianViewerPageModule)
@@ -27,11 +29,7 @@ const routes: Routes = [
   {
     path: 'instructor-viewer',
     loadChildren: () => import('./instructor-viewer/instructor-viewer.module').then( m => m.InstructorViewerPageModule)
-  },  {
-    path: 'social-history',
-    loadChildren: () => import('./track-record/social-history/social-history.module').then( m => m.SocialHistoryPageModule)
   },
-
 
 ];
 
