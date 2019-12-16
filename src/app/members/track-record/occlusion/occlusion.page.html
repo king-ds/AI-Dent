@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
+      <ion-button *ngIf="!loader" (click)="editOcclusion()">
+          <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+        <ion-button *ngIf="!loader" (click)="cancelEdit()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+        <ion-button *ngIf="!loader" (click)="confirmationMessage()">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    
+    <ion-title class="toolbar-title">Occlusion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="loader" *ngIf="loader">
+    <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+  
+  <ion-card *ngIf="!loader">
+    <div class="occlusion-logo">
+        <img src="/assets/occlusion.png">
+    </div>
+    <ion-card-content>
+        Please fill out the following fields accordingly.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list *ngIf="!loader">
+    <ion-item-divider></ion-item-divider>
+
+    <ion-radio-group (ionChange)="onChangeClass($event)">
+
+      <ion-list-header>
+        <ion-label>Occlusion</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Class I</ion-label>
+        <ion-radio value="Class I" [checked]="occlusionClass.class==='Class I'" [disabled] = "isReadOnly"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Class II div 1</ion-label>
+        <ion-radio value="Class II div 1" [checked]="occlusionClass.class==='Class II div 1'" [disabled] = "isReadOnly"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Class II div 2</ion-label>
+        <ion-radio value="Class II div 2" [checked]="occlusionClass.class==='Class II div 2'" [disabled] = "isReadOnly"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Class III</ion-label>
+        <ion-radio value="Class III" [checked]="occlusionClass.class==='Class III'" [disabled] = "isReadOnly"></ion-radio>
+      </ion-item>
+
+    </ion-radio-group>
+
+    <ion-item-divider></ion-item-divider>
+    <ion-item>
+      <ion-label>Other Occlusal Abnormalities</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea [(ngModel)]="otherOcclusal" placeholder="Enter here..." [readonly]="isReadOnly"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Parafunctional Oral Habits</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea [(ngModel)]="oralHabits" placeholder="Enter here..." [readonly]="isReadOnly"></ion-textarea>
+    </ion-item>
+
+    <ion-item-divider></ion-item-divider>
+    <ion-radio-group (ionChange)="onChangePlaque($event)">
+
+      <ion-list-header>
+        <ion-label>Plaque</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Light</ion-label>
+        <ion-radio value="Light" [checked]="plaqueType.type==='Light'" [disabled] = "isReadOnly"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Moderate</ion-label>
+        <ion-radio value="Moderate" [checked]="plaqueType.type==='Moderate'" [disabled] = "isReadOnly"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Heavy</ion-label>
+        <ion-radio value="Heavy" [checked]="plaqueType.type==='Heavy'" [disabled] = "isReadOnly"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+
+    <ion-item-divider></ion-item-divider>
+    <ion-item>
+      <ion-label>Generalized</ion-label>
+      <ion-checkbox [(ngModel)]="generalized" style="margin-left: 40px" [disabled] = "isReadOnly"></ion-checkbox>
+      <ion-input [(ngModel)]="generalizedDesc" placeholder="Enter here..." [readonly] = "isReadOnly"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Localized</ion-label>
+      <ion-checkbox [(ngModel)]="localized" style="margin-left: 56px" [disabled] = "isReadOnly"></ion-checkbox>
+      <ion-input [(ngModel)]="localizedDesc" placeholder="Enter here..." [readonly] = "isReadOnly"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="isReadOnly">
+      <ion-label>
+        Enamel
+        <h3 *ngIf="erosion">Erosion</h3>
+        <h3 *ngIf="demineralization">Demineralization</h3>
+        <h3 *ngIf="attrtion">Attrition</h3>
+        <h3 *ngIf="abfraction">Abfraction</h3>
+        <h3 *ngIf="fluorosis">Fluorosis</h3>
+        <h3 *ngIf="abrasion">Abrasion</h3>
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="!isReadOnly">
+      <ion-label class="ion-text-wrap">Enamel</ion-label>
+      <ion-select multiple="true" (ionChange)="onChangeEnamel($event)" cancelText="Cancel" okText="Submit">
+        <ion-select-option *ngFor="let item of enamelType" [value]="item.id" [selected]="item.value">
+          {{ item.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

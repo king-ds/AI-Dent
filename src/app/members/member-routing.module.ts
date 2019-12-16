@@ -22,6 +22,7 @@ const routes: Routes = [
   { path : 'oral-assessment', loadChildren : './track-record/oral-assessment/oral-assessment.module#OralAssessmentPageModule' },
   { path : 'social-history', loadChildren : './track-record/social-history/social-history.module#SocialHistoryPageModule' },
   { path : 'dental-history', loadChildren : './track-record/dental-history/dental-history.module#DentalHistoryPageModule' },
+  { path : 'occlusion', loadChildren : './track-record/occlusion/occlusion.module#OcclusionPageModule' },
   {
     path: 'clinician-viewer',
     loadChildren: () => import('./clinician-viewer/clinician-viewer.module').then( m => m.ClinicianViewerPageModule)

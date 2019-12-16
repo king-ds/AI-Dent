@@ -129,6 +129,12 @@ getDentalHistory(track_record){
   )
 }
 
+getOcclusion(track_record){
+  return this.http_client.get(this.url+'track-record/'+track_record).pipe(
+    map (results => results['occlusion'])
+  )
+}
+
 
   /*
   * UPDATE TRACK RECORD
@@ -207,6 +213,15 @@ getDentalHistory(track_record){
   }
 
   updateDentalHistory(data, track_record){
+    return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
+
+  updateOcclusion(data, track_record){
     return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
     .pipe( tap(res => {
       console.log(res);
@@ -316,6 +331,15 @@ getDentalHistory(track_record){
    )
    .toPromise();
  }
+
+ addOcclusion(data){
+  return this.http_client.post(this.url+'track-record/occlusion', JSON.stringify(data), http_options)
+  .pipe( tap(res => {
+    console.log(res);
+  })
+  )
+  .toPromise();
+}
 
  addDentalHistory(data){
   return this.http_client.post(this.url+'track-record/dental-history', JSON.stringify(data), http_options)
