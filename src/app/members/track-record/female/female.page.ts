@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { AlertController } from '@ionic/angular';
 

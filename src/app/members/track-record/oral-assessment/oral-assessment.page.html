@@ -1,0 +1,166 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+
+        <ion-buttons class="toolbar-button" slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
+        <ion-button *ngIf="!loader" (click)="editOralAssessment()">
+            <ion-icon name="create"></ion-icon>
+        </ion-button>
+        </ion-buttons>
+
+        <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+            <ion-button *ngIf="!loader" (click)="cancelEdit()">
+                <ion-icon name="close-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+            <ion-button *ngIf="!loader" (click)="confirmationMessage()">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        
+        <ion-title class="toolbar-title">Oral Assessment</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <div *ngIf="!loader">
+
+    <ion-card>
+        <div class="oral-assessment-logo">
+            <img src="/assets/oral_assessment.png">
+        </div>
+        <ion-card-content>
+            Please fill out the following fields appropriately. If abnormal, check the checkbox and fill in the description.
+        </ion-card-content>
+    </ion-card>
+
+
+    <ion-item-divider *ngIf="!loader"></ion-item-divider>
+
+    <ion-list>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">Skin</ion-label>
+            <ion-checkbox [(ngModel)]="skin" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+        <ion-item *ngIf="skin">
+            <ion-input [(ngModel)]="skinDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">Eyes</ion-label>
+            <ion-checkbox [(ngModel)]="eyes" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+        <ion-item *ngIf="eyes">
+            <ion-input [(ngModel)]="eyesDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">Neck</ion-label>
+            <ion-checkbox [(ngModel)]="neck" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="neck">
+            <ion-input [(ngModel)]="neckDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">TMD</ion-label>
+            <ion-checkbox [(ngModel)]="TMD" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="TMD">
+            <ion-input [(ngModel)]="TMDDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">Lymph Nodes</ion-label>
+            <ion-checkbox [(ngModel)]="lymp" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="lymp">
+            <ion-input [(ngModel)]="lympDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">Lips</ion-label>
+            <ion-checkbox [(ngModel)]="lips" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="lips">
+            <ion-input [(ngModel)]="lipsDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">Buccal Mucosa</ion-label>
+            <ion-checkbox [(ngModel)]="buccalMucosa" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="buccalMucosa">
+            <ion-input [(ngModel)]="buccalMucosaDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">Vestibule</ion-label>
+            <ion-checkbox [(ngModel)]="vestibule" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="vestibule">
+            <ion-input [(ngModel)]="vestibuleDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">Alveolar Ridge</ion-label>
+            <ion-checkbox [(ngModel)]="alveolarRidge" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="alveolarRidge">
+            <ion-input [(ngModel)]="alveolarRidgeDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">Hard/Soft Palate</ion-label>
+            <ion-checkbox [(ngModel)]="palate" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="palate">
+            <ion-input [(ngModel)]="palateDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label class="ion-text-wrap">Oro-Pharynx</ion-label>
+            <ion-checkbox [(ngModel)]="oroPharynx" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="oroPharynx">
+            <ion-input [(ngModel)]="oroPharynxDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">Tongue</ion-label>
+            <ion-checkbox [(ngModel)]="tongue" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="tongue">
+            <ion-input [(ngModel)]="tongueDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-text-wrap">Floor of Mouth</ion-label>
+            <ion-checkbox [(ngModel)]="floorOfMouth" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="floorOfMouth">
+            <ion-input [(ngModel)]="floorOfMouthDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label class="ion-text-wrap">Salivary Glands</ion-label>
+            <ion-checkbox [(ngModel)]="salivaryGlands" [disabled] = "isReadOnly"></ion-checkbox>
+        </ion-item>
+            <ion-item *ngIf="salivaryGlands">
+            <ion-input [(ngModel)]="salivaryGlandsDesc" placeholder="Description" [disabled] = "isReadOnly"></ion-input>
+        </ion-item>
+
+    </ion-list>
+  </div>
+
+</ion-content>

@@ -43,7 +43,6 @@ export class PatientDetailsPage implements OnInit {
     // Add track record
     this.debouncer = setTimeout(() => {
     let trackRecord = {
-      "is_approved": false,
       "patient" : patient_id,
       "clinician" : this.clinician,
     }
@@ -57,17 +56,7 @@ export class PatientDetailsPage implements OnInit {
         'has_doctor' : true,
       }
 
-      this.apiService.addPatient(patient_id, assignedData).then(res => {
-        console.log(res);
-        this.add_patient = true;
-        this.successMessage();
-      })
-      .catch(error => {
-        console.log(error);
-        this.add_patient = false;
-        this.errorMessage();
-      });
-
+      this.updatePatient(patient_id, assignedData);
       this.loader = false;
     }, 4000);
   }
@@ -160,9 +149,5 @@ export class PatientDetailsPage implements OnInit {
       ]
     });
     await alert.present();
-  }
-
-  topButton(){
-    console.log('shit');
   }
 }

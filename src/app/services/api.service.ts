@@ -109,7 +109,19 @@ getDentalChartQ4(track_record){
    return this.http_client.get(this.url+'track-record/'+track_record).pipe(
      map (results => results['female'])
    )
- }
+}
+
+getOralAssessment(track_record){
+  return this.http_client.get(this.url+'track-record/'+track_record).pipe(
+    map (results => results['oral_assessment'])
+  )
+}
+
+getSocialHistory(track_record){
+  return this.http_client.get(this.url+'track-record/'+track_record).pipe(
+    map (results => results['social_history'])
+  )
+}
 
   /*
   * UPDATE TRACK RECORD
@@ -161,6 +173,24 @@ getDentalChartQ4(track_record){
   }
 
   updateFemale(data, track_record){
+    return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
+
+  updateOralAssessment(data, track_record){
+    return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
+
+  updateSocialHistory(data, track_record){
     return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
     .pipe( tap(res => {
       console.log(res);
@@ -246,6 +276,24 @@ getDentalChartQ4(track_record){
 
  addFemale(data){
    return this.http_client.post(this.url+'track-record/female', JSON.stringify(data), http_options)
+   .pipe( tap(res => {
+     console.log(res);
+   })
+   )
+   .toPromise();
+ }
+
+ addOralAssessment(data){
+   return this.http_client.post(this.url+'track-record/oral-assessment', JSON.stringify(data), http_options)
+   .pipe( tap(res => {
+     console.log(res);
+   })
+   )
+   .toPromise();
+ }
+
+ addSocialHistory(data){
+   return this.http_client.post(this.url+'track-record/social-history', JSON.stringify(data), http_options)
    .pipe( tap(res => {
      console.log(res);
    })

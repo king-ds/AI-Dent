@@ -1,0 +1,158 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+      <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
+      <ion-button *ngIf="!loader" (click)="editSocialHistory()">
+          <ion-icon name="create"></ion-icon>
+      </ion-button>
+      </ion-buttons>
+
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+          <ion-button *ngIf="!loader" (click)="cancelEdit()">
+              <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+
+      <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+          <ion-button *ngIf="!loader" (click)="confirmationMessage()">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      
+      <ion-title class="toolbar-title">Social History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="loader" *ngIf="loader">
+    <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <div *ngIf="!loader">
+    <ion-card>
+      <div class="social-history-logo">
+          <img src="/assets/social_history.png">
+      </div>
+      <ion-card-content>
+          Are you using/taking or have you used/taken any of the following: (Please check)
+      </ion-card-content>
+    </ion-card>
+
+    <ion-item-divider></ion-item-divider>
+    <ion-list>
+      <ion-item-divider>Tobacco</ion-item-divider>
+      <ion-item>
+        <ion-label>Are you using tobacco?</ion-label>
+        <ion-checkbox [(ngModel)]="tobacco" [disabled]="isReadOnly"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="kindTobacco" placeholder="What kind?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="oftenTobacco" placeholder="How often?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="yearsTobacco" placeholder="How many years?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="stopTobacco" placeholder="Have stopped. How long?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+
+      <ion-item-divider>Cigarettes</ion-item-divider>
+      <ion-item>
+        <ion-label>Are you using cigarretes?</ion-label>
+        <ion-checkbox [(ngModel)]="cigarettes" [disabled]="isReadOnly"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="kindCigarettes" placeholder="What kind?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="oftenCigarettes" placeholder="How often?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="yearsCigarettes" placeholder="How many years?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="stopCigarettes" placeholder="Have stopped. How long?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+
+      <ion-item-divider>Electronic Cigarette (Vaping)</ion-item-divider>
+      <ion-item>
+        <ion-label>Are you using vape?</ion-label>
+        <ion-checkbox [(ngModel)]="vape" [disabled]="isReadOnly"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="kindVape" placeholder="What kind?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="oftenVape" placeholder="How often?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="yearsVape" placeholder="How many years?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="stopVape" placeholder="Have stopped. How long?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+
+      <ion-item-divider>Drugs for recreation</ion-item-divider>
+      <ion-item>
+        <ion-label>Are you using drugs for recreation?</ion-label>
+        <ion-checkbox [(ngModel)]="drugsForRecreation" [disabled]="isReadOnly"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="kindRecreation" placeholder="What kind?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="oftenRecreation" placeholder="How often?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="yearsRecreation" placeholder="How many years?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="stopRecreation" placeholder="Have stopped. How long?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+
+      <ion-item-divider>Drugs for therapeutic</ion-item-divider>
+      <ion-item>
+        <ion-label>Are you using drugs for therapeutic?</ion-label>
+        <ion-checkbox [(ngModel)]="drugsForTherapeutic" [disabled]="isReadOnly"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="kindTherapeutic" placeholder="What kind?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="oftenTherapeutic" placeholder="How often?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="yearsTherapeutic" placeholder="How many years?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="stopTherapeutic" placeholder="Have stopped. How long?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+
+      <ion-item-divider>Alcoholic Beverages</ion-item-divider>
+      <ion-item>
+        <ion-label>Do you drink alcholic beverages?</ion-label>
+        <ion-checkbox [(ngModel)]="alcoholicBeverages" [disabled]="isReadOnly"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="kindAlcoholic" placeholder="What kind?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="oftenAlcoholic" placeholder="How often?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="yearsAlcoholic" placeholder="How many years?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="stopAlcoholic" placeholder="Have stopped. How long?" [readonly]="isReadOnly"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+  </div>
+</ion-content>
