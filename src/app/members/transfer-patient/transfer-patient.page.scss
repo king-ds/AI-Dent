@@ -3,6 +3,16 @@
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 
+.toolbar {
+    --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
+    // --background: #46c4d6;
+}
+
+.toolbar-title {
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+
 .header-text {
     margin: 20px;
     font-family: 'Montserrat', sans-serif;
@@ -42,7 +52,7 @@
 .loader {
     position: relative;
     float: left;
-    margin-top: 150px;
+    margin-top: 80px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -51,7 +61,7 @@
 .no-patient-available{
     position: relative;
     float: left;
-    margin-top: 150px;
+    margin-top: 80px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

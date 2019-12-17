@@ -31,17 +31,18 @@
     --placeholder-font-style: 'Lato', sans-serif;
 }
 
-.header {
-    height: 40%;
-}
+// .header {
+//     height: 40%;
+// }
 
-.container {
-    height: 55%;
-}
+// .container {
+//     height: 55%;
+// }
 
 .loader {
     position: relative;
     float: left;
+    margin-top: 150px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -50,6 +51,7 @@
 .no-patient-available{
     position: relative;
     float: left;
+    margin-top: 150px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

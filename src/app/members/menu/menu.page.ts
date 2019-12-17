@@ -18,6 +18,10 @@ export class MenuPage implements OnInit {
       title : 'Instructor',
       url : '/members/menu/instructor-viewer'
     },
+    {
+      title : 'Transfer Patient',
+      url : '/members/menu/transfer-patient'
+    },
   ];
 
   selectedPath = '';

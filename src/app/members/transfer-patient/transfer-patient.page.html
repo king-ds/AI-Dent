@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons slot="start">
+      <ion-menu-button class="menu-button"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="transferMode">
+      <ion-button *ngIf="!loader" (click)="cancelTransfer()">
+          <ion-icon style="color: white;" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="toolbar-title">A.I. Dent</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="header">
+    <div class="header-text">TRANSFER PATIENT</div>
+
+    <div class="greet-user" *ngIf="( clinician && !transferMode )">
+      Hi {{ clinician.last_name }}, would you like to transfer some of your patient?
+    </div>
+
+    <div class="greet-user" *ngIf="( clinician && transferMode )">
+        Hi {{ clinician.last_name }}, who do you want to transer this patient?
+        <ion-label style="text-align: left;">
+          <h2 style="margin-top:30px;">PATIENT INFORMATION:</h2>
+          <h3><b>Control Number:</b> {{ selectedPatient.id }}</h3>
+          <h3><b>Name:</b> {{ selectedPatient.patient.first_name }} {{ selectedPatient.patient.last_name }}</h3>
+        </ion-label>
+    </div>
+
+    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchPatient($event)" *ngIf="!transferMode" placeholder="Search Patient" animated></ion-searchbar>
+    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchClinician($event)" *ngIf="transferMode" placeholder="Search Clinician" animated></ion-searchbar>
+    <ion-item-divider></ion-item-divider>
+  </div>
+
+  <!-- Clinician List -->
+  <div class="container" *ngIf="transferMode">
+
+    <div class="no-patient-available" *ngIf="(!loader && emptyClinician)">
+      NO CLINICIANS AVAILABLE
+    </div>
+
+    <!-- Loader -->
+    <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    
+    <ion-list *ngIf="!loader">
+      <ion-item class="item" button *ngFor="let item of (clinicians | async)" (click)="confirmationMessage(item)">
+  
+        <!-- Male Avatar -->
+        <ion-avatar slot="start">
+            <img src='/assets/register-clinician.png'>
+        </ion-avatar>
+  
+        <ion-label class="ion-text-wrap">
+            <h3>Student Number : {{ item.student_number }}</h3>
+            <h3>{{ item.first_name }} {{ item.last_name }}</h3>
+            <h3>{{ item.clinic_level }}</h3>
+        </ion-label>
+  
+        <ion-icon slot="end" name="arrow-dropright"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <!-- Patient List -->
+  <div class="container" *ngIf="!transferMode">
+
+    <div class="no-patient-available" *ngIf="(!loader && emptyPatient)">
+      NO PATIENT IS AVAILABLE RIGHT NOW
+    </div>
+
+    <!-- Loader -->
+    <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    
+    <ion-list *ngIf="!loader">
+      <ion-item class="item" button *ngFor="let item of (patients | async)" (click)="transferPatient(item)">
+        
+        <!-- Female Avatar -->
+        <ion-avatar *ngIf="item.patient.gender == 'Female'" slot="start">
+          <img src='/assets/img/girl.png'>
+        </ion-avatar>
+  
+        <!-- Male Avatar -->
+        <ion-avatar *ngIf="item.patient.gender == 'Male'" slot="start">
+            <img src='/assets/img/boy.png'>
+        </ion-avatar>
+  
+        <ion-label class="ion-text-wrap">
+            <h3>Control Number : {{ item.id }}</h3>
+            <h3>{{ item.patient.first_name }} {{ item.patient.last_name }}</h3>
+            <h3>{{ item.patient.phone_num }}</h3>
+        </ion-label>
+  
+        <ion-icon slot="end" name="arrow-dropright"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+  </div>
+</ion-content>

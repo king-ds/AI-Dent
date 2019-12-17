@@ -23,6 +23,7 @@ const routes: Routes = [
   { path : 'social-history', loadChildren : './track-record/social-history/social-history.module#SocialHistoryPageModule' },
   { path : 'dental-history', loadChildren : './track-record/dental-history/dental-history.module#DentalHistoryPageModule' },
   { path : 'occlusion', loadChildren : './track-record/occlusion/occlusion.module#OcclusionPageModule' },
+  { path : 'gingiva', loadChildren : './track-record/gingiva/gingiva.module#GingivaPageModule' },
   {
     path: 'clinician-viewer',
     loadChildren: () => import('./clinician-viewer/clinician-viewer.module').then( m => m.ClinicianViewerPageModule)
@@ -31,6 +32,11 @@ const routes: Routes = [
     path: 'instructor-viewer',
     loadChildren: () => import('./instructor-viewer/instructor-viewer.module').then( m => m.InstructorViewerPageModule)
   },
+  {
+    path: 'transfer-patient',
+    loadChildren: () => import('./transfer-patient/transfer-patient.module').then( m => m.TransferPatientPageModule)
+  },
+
 
 ];
 

@@ -28,6 +28,8 @@ export class ApiService {
   url = 'http://127.0.0.1:8000/';
   // url = 'http://192.168.43.37:8000/';
   // url = 'http://192.168.0.106:8000/';
+  // url = 'http://192.168.0.104:8000/';
+  
   loading : any;
   public success : boolean = false;
 
@@ -135,6 +137,12 @@ getOcclusion(track_record){
   )
 }
 
+getGingiva(track_record){
+  return this.http_client.get(this.url+'track-record/'+track_record).pipe(
+    map (results => results['gingiva'])
+  )
+}
+
 
   /*
   * UPDATE TRACK RECORD
@@ -222,6 +230,15 @@ getOcclusion(track_record){
   }
 
   updateOcclusion(data, track_record){
+    return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
+
+  updateGingiva(data, track_record){
     return this.http_client.put(this.url+'track-record/'+track_record+'/', JSON.stringify(data), http_options)
     .pipe( tap(res => {
       console.log(res);
@@ -341,6 +358,15 @@ getOcclusion(track_record){
   .toPromise();
 }
 
+addGingiva(data){
+  return this.http_client.post(this.url+'track-record/gingiva', JSON.stringify(data), http_options)
+  .pipe( tap(res => {
+    console.log(res);
+  })
+  )
+  .toPromise();
+}
+
  addDentalHistory(data){
   return this.http_client.post(this.url+'track-record/dental-history', JSON.stringify(data), http_options)
   .pipe( tap(res => {
@@ -406,6 +432,21 @@ getOcclusion(track_record){
     )
   }
 
+  /*
+  * CLINICIAN
+  */
+  searchClinician(title : string) : Observable<any> {
+    return this.http_client.get(this.url+'clinician-list/?search='+title).pipe(
+      map(results => results)
+    )
+  }
+
+  getClinicianList(){
+    return this.http_client.get(this.url+'clinician-list/').pipe(
+      map(results => results)
+    )
+  }
+  
   /*
   * REGISTRATION
   */

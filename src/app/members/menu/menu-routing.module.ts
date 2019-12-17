@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: 'instructor-viewer',
         loadChildren: '../instructor-viewer/instructor-viewer.module#InstructorViewerPageModule',
+      },
+      {
+        path : 'transfer-patient',
+        loadChildren: '../transfer-patient/transfer-patient.module#TransferPatientPageModule',
       }
     ]
   }

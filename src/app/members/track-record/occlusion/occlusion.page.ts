@@ -61,7 +61,6 @@ export class OcclusionPage implements OnInit {
         }else{
           this.hasOcclusion = true;
           this.occlusion = val['occlusion_class']
-          console.log(this.occlusion);
           this.occlusionClass = {
             "class" : this.occlusion
           }
@@ -71,7 +70,6 @@ export class OcclusionPage implements OnInit {
           this.plaqueType = {
             "type" : this.plaque
           }
-          console.log(this.plaque);
           this.erosion = val['erosion']
           this.demineralization = val['demineralization']
           this.attrition = val['attrition']

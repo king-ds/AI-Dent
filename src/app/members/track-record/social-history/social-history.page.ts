@@ -238,7 +238,7 @@ export class SocialHistoryPage implements OnInit {
   
   async successMessage() {
     const alert = await this.alertController.create({
-      header: 'Oral Assessment',
+      header: 'Social History',
       message: 'Successfully updated',
       buttons: [{
         text:'Ok',
@@ -265,7 +265,7 @@ export class SocialHistoryPage implements OnInit {
   async confirmationMessage(){
 
     const alert = await this.alertController.create({
-      header: 'Oral Assessment',
+      header: 'Social History',
       message: 'Do you want to send this update?',
       cssClass: 'add-patient',
       buttons: [
