@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+.toolbar {
+    --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
+}
+
+.toolbar-button {
+    color: white;
+}
+
+.toolbar-title {
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+
+.loader {
+    position: relative;
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: justify;
+}
+
+ion-checkbox.checkbox-disabled {
+    opacity: 1;
+}
+
+.gingiva-logo {
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 130px;
+    border: 5px solid #20B2FF;
+    border-radius: 100px;
+    box-shadow: 0 3px 3px #888;
+    background-color: whitesmoke;
+}
+
+.gingiva-logo img {
+    padding: 15px;
+}
+
+ion-card-content {
+    font-family: 'Montserrat', sans-serif;
+}
+
+ion-label {
+    font-family: 'Lato', sans-serif;
+}
+
+ion-input {
+    font-family: 'Lato', sans-serif;   
+}
+
+.no-border {
+    --border-color : transparent;
+    --background: #20B2FF;
+    color: white;
+}
+
+ion-item-divider {
+    margin-top: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: black;
+}
