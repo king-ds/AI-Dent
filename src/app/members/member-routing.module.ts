@@ -70,6 +70,11 @@ const routes: Routes = [
     path: 'patient-dental-history',
     loadChildren: () => import('./patient-track-record/dental-history/dental-history.module').then( m => m.DentalHistoryPageModule)
   },
+  {
+    path: 'patient-occlusion',
+    loadChildren: () => import('./patient-track-record/occlusion/occlusion.module').then( m => m.OcclusionPageModule)
+  },
+
 
 
 

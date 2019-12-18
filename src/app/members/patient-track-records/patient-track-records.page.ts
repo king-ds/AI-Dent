@@ -137,4 +137,13 @@ export class PatientTrackRecordsPage implements OnInit {
     };
     this.router.navigate(['members', 'patient-dental-history'], navigationExtras); 
   }
+
+  goToOcclusion(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+    this.router.navigate(['members', 'patient-occlusion'], navigationExtras); 
+  }
 }
