@@ -1,0 +1,160 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+
+        <ion-buttons class="toolbar-button" slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+        
+        <ion-title class="toolbar-title">Oral Assessment</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <div class="oral-assessment-logo">
+        <img src="/assets/oral_assessment.png">
+    </div>
+    <ion-card-content>
+        This is your current record for oral assessment. Please note that checkmark indicate abnormality.
+    </ion-card-content>
+  </ion-card>
+
+  <div class="loader" *ngIf="loader">
+    <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <div class="no-record" *ngIf="(!loader && !oralAssessment)">
+    NO DATA TO DISPLAY
+  </div>
+
+  <ion-list *ngIf="(!loader && oralAssessment)">
+    <ion-item-divider></ion-item-divider>
+    <ion-item>
+      <ion-label class="ion-text-wrap">Skin</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.skin === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.skin === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.skin === true">
+      <ion-input value="{{ oralAssessment.skin_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Eyes</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.eyes === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.eyes === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.eyes === true">
+      <ion-input value="{{ oralAssessment.eyes_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Neck</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.neck === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.neck === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.neck === true">
+      <ion-input value="{{ oralAssessment.neck_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">TMD</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.TMD === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.TMD === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.TMD === true">
+      <ion-input value="{{ oralAssessment.TMD_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Lymph Nodes</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.lymph_nodes === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.lymph_nodes === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.lymph_nodes === true">
+      <ion-input value="{{ oralAssessment.lymph_nodes_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Lips</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.lips === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.lips === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.lips === true">
+      <ion-input value="{{ oralAssessment.lips_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Buccal Mucosa</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.buccal_mucosa === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.buccal_mucosa === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.buccal_mucosa === true">
+      <ion-input value="{{ oralAssessment.buccal_mucosa_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Vestibule</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.vestibule === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.vestibule === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.vestibule === true">
+      <ion-input value="{{ oralAssessment.vestibule_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Alveolar Ridge</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.alveolar_ridge === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.alveolar_ridge === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.alveolar_ridge === true">
+      <ion-input value="{{ oralAssessment.alveolar_ridge_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Hard/Soft Palate</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.hard_palate === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.oralAssessment === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.hard_palate === true">
+      <ion-input value="{{ oralAssessment.hard_palate_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Oro-Pharynx</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.oro_pharynx === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.oro_pharynx === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.oro_pharynx === true">
+      <ion-input value="{{ oralAssessment.oro_pharynx_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Tongue</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.tongue === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.tongue === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.tongue === true">
+      <ion-input value="{{ oralAssessment.tongue_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Floor of Mouth</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.mouth_floor === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.mouth_floor === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.mouth_floor === true">
+      <ion-input value="{{ oralAssessment.mouth_floor_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Salivary Glands</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="oralAssessment.salivary_glands === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="oralAssessment.salivary_glands === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="oralAssessment.salivary_glands === true">
+      <ion-input value="{{ oralAssessment.salivary_glands_desc }}" placeholder="Description" readonly></ion-input>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -58,6 +58,11 @@ const routes: Routes = [
     path: 'patient-dental-chart',
     loadChildren: () => import('./patient-track-record/dental-chart/dental-chart.module').then( m => m.DentalChartPageModule)
   },
+  {
+    path: 'patient-oral-assessment',
+    loadChildren: () => import('./patient-track-record/oral-assessment/oral-assessment.module').then( m => m.OralAssessmentPageModule)
+  },
+
 
 
 
