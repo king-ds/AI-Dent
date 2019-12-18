@@ -128,4 +128,13 @@ export class PatientTrackRecordsPage implements OnInit {
     };
     this.router.navigate(['members', 'patient-social-history'], navigationExtras); 
   }
+
+  goToDentalHistory(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+    this.router.navigate(['members', 'patient-dental-history'], navigationExtras); 
+  }
 }

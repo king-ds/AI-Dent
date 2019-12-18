@@ -66,6 +66,11 @@ const routes: Routes = [
     path: 'patient-social-history',
     loadChildren: () => import('./patient-track-record/social-history/social-history.module').then( m => m.SocialHistoryPageModule)
   },
+  {
+    path: 'patient-dental-history',
+    loadChildren: () => import('./patient-track-record/dental-history/dental-history.module').then( m => m.DentalHistoryPageModule)
+  },
+
 
 
 

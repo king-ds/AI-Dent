@@ -1,0 +1,174 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title class="toolbar-title">Dental History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <div class="dental-history-logo">
+        <img src="/assets/dental_history.png">
+    </div>
+    <ion-card-content>
+      This is the current records for your dental history.
+    </ion-card-content>
+  </ion-card>
+
+  <div class="loader" *ngIf="loader">
+    <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <div class="no-record" *ngIf="(!loader && !dentalHistory)">
+    NO DATA TO DISPLAY
+  </div>
+
+  <ion-list *ngIf="(!loader && dentalHistory)">
+    <ion-item-divider style="margin-top: -10px;">Form</ion-item-divider>
+    <ion-item>
+      <ion-label>Date of Last visit:</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" value="{{ dentalHistory.date_last_visit }}" readonly></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Frequency of dental visit:</ion-label>
+      <ion-input type="number" style="text-align: center;" value="{{ dentalHistory.freq_dental_visit }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item class="no-border">
+      <ion-label id="label" class="ion-text=wrap">Procedure/s done on the last visit:</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea rows="3" value="{{ dentalHistory.proc_last_visit }}" placeholder="Enter here..." readonly></ion-textarea>
+    </ion-item>
+
+    <ion-item class="no-border">
+      <ion-label id="label" class="ion-text-wrap">Exposure and response to local anesthesia:</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea rows="3" value="{{ dentalHistory.exposure_anesthesia }}" placeholder="Enter here..." readonly></ion-textarea>
+    </ion-item>
+
+    <ion-item class="no-border">
+      <ion-label id="label" class="ion-text-wrap">Complications during and or after dental procedure:</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea rows="3" value="{{ dentalHistory.complications_dental }}" placeholder="Enter here..." readonly></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      I brush <ion-input type="number" value="{{ dentalHistory.brush }}" style="text-align: center" placeholder="Enter here..." readonly></ion-input> times a day.
+    </ion-item>
+    <ion-item>
+      I floss <ion-input type="number" value="{{ dentalHistory.floss }}" style="text-align: center" placeholder="Enter here..." readonly></ion-input> times a day.
+    </ion-item>
+    <ion-item>
+      I use mouth rinse <ion-input type="number" value="{{ dentalHistory.rinse }}" style="text-align: center" placeholder="Enter here..." readonly></ion-input> times a day.
+    </ion-item>
+
+    <ion-item-divider>Checkmark state that you agree with the question.</ion-item-divider>
+    <ion-item>
+      <ion-label class="ion-text-wrap">1.) Do you like your smile? If no, why not?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="dentalHistory.smile === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="dentalHistory.smile === false"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{ dentalHistory.relevant_smile }}" placeholder="Other relevant information here..." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">2.) Do your gums bleed when you brush?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="dentalHistory.gums === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="dentalHistory.gums === false"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{ dentalHistory.relevant_gums }}" placeholder="Other relevant information here..." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">3.) Have you ever had experienced tooth extraction?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="dentalHistory.extraction === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="dentalHistory.extraction === false"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{ dentalHistory.relevant_extraction }}" placeholder="Other relevant information here..." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">4.) Have you bled too much after tooth extraction?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="dentalHistory.bled === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="dentalHistory.bled === false"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{ dentalHistory.relevant_bled }}" placeholder="Other relevant information here..." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">5.) Have you ever had orthodomic treatment?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="dentalHistory.orthodomic === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="dentalHistory.orthodomic === false"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{ dentalHistory.relevant_orthodomic }}" placeholder="Other relevant information here..." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">6.) Are your teeth sensitive to cold, hot, sweets and pressure?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="dentalHistory.cold === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="dentalHistory.cold === false"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{ dentalHistory.relevant_cold }}" placeholder="Other relevant information here..." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">7.) Have you had any periodental (gum) problems?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="dentalHistory.periodental === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="dentalHistory.periodental === false"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{ dentalHistory.relevant_periodental }}" placeholder="Other relevant information here..." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">8.) Do your gums bleed?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="dentalHistory.bleed === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="dentalHistory.bleed === false"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{ dentalHistory.relevant_bleed }}" placeholder="Other relevant information here..." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">9.) Do you wear any denture? If yes, what type of denture?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="dentalHistory.denture === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="dentalHistory.denture === false"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{ dentalHistory.relevant_denture }}" placeholder="Other relevant information here..." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">10.) Do you experience jaw pain? If yes, when?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="dentalHistory.jaw_pain === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="dentalHistory.jaw_pain === false"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{ dentalHistory.relevant_jaw_pain }}" placeholder="Other relevant information here..." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">11.) Does food catch in your teeth? If yes, where?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="dentalHistory.catch === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="dentalHistory.catch === false"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input value="{{ dentalHistory.relevant_catch }}" placeholder="Other relevant information here..." readonly></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
