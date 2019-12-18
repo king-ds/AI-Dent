@@ -62,6 +62,11 @@ const routes: Routes = [
     path: 'patient-oral-assessment',
     loadChildren: () => import('./patient-track-record/oral-assessment/oral-assessment.module').then( m => m.OralAssessmentPageModule)
   },
+  {
+    path: 'patient-social-history',
+    loadChildren: () => import('./patient-track-record/social-history/social-history.module').then( m => m.SocialHistoryPageModule)
+  },
+
 
 
 

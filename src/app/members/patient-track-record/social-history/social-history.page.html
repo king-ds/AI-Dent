@@ -1,0 +1,176 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+      <ion-buttons class="toolbar-button" slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+
+    <ion-title class="toolbar-title">Social History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <div class="social-history-logo">
+        <img src="/assets/social_history.png">
+    </div>
+    <ion-card-content>
+      Checkmark indicate that you are using/taking or have used/taken any of the following.
+    </ion-card-content>
+  </ion-card>
+
+  <div class="loader" *ngIf="loader">
+    <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <div class="no-record" *ngIf="(!socialHistory && !loader)">
+    NO DATA TO DISPLAY
+  </div>
+
+  <ion-list *ngIf="(!loader && socialHistory)">
+    <ion-item-divider>Tobacco</ion-item-divider>
+    <ion-item class="no-border">
+      <ion-label>Are you using tobacco?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="socialHistory.using_tobacco === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="socialHistory.using_tobacco === false"></ion-icon>
+    </ion-item>
+    <hr style="background-color: grey;">
+    <ion-item>
+      <ion-label position="floating">What kind?</ion-label>
+      <ion-input value="{{ socialHistory.kind_tobacco }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How often?</ion-label>
+      <ion-input value="{{ socialHistory.often_tobacco }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How many years?</ion-label>
+      <ion-input value="{{ socialHistory.years_tobacco }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Have stopped. How long?</ion-label>
+      <ion-input value="{{ socialHistory.stop_tobacco }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item-divider>Cigarettes</ion-item-divider>
+    <ion-item class="no-border">
+      <ion-label>Are you using cigarretes?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="socialHistory.using_cigarettes === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="socialHistory.using_cigarettes === false"></ion-icon>
+    </ion-item>
+    <hr style="background-color: grey;">
+    <ion-item>
+      <ion-label position="floating">What kind?</ion-label>
+      <ion-input value="{{ socialHistory.kind_cigarettes }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How often?</ion-label>
+      <ion-input value="{{ socialHistory.often_cigarettes }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How many years?</ion-label>
+      <ion-input value="{{ socialHistory.years_cigarettes }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Have stopped. How long?</ion-label>
+      <ion-input value="{{ socialHistory.stop_cigarettes }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item-divider>Electronic Cigarette (Vaping)</ion-item-divider>
+    <ion-item class="no-border">
+      <ion-label>Are you using vape?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="socialHistory.using_vape === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="socialHistory.using_vape === false"></ion-icon>
+    </ion-item>
+    <hr style="background-color: grey;">
+    <ion-item>
+      <ion-label position="floating">What kind?</ion-label>
+      <ion-input value="{{ socialHistory.kind_vape }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How often?</ion-label>
+      <ion-input value="{{ socialHistory.often_vape }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How many years?</ion-label>
+      <ion-input value="{{ socialHistory.years_vape }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Have stopped. How long?</ion-label>
+      <ion-input value="{{ socialHistory.stop_vape }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item-divider>Drugs for recreation</ion-item-divider>
+    <ion-item class="no-border">
+      <ion-label>Are you using drugs for recreation?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="socialHistory.using_recreation === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="socialHistory.using_recreation === false"></ion-icon>
+    </ion-item>
+    <hr style="background-color: grey;">
+    <ion-item>
+      <ion-label position="floating">What kind?</ion-label>
+      <ion-input value="{{ socialHistory.kind_recreation }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How often?</ion-label>
+      <ion-input value="{{ socialHistory.often_recreation }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How many years?</ion-label>
+      <ion-input value="{{ socialHistory.years_recreation }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Have stopped. How long?</ion-label>
+      <ion-input value="{{ socialHistory.stop_recreation }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item-divider>Drugs for therapeutic</ion-item-divider>
+    <ion-item class="no-border">
+      <ion-label>Are you using drugs for therapeutic?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="socialHistory.using_therapeutic === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="socialHistory.using_therapeutic === false"></ion-icon>
+    </ion-item>
+    <hr style="background-color: grey;">
+    <ion-item>
+      <ion-label position="floating">What kind?</ion-label>
+      <ion-input value="{{ socialHistory.kind_therapeutic }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How often?</ion-label>
+      <ion-input value="{{ socialHistory.often_therapeutic }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How many years?</ion-label>
+      <ion-input value="{{ socialHistory.years_therapeutic }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Have stopped. How long?</ion-label>
+      <ion-input value="{{ socialHistory.stop_therapeutic }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item-divider>Alcoholic Beverages</ion-item-divider>
+    <ion-item class="no-border">
+      <ion-label>Do you drink alcholic beverages?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="socialHistory.drink_alcoholic === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="socialHistory.drink_alcoholic === false"></ion-icon>
+    </ion-item>
+    <hr style="background-color: grey;">
+    <ion-item>
+      <ion-label position="floating">What kind?</ion-label>
+      <ion-input value="{{ socialHistory.kind_alcoholic }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How often?</ion-label>
+      <ion-input value="{{ socialHistory.often_alcoholic }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">How many years?</ion-label>
+      <ion-input value="{{ socialHistory.years_alcoholic }}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Have stopped. How long?</ion-label>
+      <ion-input value="{{ socialHistory.stop_alcoholic }}" readonly></ion-input>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

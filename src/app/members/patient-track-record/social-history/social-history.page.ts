@@ -2,26 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-complaint',
-  templateUrl: './complaint.page.html',
-  styleUrls: ['./complaint.page.scss'],
+  selector: 'app-social-history',
+  templateUrl: './social-history.page.html',
+  styleUrls: ['./social-history.page.scss'],
 })
-export class ComplaintPage implements OnInit {
+export class SocialHistoryPage implements OnInit {
 
   track_record : any;
   debouncer : any;
   loader : boolean;
-  isReadOnly = true;
 
-  complaint : any;
-
+  socialHistory : any;
   constructor(private router : Router,
-              private activatedRoute : ActivatedRoute,) { 
-    this.activatedRoute.queryParams.subscribe(params => {
+              private activatedRoute : ActivatedRoute,) {     
+      this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.track_record = this.router.getCurrentNavigation().extras.state.track_record;
       }
-    });
+    }); 
   }
 
   ngOnInit() {
@@ -30,7 +28,7 @@ export class ComplaintPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.complaint = this.track_record[0]['additional_personal_data'];
+      this.socialHistory = this.track_record[0]['social_history'];
       this.loader = false;
     }, 2000)
   }
