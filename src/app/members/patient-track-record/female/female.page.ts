@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-complaint',
-  templateUrl: './complaint.page.html',
-  styleUrls: ['./complaint.page.scss'],
+  selector: 'app-female',
+  templateUrl: './female.page.html',
+  styleUrls: ['./female.page.scss'],
 })
-export class ComplaintPage implements OnInit {
+export class FemalePage implements OnInit {
 
   track_record : any;
   debouncer : any;
   loader : boolean;
 
-  complaint : any;
+  female : any;
 
   constructor(private router : Router,
               private activatedRoute : ActivatedRoute,) { 
@@ -29,7 +29,7 @@ export class ComplaintPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.complaint = this.track_record[0]['additional_personal_data'];
+      this.female = this.track_record[0]['female'];
       this.loader = false;
     }, 2000)
   }

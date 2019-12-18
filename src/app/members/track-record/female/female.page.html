@@ -1,31 +1,31 @@
 <ion-header>
-    <ion-toolbar class="toolbar">
-  
-      <ion-buttons class="toolbar-button" slot="start">
-        <ion-back-button defaultHref="/"></ion-back-button>
-      </ion-buttons>
-  
-      <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
-        <ion-button *ngIf="!loader" (click)="editFemale()">
-            <ion-icon name="create"></ion-icon>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="isReadOnly">
+      <ion-button *ngIf="!loader" (click)="editFemale()">
+          <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+        <ion-button *ngIf="!loader" (click)="cancelEdit()">
+            <ion-icon name="close-circle-outline"></ion-icon>
         </ion-button>
-      </ion-buttons>
+    </ion-buttons>
   
-      <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
-          <ion-button *ngIf="!loader" (click)="cancelEdit()">
-              <ion-icon name="close-circle-outline"></ion-icon>
-          </ion-button>
-      </ion-buttons>
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
+        <ion-button *ngIf="!loader" (click)="confirmationMessage()">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
     
-      <ion-buttons class="toolbar-button" slot="end" *ngIf="!isReadOnly">
-          <ion-button *ngIf="!loader" (click)="confirmationMessage()">
-              <ion-icon name="checkmark-circle-outline"></ion-icon>
-          </ion-button>
-      </ion-buttons>
-      
-      <ion-title class="toolbar-title">Female</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-title class="toolbar-title">Female</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
 
@@ -76,5 +76,6 @@
     <ion-item *ngIf="isUnderHormone">
       <ion-input [(ngModel)]="underHormone" type="number" placeholder="How many months?" [disabled] = "isReadOnly"></ion-input>
     </ion-item>
+    
   </ion-list>
 </ion-content>

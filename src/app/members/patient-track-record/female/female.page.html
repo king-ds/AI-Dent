@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  
+    <ion-title class="toolbar-title">Female</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="!loader">
+    <div class="female-logo">
+        <img src="/assets/female.png">
+    </div>
+    <ion-card-content>
+      This is your recent records for female.
+    </ion-card-content>
+  </ion-card>
+
+  <div class="loader" *ngIf="loader">
+    <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <div class="no-record" *ngIf="(!loader && !female)">
+    NO DATA TO DISPLAY
+  </div>
+
+  <ion-list *ngIf="(!loader && female)">
+    <ion-item>
+      <ion-label class="ion-text-wrap">Are you pregnant now?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="female.is_pregnant === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="female.is_pregnant === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="female.is_pregnant === true">
+      <ion-label position="floating">How many months?</ion-label>
+      <ion-input value="{{ female.pregnant }}" type="number" placeholder="How many months?" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Are you breast feeding?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="female.is_breast_feeding === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="female.is_breast_feeding === false"></ion-icon>
+    </ion-item>
+    <ion-item  *ngIf="female.is_breast_feeding === true">
+      <ion-label position="floating">How many months?</ion-label>
+      <ion-input value="{{ female.breast_feeding }}" type="number" placeholder="How many months?" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Are you menopause?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="female.is_menopause === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="female.is_menopause === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="female.is_menopause === true">
+      <ion-label position="floating">How many months?</ion-label>
+      <ion-input value="{{ female.menopause }}" type="number" placeholder="How many months?" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Are you under hormone replacement therapy?</ion-label>
+      <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="female.is_under_hormone === true"></ion-icon>
+      <ion-icon name="close" slot="end" *ngIf="female.is_under_hormone === false"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="female.is_under_hormone === true">
+      <ion-label position="floating">How many months?</ion-label>
+      <ion-input value="{{ female.under_hormone }}" type="number" placeholder="How many months?" readonly></ion-input>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

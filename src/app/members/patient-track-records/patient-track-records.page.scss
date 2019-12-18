@@ -1,7 +1,7 @@
 .header-text {
     margin: 20px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     text-align: left;
     font-weight: 300;
 }
@@ -21,7 +21,7 @@
 }
 
 .selections {
-    --background : #fefff2;
+    --background : #fff8e9;
     margin-top: 25px;
     margin-left: 10px;
     margin-right: 10px
@@ -31,5 +31,10 @@ ion-card-title {
     --color : black;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
+    font-size: 12px;
+}
+
+ion-item-divider {
+    --background : #dbdbd9;
+    --border-color : white;
 }

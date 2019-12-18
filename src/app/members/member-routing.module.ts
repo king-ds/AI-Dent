@@ -78,6 +78,11 @@ const routes: Routes = [
     path: 'patient-gingiva',
     loadChildren: () => import('./patient-track-record/gingiva/gingiva.module').then( m => m.GingivaPageModule)
   },
+  {
+    path: 'patient-female',
+    loadChildren: () => import('./patient-track-record/female/female.module').then( m => m.FemalePageModule)
+  },
+
 
 
 

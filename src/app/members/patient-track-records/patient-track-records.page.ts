@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../services/api.service';
 import { StorageService } from './../../services/storage.service';
 import { ActivatedRoute, Router, NavigationExtras, Route } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-patient-track-records',
@@ -16,10 +17,12 @@ export class PatientTrackRecordsPage implements OnInit {
   track_record : any;
   empty : boolean;
   patient : string;
+  isFemale : boolean;
 
   constructor(private apiService : ApiService,
               private storageService : StorageService,
-              private router : Router) { }
+              private router : Router,
+              public toastController: ToastController) { }
 
   ngOnInit() {
   }
@@ -44,6 +47,9 @@ export class PatientTrackRecordsPage implements OnInit {
       }else{
         this.empty = false;
         this.track_record = val;
+        if(this.track_record[0]['patient']['gender'] == 'Female'){
+          this.isFemale = true;
+        }
       }
     });
   }
@@ -154,5 +160,22 @@ export class PatientTrackRecordsPage implements OnInit {
       }
     };
     this.router.navigate(['members', 'patient-gingiva'], navigationExtras); 
+  }
+
+  goToFemale(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+    this.router.navigate(['members', 'patient-female'], navigationExtras); 
+  }
+  
+  async notFemale() {
+    const toast = await this.toastController.create({
+      message: 'This selection is only applicable for female patient.',
+      duration: 2000
+    });
+    toast.present();
   }
 }
