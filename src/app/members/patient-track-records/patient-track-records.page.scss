@@ -1,0 +1,35 @@
+.header-text {
+    margin: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    text-align: left;
+    font-weight: 300;
+}
+
+.loader {
+    position: relative;
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.selections img{
+    width: 100px;
+    display: block;
+    margin: 10px auto;
+}
+
+.selections {
+    --background : #fefff2;
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-right: 10px
+}
+
+ion-card-title {
+    --color : black;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}

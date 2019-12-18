@@ -155,6 +155,16 @@ export class SelectionPage implements OnInit {
     this.router.navigate(['members', 'gingiva'], navigationExtras)
   }
 
+  goToTreatmentRecord(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+
+    this.router.navigate(['members', 'treatment-record'], navigationExtras)
+  }
+
   goToDentalChart(){
     let navigationExtras : NavigationExtras = {
       state : {

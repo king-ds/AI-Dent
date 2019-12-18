@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title class="toolbar-title">Quadrant 1</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <div class="dental-chart-logo">
+      <img src="/assets/dental_chart.png">
+    </div>
+    <ion-card-content>
+      These are the recent dental chart records. If you want to edit particular record, please slide left the item. 
+    </ion-card-content>
+  </ion-card>
+  
+  <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <div class="no-record" *ngIf="(!loader && isEmpty)">
+    NO DATA TO DISPLAY
+  </div>
+  
+  <ion-list *ngIf="(!loader && !isEmpty)">
+    <ion-item-sliding *ngFor="let item of (dentalCharts | async)">
+      <ion-item-divider style="border: none;" class="item-divider">
+        <img src="/assets/teeth.png" style="width: 30px; height: 30px; margin-right: 10px;">
+        {{ item.teeth_number }}
+      </ion-item-divider>
+      <ion-item>
+          <ion-label class="ion-text-wrap">
+            <h3>Caries/Defect/Restorations:</h3>
+            <h3 *ngIf="item.CF">CF - Caries Free</h3>
+            <h3 *ngIf="item.Ab">Ab - Abutment</h3>
+            <h3 *ngIf="item.Am">Am - Amalgam</h3>
+            <h3 *ngIf="item.APC">APC - All Porcelain Crown</h3>
+            <h3 *ngIf="item.C">C - Caries</h3>
+            <h3 *ngIf="item.Co">Co - Composite</h3>
+            <h3 *ngIf="item.CD">CD - Complete Denture</h3>
+            <h3 *ngIf="item.GC">GC - Gold Crown</h3>
+            <h3 *ngIf="item.GI">GI - Glassionomer</h3>
+            <h3 *ngIf="item.Imp">Imp - Impacted</h3>
+            <h3 *ngIf="item.In">In - Inlay</h3>
+            <h3 *ngIf="item.M">M - Missing</h3>
+            <h3 *ngIf="item.MC">MC - Metal Crown</h3>
+            <h3 *ngIf="item.P">P - Pontic</h3>
+            <h3 *ngIf="item.PFG">PFG - Porcelain Fused to Gold</h3>
+            <h3 *ngIf="item.F">F - Fractured</h3>
+            <h3 *ngIf="item.PFM">PFM - PPorcelain Fused to Metal (non-precious)</h3>
+            <h3 *ngIf="item.PFS">PFS - Pit and Fissure Sealant</h3>
+            <h3 *ngIf="item.RC">RC - Recurrent Caries</h3>
+            <h3 *ngIf="item.RPD">RPD - Removable Partial denture</h3>
+            <h3 *ngIf="item.SS">SS - Stainless Steel Crown</h3>
+            <h3 *ngIf="item.Un">Un - Unerupted</h3>
+            <h3 *ngIf="item.X">X - Indicated for extraction</h3>
+          </ion-label>
+        <div>
+          <ion-row style="text-align: center;">
+              <ion-col>
+                <ion-icon name="square-outline" *ngIf="item.top == ''"></ion-icon>
+                <ion-icon name="square" style="color: red;" *ngIf="item.top == 'r'"></ion-icon>
+                <ion-icon name="square" style="color: blue;" *ngIf="item.top == 'b'"></ion-icon>
+                <ion-icon name="square" style="color: green;" *ngIf="item.top == 'g'"></ion-icon>
+              </ion-col>
+          </ion-row>
+      
+          <ion-row style="text-align: center; margin-top: -10px;">
+            <ion-col>
+              <ion-icon name="square-outline" *ngIf="item.left == ''"></ion-icon>
+              <ion-icon name="square" style="color: red;" *ngIf="item.left == 'r'"></ion-icon>
+              <ion-icon name="square" style="color: blue;" *ngIf="item.left == 'b'"></ion-icon>
+              <ion-icon name="square" style="color: green;" *ngIf="item.left == 'g'"></ion-icon>
+
+              <ion-icon name="square-outline" *ngIf="item.middle == ''"></ion-icon>
+              <ion-icon name="square" style="color: red;" *ngIf="item.middle == 'r'"></ion-icon>
+              <ion-icon name="square" style="color: blue;" *ngIf="item.middle == 'b'"></ion-icon>
+              <ion-icon name="square" style="color: green;" *ngIf="item.middle == 'g'"></ion-icon>
+
+              <ion-icon name="square-outline" *ngIf="item.right == ''"></ion-icon>
+              <ion-icon name="square" style="color: red;" *ngIf="item.right == 'r'"></ion-icon>
+              <ion-icon name="square" style="color: blue;" *ngIf="item.right == 'b'"></ion-icon>
+              <ion-icon name="square" style="color: green;" *ngIf="item.right == 'g'"></ion-icon>
+            </ion-col>
+          </ion-row>
+      
+          <ion-row style="text-align: center; margin-top: -10px;">
+              <ion-col>
+                <ion-icon name="square-outline" *ngIf="item.bottom == ''"></ion-icon>
+                <ion-icon name="square" style="color: red;" *ngIf="item.bottom == 'r'"></ion-icon>
+                <ion-icon name="square" style="color: blue;" *ngIf="item.bottom == 'b'"></ion-icon>
+                <ion-icon name="square" style="color: green;" *ngIf="item.bottom == 'g'"></ion-icon>
+              </ion-col>
+          </ion-row>
+        </div>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

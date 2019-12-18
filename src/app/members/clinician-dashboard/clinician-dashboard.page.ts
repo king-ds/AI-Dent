@@ -38,11 +38,11 @@ export class ClinicianDashboardPage implements OnInit {
     }, 2000);
   }
 
-  initiateAddPatient(){
-    this.router.navigate(['members', 'add-patients']);
-  }
+  // initiateAddPatient(){
+  //   this.router.navigate(['members', 'add-patients']);
+  // }
 
-  viewMyPatients(){
-    this.router.navigate(['members', 'my-patients']);
-  }
+  // viewMyPatients(){
+  //   this.router.navigate(['members', 'my-patients']);
+  // }
 }

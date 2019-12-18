@@ -24,6 +24,8 @@ const routes: Routes = [
   { path : 'dental-history', loadChildren : './track-record/dental-history/dental-history.module#DentalHistoryPageModule' },
   { path : 'occlusion', loadChildren : './track-record/occlusion/occlusion.module#OcclusionPageModule' },
   { path : 'gingiva', loadChildren : './track-record/gingiva/gingiva.module#GingivaPageModule' },
+  { path : 'treatment-record', loadChildren : './track-record/treatment-record/treatment-record.module#TreatmentRecordPageModule' },
+  { path : 'patient-personal-information', loadChildren : './patient-track-record/personal-information/personal-information.module#PersonalInformationPageModule' },
   {
     path: 'clinician-viewer',
     loadChildren: () => import('./clinician-viewer/clinician-viewer.module').then( m => m.ClinicianViewerPageModule)
@@ -33,9 +35,34 @@ const routes: Routes = [
     loadChildren: () => import('./instructor-viewer/instructor-viewer.module').then( m => m.InstructorViewerPageModule)
   },
   {
-    path: 'transfer-patient',
-    loadChildren: () => import('./transfer-patient/transfer-patient.module').then( m => m.TransferPatientPageModule)
+    path: 'patient-complaint',
+    loadChildren: () => import('./patient-track-record/complaint/complaint.module').then( m => m.ComplaintPageModule)
   },
+  {
+    path: 'patient-vital-sign',
+    loadChildren: () => import('./patient-track-record/vital-sign/vital-sign.module').then( m => m.VitalSignPageModule)
+  },
+  {
+    path: 'patient-medical-history',
+    loadChildren: () => import('./patient-track-record/medical-history/medical-history.module').then( m => m.MedicalHistoryPageModule)
+  },
+  {
+    path: 'patient-medical-health-questionnaire',
+    loadChildren: () => import('./patient-track-record/medical-health-questionnaire/medical-health-questionnaire.module').then( m => m.MedicalHealthQuestionnairePageModule)
+  },
+  {
+    path: 'patient-allergies',
+    loadChildren: () => import('./patient-track-record/allergies/allergies.module').then( m => m.AllergiesPageModule)
+  },
+  {
+    path: 'patient-dental-chart',
+    loadChildren: () => import('./patient-track-record/dental-chart/dental-chart.module').then( m => m.DentalChartPageModule)
+  },
+
+
+
+
+
 
 
 ];

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './../../services/authentication.service';
+import { StorageService } from './../../services/storage.service';
 
 @Component({
   selector: 'app-patient-dashboard',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientDashboardPage implements OnInit {
 
-  constructor() { }
+  first_name : string;
+  last_name : string;
+  student_number : string;
+  debouncer : any;
+
+  constructor(private authService : AuthenticationService,
+              private storageService : StorageService,) { }
 
   ngOnInit() {
+    this.getUserDetails();
   }
 
+  logout(){
+    this.authService.logoutAnyUser();
+  }
+
+  getUserDetails(){
+    this.debouncer = setTimeout(() => {
+      this.storageService.getObject('patient').then(result => {
+        console.log(result);
+      })
+    }, 2000)
+  }
 }

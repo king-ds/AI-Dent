@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title class="toolbar-title">Complaint</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <div class="complaint-logo">
+      <img src="/assets/add_complaint.jpg">
+    </div>
+    <ion-card-content>
+      This is your current details for this record.
+    </ion-card-content>
+  </ion-card>
+
+  <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <div class="no-record" *ngIf="(!complaint && !loader)">
+    NO DATA TO DISPLAY
+  </div>
+  
+  <ion-item-divider *ngIf="( complaint && !loader )"></ion-item-divider>
+
+  <ion-list *ngIf="( complaint && !loader )">
+    <ion-item>
+        <ion-label position="floating">Chief Complaint</ion-label>
+        <ion-textarea rows="3" value="{{ complaint.chief_complaint }}" [readonly] = "isReadOnly" placeholder="Enter chief complaint here..."></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">History of Present Illness</ion-label>
+        <ion-textarea rows="3" value="{{ complaint.history_of_present_illness }}" [readonly] = "isReadOnly" placeholder="Enter history of present illness here..."></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

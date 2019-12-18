@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title class="toolbar-title">Vital Sign</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+  <ion-content>
+  
+    <ion-card>
+      <div class="vital-sign-logo">
+          <img src="/assets/vital_sign.png">
+      </div>
+      <ion-card-content>
+        This is the list of recorded vital signs.
+      </ion-card-content>
+    </ion-card>
+  
+    <div class="loader" *ngIf="loader">
+        <ion-spinner name="crescent"></ion-spinner>
+    </div>
+  
+    <div class="no-record" *ngIf="(!loader && isEmpty)">
+      NO VITAL SIGN RECORD YET
+    </div>
+  
+    <ion-list *ngIf="(!loader && !isEmpty)">
+      <ion-item class="item" *ngFor="let item of ( vitalSign | async )">
+        <ion-label>
+          <h3>Blood Pressure : {{ item.BP_1 }}/{{ item.BP_2 }} mmHg</h3>
+          <h3>Pulse Rate : {{ item.PR }} bpm</h3>
+          <h3>Respiratory Rate : {{ item.RR }} bpm</h3>
+          <h3>Temperature : {{ item.TEMP }} °C</h3>
+          <h3>Date and Time taken: {{ item.datetime_taken }}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  
+  </ion-content>

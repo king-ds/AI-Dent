@@ -2,10 +2,10 @@
   <ion-toolbar class="toolbar">
 
     <ion-buttons slot="start">
-      <ion-menu-button class="menu-button"></ion-menu-button>
+      <ion-menu-button style="color: white;" class="menu-button" *ngIf="!transferMode"></ion-menu-button>
     </ion-buttons>
 
-    <ion-buttons class="toolbar-button" slot="end" *ngIf="transferMode">
+    <ion-buttons class="toolbar-button" slot="start" *ngIf="transferMode">
       <ion-button *ngIf="!loader" (click)="cancelTransfer()">
           <ion-icon style="color: white;" name="arrow-round-back"></ion-icon>
       </ion-button>

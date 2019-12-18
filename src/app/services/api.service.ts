@@ -77,6 +77,12 @@ export class ApiService {
    )
  }
 
+ getTreatmentRecord(track_record){
+   return this.http_client.get(this.url+'track-record/treatment-record/'+track_record).pipe(
+     map ( results => results)
+   )
+ }
+
  getDentalChart(track_record){
    return this.http_client.get(this.url+'track-record/dental-chart/'+track_record).pipe(
      map ( results => results)
@@ -295,6 +301,15 @@ getGingiva(track_record){
   .toPromise();
  }
 
+ addTreatmentRecord(data){
+   return this.http_client.post(this.url+'track-record/treatment-record', JSON.stringify(data), http_options)
+   .pipe( tap ( res=> {
+     console.log(res);
+   })
+   )
+   .toPromise();
+ }
+
  addDentalChart(data){
    return this.http_client.post(this.url+'track-record/dental-chart', JSON.stringify(data), http_options)
    .pipe( tap ( res => {
@@ -443,6 +458,31 @@ addGingiva(data){
 
   getClinicianList(){
     return this.http_client.get(this.url+'clinician-list/').pipe(
+      map(results => results)
+    )
+  }
+
+  /*
+  * INSTRUCTOR
+  */
+ searchInstructor(title : string) : Observable<any> {
+  return this.http_client.get(this.url+'instructor-list/?search='+title).pipe(
+    map(results => results)
+    )
+  }
+
+  getInstructorList(){
+    return this.http_client.get(this.url+'instructor-list/').pipe(
+      map(results => results)
+    )
+  }
+
+  /*
+  * PATIENT
+  */
+
+  getMyTrackRecord(patient_id){
+    return this.http_client.get(this.url+'track-record-list/'+patient_id).pipe(
       map(results => results)
     )
   }

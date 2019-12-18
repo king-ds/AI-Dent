@@ -1,0 +1,279 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+
+        <ion-buttons class="toolbar-button" slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+        
+        <ion-title class="toolbar-title">Questionnaire</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+      <div class="medical-health-questionnaire-logo">
+          <img src="/assets/medical_history_questionnaire.jpg">
+      </div>
+      <ion-card-content>
+          This is the current details for this record.
+      </ion-card-content>
+  </ion-card>
+
+  <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <div class="no-record" *ngIf="(!loader && !medicalHealthQuestionnaire)">
+    NO DATA TO DISPLAY
+  </div>
+  
+  <ion-grid *ngIf="(!loader && medicalHealthQuestionnaire)">
+    <ion-row>
+      <ion-col>
+          <ion-card>
+            <ion-item>
+              <ion-label>High Blood Pressure</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.high_blood_pressure === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.high_blood_pressure === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Diabetes</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.diabetes === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.diabetes === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Osteoporosis</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.osteoporosis === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.osteoporosis === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Herpes</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.herpes === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.herpes === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Radiation Treatments</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.radiation_treatments === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.radiation_treatments === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Chemotheraphy</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.chemotherapy === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.chemotherapy === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Artificial Heart Valves</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.artificial_heart_valves === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.artificial_heart_valves === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Heart Attack</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.heart_attack === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.heart_attack === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Pacemaker</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.pacemaker === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.pacemaker === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Angioplasty</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.angioplasty === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.angioplasty === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Stroke</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.stroke === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.stroke === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Angina Pectrosis</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.angina_pectrosis === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.angina_pectrosis === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Frequent High Fever</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.frequent_high_fever === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.frequent_high_fever === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Sinusitis</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.sinusitis === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.sinusitis === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Empyema</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.empyema === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.empyema === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Asthma</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.asthma === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.asthma === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Breathing Problems</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.breathing_problems === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.breathing_problems === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Afternoon Fever</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.afternoon_fever === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.afternoon_fever === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Chronic Cough</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.chronic_cough === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.chronic_cough === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Bloody Sputum</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.bloody_sputum === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.bloody_sputum === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Tuberculosis</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.tuberculosis === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.tuberculosis === false"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>Frequent Heartaches</ion-label>
+              <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.frequent_heartaches === true"></ion-icon>
+              <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.frequent_heartaches === false"></ion-icon>
+            </ion-item>
+          </ion-card>
+      </ion-col>
+
+    <ion-col>
+        <ion-card>
+          <ion-item>
+            <ion-label>Visual Impairment</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.visual_impairment === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.visual_impairment === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Hearing Impairment</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.hearing_impairment === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.hearing_impairment === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Athritis</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.athritis === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.athritis === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Pain in Joints</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.pain_in_joints === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.pain_in_joints === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Tumors</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.tumors === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.tumors === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Swollen Ankles</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.swollen_ankles === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.swollen_ankles === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Goiter</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.goiter === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.goiter === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Frequent Thirst</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.frequent_thirst === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.frequent_thirst === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Frequent Hunger</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.frequent_hunger === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.frequent_hunger === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Frequent Urination</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.frequent_urination === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.frequent_urination === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Sudden Weight Loss</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.sudden_weight_loss === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.sudden_weight_loss === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Abdominal Discomfort</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.abdominal_discomfort === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.abdominal_discomfort === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Acidic Reflux</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.acidic_reflux === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.acidic_reflux === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Bleeding Bruining Easily</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.bleeding_bruining_easily === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.bleeding_bruining_easily === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Recreational Drugs</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.recreational_drugs === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.recreational_drugs === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Steroid Theraphy</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.steroid_therapy === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.steroid_therapy === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Blood</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.blood === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.blood === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Pain Upon Urination</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.pain_upon_urination === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.pain_upon_urination === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Kidney Liver Problems</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.kidney_liver_problems === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.kidney_liver_problems === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Hepatitis</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.hepatitis === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.hepatitis === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Sexually Transmitted Disease</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.sexually_transmitted_disease === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.sexually_transmitted_disease === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>HIV Positive</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.hiv_positive === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.hiv_positive === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fainting Spells</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.fainting_spells === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.fainting_spells === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Depression</ion-label>
+            <ion-icon name="checkmark-circle-outline" slot="end" *ngIf="medicalHealthQuestionnaire.depression === true"></ion-icon>
+            <ion-icon name="close" slot="end" *ngIf="medicalHealthQuestionnaire.depression === false"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label>Others:</ion-label>
+            <ion-input placeholder="Please specify..." value="{{ medicalHealthQuestionnaire.others }}" readonly></ion-input>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

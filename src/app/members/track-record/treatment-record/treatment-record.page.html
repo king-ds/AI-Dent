@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="( !loader && !addTreatMentRecordMode )">
+      <ion-button *ngIf="!loader" (click)="attemptAddTreatmentRecord()">
+          <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-title class="toolbar-title">Treatment Record</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="crescent">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card>
+    <div class="treatment-record-logo">
+        <img src="/assets/treatment_record.png">
+    </div>
+    <ion-card-content>
+      This is the list of treatment records.
+    </ion-card-content>
+  </ion-card>
+
+  <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <div class="table" *ngIf="(!loader && !addTreatMentRecordMode && !addClinicalInstructorMode)">
+    <ngx-datatable
+      [rows]="treatmentRecords"
+      [ngClass]="tableStyle"
+      [rowHeight]="'auto'"
+      [headerHeight]="50"
+      [columnMode]="'force'">
+      <ngx-datatable-column name="Date"></ngx-datatable-column>
+      <ngx-datatable-column name="Procedure"></ngx-datatable-column>
+      <ngx-datatable-column name="Clinician"></ngx-datatable-column>
+      <ngx-datatable-column name="Instructor"></ngx-datatable-column>
+      <ngx-datatable-column>
+        <ng-template ngx-datatable-header-template>
+          <span>Approved</span>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template style="text-align: center;">
+            <ion-icon style="color: blue; width: 20px; height: 20px;" name="checkmark-circle-outline" *ngIf=" row.approved  == true"></ion-icon>
+            <ion-icon style="color: red; width: 20px; height: 20px;" name="close-circle-outline" *ngIf=" row.approved  == false"></ion-icon>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+
+  <ion-card *ngIf="(!loader && addTreatMentRecordMode && !addClinicalInstructorMode)">
+    <ion-list>
+      <ion-item>
+        <ion-label>Date:</ion-label>
+        <ion-datetime [(ngModel)]="date" displayFormat="MM/DD/YYYY" placeholder="MM/DD/YYYY"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacking">Procedure:</ion-label>
+        <ion-textarea [(ngModel)]="procedure" rows="2" placeholder="Enter procedure here..."></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Clinician:</ion-label>
+        <ion-input [(ngModel)]="clinicianLastName" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Clinical Instructor:</ion-label>
+        <ion-input [(ngModel)]="instructorLastName" *ngIf="hasSelectedInstructor" [readonly]="true"></ion-input>
+        <ion-button size="small" fill="outline" (click)="attemptAddClinicalInstructor()" *ngIf="hasSelectedInstructor">Change</ion-button>
+        <ion-button size="small" fill="outline" (click)="attemptAddClinicalInstructor()" *ngIf="!hasSelectedInstructor">Select Instructor</ion-button>
+      </ion-item>
+
+      <div class="add-treatment-record-container" (click)="addTreatmentRecord()">
+          <button id="add-treatment-record-btn">Add</button>
+      </div>
+      <div class="cancel-treatment-record-container" (click)="cancelTreatmentRecord()">
+          <button id="cancel-treatment-record-btn">Cancel</button>
+      </div>
+
+    </ion-list>
+  </ion-card>
+
+  <ion-card *ngIf="( !loader && !addTreatMentRecordMode && addClinicalInstructorMode )">
+    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchInstructor($event)" placeholder="Search Instructor" animated></ion-searchbar>
+    <ion-list>
+      <ion-item class="item" button *ngFor="let item of (instructors | async)" (click)="confirmationMessage(item)">
+  
+        <ion-avatar slot="start">
+            <img src='/assets/register-clinician-instructor.png'>
+        </ion-avatar>
+  
+        <ion-label class="ion-text-wrap">
+            <h3>{{ item.first_name }} {{ item.last_name }}</h3>
+        </ion-label>
+  
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

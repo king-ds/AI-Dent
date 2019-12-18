@@ -17,6 +17,7 @@ export class VitalSignPage implements OnInit {
   loader : any;
   isReadOnly = true;
   isEmpty : boolean;
+  
   submitAttempt : boolean;
   addNewVitalSign : boolean;
 

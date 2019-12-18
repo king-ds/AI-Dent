@@ -90,10 +90,11 @@ export class AuthenticationService {
         this.authenticationState.next(true);
         this.isPatient.next(true);
         // Save instructor details to data storage
-        var resKeys = Object.keys(res);
-        for( var i in resKeys ){
-          this.storage.set(resKeys[i], res[resKeys[i]]);
-        }
+        this.storageService.setObject('patient', res);
+        // var resKeys = Object.keys(res);
+        // for( var i in resKeys ){
+        //   this.storage.set(resKeys[i], res[resKeys[i]]);
+        // }
       })
 
     )
