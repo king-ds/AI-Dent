@@ -82,6 +82,11 @@ const routes: Routes = [
     path: 'patient-female',
     loadChildren: () => import('./patient-track-record/female/female.module').then( m => m.FemalePageModule)
   },
+  {
+    path: 'patient-treatment-record',
+    loadChildren: () => import('./patient-track-record/treatment-record/treatment-record.module').then( m => m.TreatmentRecordPageModule)
+  },
+
 
 
 
