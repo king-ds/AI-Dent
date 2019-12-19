@@ -1,3 +1,414 @@
 <ion-content>
+    <div class="header">
+        <div class="header-text">
+            PROFILE
+            <ion-icon style="float:right;" slot="end" name="create" (click)="editProfile()" *ngIf="isReadOnly"></ion-icon>
+            <ion-icon style="float: right;" slot="end" name="checkmark" (click)="confirmationMessage()" *ngIf="!isReadOnly"></ion-icon>
+            <ion-icon style="float: right;" slot="end" name="close" (click)="cancelEdit()" *ngIf="!isReadOnly"></ion-icon>
+        </div>
+        
+        <ion-item-divider></ion-item-divider>
+    </div>
 
+    <div class="loader" *ngIf="loader">
+        <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+    </div>
+
+    <ion-list *ngIf="(!loader && patientDetails && isReadOnly)">
+        
+        <ion-card>
+            <div class="patient-avatar">
+                <img src="/assets/patient.png">
+            </div>
+        </ion-card>
+
+        <div class="personal-information">
+            Personal Information
+        </div>
+        
+        <ion-item class="first-type">
+            <ion-icon name="person" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Full Name</ion-label>
+            <ion-input *ngIf="patientDetails.title == 'ms'" value="Ms. {{ patientDetails.first_name }} {{ patientDetails.last_name }}" readonly></ion-input>
+            <ion-input *ngIf="patientDetails.title == 'mr'" value="Mr. {{ patientDetails.first_name }} {{ patientDetails.last_name }}" readonly></ion-input>
+            <ion-input *ngIf="patientDetails.title == 'mrs'" value="Mrs. {{ patientDetails.first_name }} {{ patientDetails.last_name }}" readonly></ion-input>
+        </ion-item>
+    
+        <ion-item class="first-type">
+            <ion-icon name="pin" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Permanent Address</ion-label>
+            <ion-textarea value="{{ patientDetails.permanent_address }}" readonly></ion-textarea>
+        </ion-item>
+    
+        <ion-item class="first-type">
+            <ion-icon *ngIf="patientDetails.gender == 'Male'" name="male" slot="start" ion-align-self-center></ion-icon>  
+            <ion-icon *ngIf="patientDetails.gender == 'Female'" name="female" slot="start" ion-align-self-center></ion-icon>      
+            <ion-label position="floating">Gender</ion-label>
+            <ion-input *ngIf="patientDetails.gender == 'Male'" value="Male" readonly></ion-input>
+            <ion-input *ngIf="patientDetails.gender == 'Female'" value="Female" readonly></ion-input>
+        </ion-item>
+    
+        <ion-item class="first-type">
+        <ion-icon name="calendar" slot="start" ion-align-self-center></ion-icon>
+        <ion-label position="floating">Date of Birth</ion-label>
+        <ion-input value="{{ patientDetails.birthdate }}" readonly></ion-input>
+        </ion-item>
+    
+        <ion-item class="first-type">
+            <ion-icon name="information-circle" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Religion</ion-label>
+            <ion-input value="{{ patientDetails.religion }}" readonly></ion-input>
+        </ion-item>
+    
+        <ion-item class="first-type">
+            <ion-icon name="information-circle" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Marital Status</ion-label>
+            <ion-input value="{{ patientDetails.marital_status }}" readonly></ion-input>
+        </ion-item>
+    
+        <ion-item class="first-type">
+            <ion-icon name="briefcase" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Occupation</ion-label>
+            <ion-input value="{{ patientDetails.occupation }}" readonly></ion-input>
+        </ion-item>
+    
+        <ion-row>
+        <ion-col>
+            <ion-item class="second-type">
+                <ion-label position="floating"># of Kids</ion-label>
+                <ion-input value="{{ patientDetails.number_of_kids }}" readonly></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item class="second-type">
+                <ion-label position="floating">Height (cm)</ion-label>
+                <ion-input value="{{ patientDetails.height }}" readonly></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item class="second-type">
+                <ion-label position="floating">Weight (kg)</ion-label>
+                <ion-input value="{{ patientDetails.weight }}" readonly></ion-input>
+            </ion-item>
+        </ion-col>
+        </ion-row>
+    
+        <ion-item class="first-type">
+            <ion-icon name="call" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Telephone Number</ion-label>
+            <ion-input value="{{ patientDetails.telephone_num }}" readonly></ion-input>
+        </ion-item>
+    
+        <ion-item class="first-type">
+            <ion-icon name="phone-portrait" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Phone Number</ion-label>
+            <ion-input value="{{ patientDetails.phone_num }}" readonly></ion-input>
+        </ion-item>
+    
+        <ion-item class="first-type">
+            <ion-icon name="mail" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Email Address</ion-label>
+            <ion-input value="{{ patientDetails.email_address }}" readonly></ion-input>
+        </ion-item>
+    
+        <div class="personal-information">
+        In Case of Emergency
+        </div>
+    
+        <ion-item class="first-type">
+            <ion-icon name="person" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Full Name</ion-label>
+            <ion-input value="{{ patientDetails.emergency_first_name }} {{ patientDetails.emergency_last_name }}" readonly></ion-input>
+        </ion-item>
+    
+        <ion-item class="first-type">
+            <ion-icon name="pin" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Address</ion-label>
+            <ion-textarea value="{{ patientDetails.emergency_address }}" readonly></ion-textarea>
+        </ion-item>
+    
+        <ion-item class="first-type">
+            <ion-icon name="information-circle" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Relationship to patient</ion-label>
+            <ion-input value="{{ patientDetails.relation_to_patient }}" readonly></ion-input>
+        </ion-item>
+    
+        <ion-item class="first-type">
+            <ion-icon name="call" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Telephone Number</ion-label>
+            <ion-input value="{{ patientDetails.emergency_telephone_num }}" readonly></ion-input>
+        </ion-item>
+    
+        <ion-item class="first-type">
+            <ion-icon name="phone-portrait" slot="start" ion-align-self-center></ion-icon>
+            <ion-label position="floating">Phone Number</ion-label>
+            <ion-input value="{{ patientDetails.emergency_phone_num }}" readonly></ion-input>
+        </ion-item>
+    </ion-list>
+      
+
+    <!-- UPDATE FORM -->
+    <form [formGroup]="patientUpdateForm" *ngIf="(!loader && patientDetails && !isReadOnly)">
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Title/Honorific</ion-label>
+            <ion-select formControlName="title" id="title" cancelText="Cancel">
+                <ion-select-option value="ms">Ms.</ion-select-option>
+                <ion-select-option value="mr">Mr.</ion-select-option>
+                <ion-select-option value="mrs">Mrs.</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.title">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('title').hasError(validation.type) && (patientUpdateForm.get('title').touched || patientUpdateForm.controls.title.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">First Name</ion-label>
+            <ion-input formControlName="first_name" id="first_name" type="text" ngModel="{{ patientDetails.first_name }}" required></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.first_name">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('first_name').hasError(validation.type) && (patientUpdateForm.get('first_name').touched || patientUpdateForm.controls.first_name.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Middle Name</ion-label>
+            <ion-input formControlName="middle_name" id="middle_name" ngModel="{{ patientDetails.middle_name }}" type="text" required></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.middle_name">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('middle_name').hasError(validation.type) && (patientUpdateForm.get('middle_name').touched || patientUpdateForm.controls.middle_name.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Last Name</ion-label>
+            <ion-input formControlName="last_name" id="last_name" ngModel="{{ patientDetails.last_name }}" type="text" required></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.last_name">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('last_name').hasError(validation.type) && (patientUpdateForm.get('last_name').touched || patientUpdateForm.controls.last_name.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="second-type">
+            <ion-label class="label">Gender</ion-label>  
+            <ion-radio-group formControlName="gender"> 
+                <ion-row>
+                    <ion-col>
+                        <ion-item class="third-type">
+                            <ion-radio item-right value="Male"></ion-radio>
+                            <ion-label class="gender">Male</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <ion-item class="third-type">
+                            <ion-radio item-right value="Female"></ion-radio>
+                            <ion-label class="gender">Female</ion-label>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-radio-group>
+        </ion-item>
+
+        <ng-container *ngFor="let validation of validation_messages.gender">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('gender').hasError(validation.type) && (patientUpdateForm.get('gender').touched || patientUpdateForm.controls.gender.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Date of Birth</ion-label>
+            <ion-datetime formControlName="birthdate" id="birthdate" ngModel="{{ patientDetails.birthdate }}" displayFormat="MM/DD/YYYY"></ion-datetime>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.birthdate">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('birthdate').hasError(validation.type) && (patientUpdateForm.get('birthdate').touched || patientUpdateForm.controls.birthdate.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Religion</ion-label>
+            <ion-input formControlName="religion" id="religion" type="text" ngModel="{{ patientDetails.religion }}"></ion-input>
+        </ion-item>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Marital Status</ion-label>
+            <ion-select formControlName="marital_status" id="marital_status" cancelText="Cancel">
+                <ion-select-option value="Single">Single</ion-select-option>
+                <ion-select-option value="Married">Married</ion-select-option>
+                <ion-select-option value="Widowed">Widowed</ion-select-option>
+                <ion-select-option value="Divorced">Divorced</ion-select-option>
+                <ion-select-option value="Separated">Separated</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.marital_status">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('marital_status').hasError(validation.type) && (patientUpdateForm.get('marital_status').touched || patientUpdateForm.controls.marital_status.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Occupation</ion-label>
+            <ion-input formControlName="occupation" id="occupation" ngModel="{{ patientDetails.occupation }}" type="text" required></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.occupation">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('occupation').hasError(validation.type) && (patientUpdateForm.get('occupation').touched || patientUpdateForm.controls.occupation.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-row>
+            <ion-col>
+                <ion-item class="third-type">
+                    <ion-label position="stacked" class="label"># of Kids</ion-label>
+                    <ion-input formControlName="number_of_kids" id="number_of_kids" ngModel="{{ patientDetails.number_of_kids }}" type="number" required></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item class="third-type">
+                    <ion-label position="floating" class="label">Height (cm)</ion-label>
+                    <ion-input formControlName="height" id="height" type="number" ngModel="{{ patientDetails.height }}" placeholder="cm" required></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item class="third-type">
+                    <ion-label position="floating" class="label">Weight (kg)</ion-label>
+                    <ion-input formControlName="weight" id="weight" type="number" ngModel="{{ patientDetails.weight }}" placeholder="kg" required></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ng-container *ngFor="let validation of validation_messages.number_of_kids">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('number_of_kids').hasError(validation.type) && (patientUpdateForm.get('number_of_kids').touched || patientUpdateForm.controls.number_of_kids.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+        <ng-container *ngFor="let validation of validation_messages.height">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('height').hasError(validation.type) && (patientUpdateForm.get('height').touched || patientUpdateForm.controls.height.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+        <ng-container *ngFor="let validation of validation_messages.weight">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('weight').hasError(validation.type) && (patientUpdateForm.get('weight').touched || patientUpdateForm.controls.weight.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Permanent Address</ion-label>
+            <ion-textarea formControlName="permanent_address" id="permanent_address" ngModel="{{ patientDetails.permanent_address }}" required></ion-textarea>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.permanent_address">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('permanent_address').hasError(validation.type) && (patientUpdateForm.get('permanent_address').touched || patientUpdateForm.controls.permanent_address.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Telephone Number</ion-label>
+            <ion-input formControlName="telephone_num" id="tel" type="tel" maxlength="8" ngModel="{{ patientDetails.telephone_num }}"></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.telephone_num">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('telephone_num').hasError(validation.type) && (patientUpdateForm.get('telephone_num').touched || patientUpdateForm.controls.telephone_num.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Phone Number</ion-label>
+            <ion-input formControlName="phone_num" id="phone" type="tel" maxlength="11" ngModel="{{ patientDetails.phone_num }}"></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.phone_num">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('phone_num').hasError(validation.type) && (patientUpdateForm.get('phone_num').touched || patientUpdateForm.controls.phone_num.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Email Address</ion-label>
+            <ion-input formControlName="email_address" type="email" placeholder="example@email.com" ngModel="{{ patientDetails.email_address }}"></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.email_address">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('email_address').hasError(validation.type) && (patientUpdateForm.get('email_address').touched || patientUpdateForm.controls.email_address.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <div class="emergency-contact">
+            II. Emergency Contact Person
+        </div>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">First Name</ion-label>
+            <ion-input formControlName="emergency_first_name" id="emergency_first_name" ngModel="{{ patientDetails.emergency_first_name }}" type="text" required></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.emergency_first_name">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('emergency_first_name').hasError(validation.type) && (patientUpdateForm.get('emergency_first_name').touched || patientUpdateForm.controls.emergency_first_name.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Middle Name</ion-label>
+            <ion-input formControlName="emergency_middle_name" id="emergency_middle_name" ngModel="{{ patientDetails.emergency_middle_name }}" type="text" required></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.emergency_middle_name">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('emergency_middle_name').hasError(validation.type) && (patientUpdateForm.get('emergency_middle_name').touched || patientUpdateForm.controls.emergency_middle_name.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Last Name</ion-label>
+            <ion-input formControlName="emergency_last_name" id="emergency_last_name" ngModel="{{ patientDetails.emergency_last_name }}" type="text" required></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.emergency_last_name">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('emergency_last_name').hasError(validation.type) && (patientUpdateForm.get('emergency_last_name').touched || patientUpdateForm.controls.emergency_last_name.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Relationship to patient</ion-label>
+            <ion-input formControlName="relation_to_patient" id="relation_to_patient" ngModel="{{ patientDetails.relation_to_patient }}" type="text" required></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.relation_to_patient">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('relation_to_patient').hasError(validation.type) && (patientUpdateForm.get('relation_to_patient').touched || patientUpdateForm.controls.relation_to_patient.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Address</ion-label>
+            <ion-textarea formControlName="emergency_address" id="emergency_address" ngModel="{{ patientDetails.emergency_address }}" required></ion-textarea>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.emergency_address">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('emergency_address').hasError(validation.type) && (patientUpdateForm.get('emergency_address').touched || patientUpdateForm.controls.emergency_address.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Telephone Number</ion-label>
+            <ion-input formControlName="emergency_telephone_num" id="emergency_tel" type="tel" maxlength="8" ngModel="{{ patientDetails.emergency_telephone_num }}"></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.emergency_telephone_num">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('emergency_telephone_num').hasError(validation.type) && (patientUpdateForm.get('emergency_telephone_num').touched || patientUpdateForm.controls.emergency_telephone_num.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+
+        <ion-item class="first-type">
+            <ion-label position="floating" class="label">Phone Number</ion-label>
+            <ion-input formControlName="emergency_phone_num" id="emergency_phone" type="tel" maxlength="11" ngModel="{{ patientDetails.emergency_phone_num }}"></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validation_messages.emergency_phone_num">
+            <div class="error-prompt" *ngIf="patientUpdateForm.get('emergency_phone_num').hasError(validation.type) && (patientUpdateForm.get('emergency_phone_num').touched || patientUpdateForm.controls.emergency_phone_num.dirty || submitAttempt)">
+                &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+            </div>
+        </ng-container>
+    </form>
+    
 </ion-content>

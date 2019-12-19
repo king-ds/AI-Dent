@@ -9,7 +9,7 @@
 .loader {
     position: relative;
     float: left;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -21,7 +21,7 @@
 }
 
 .selections {
-    --background : #fff8e9;
+    --background : #f2f2f2;
     margin-top: 25px;
     margin-left: 10px;
     margin-right: 10px
@@ -32,9 +32,4 @@ ion-card-title {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
-}
-
-ion-item-divider {
-    --background : #dbdbd9;
-    --border-color : white;
 }

@@ -170,6 +170,15 @@ export class PatientTrackRecordsPage implements OnInit {
     };
     this.router.navigate(['members', 'patient-female'], navigationExtras); 
   }
+
+  goToTreatmentRecord(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+    this.router.navigate(['members', 'patient-treatment-record'], navigationExtras); 
+  }
   
   async notFemale() {
     const toast = await this.toastController.create({

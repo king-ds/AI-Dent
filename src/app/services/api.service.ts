@@ -261,6 +261,14 @@ getGingiva(track_record){
     )
     .toPromise();
   }
+
+  updateTreatmentRecord(data, treatment_record){
+    return this.http_client.patch(this.url+'track-record/treatment-record-detail/'+treatment_record, JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    ).toPromise();
+  }
   
   /*
   * SETUP TRACK RECORD
@@ -445,6 +453,15 @@ addGingiva(data){
     return this.http_client.get(this.url+'my-patients-list/'+clinician_id).pipe(
       map(results => results)
     )
+  }
+
+  updatePatient(id, data){
+    return this.http_client.patch(this.url+'update/patient-details/'+id, JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
   }
 
   /*

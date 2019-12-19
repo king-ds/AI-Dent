@@ -18,9 +18,6 @@
         <img *ngIf="information.gender == 'Male'" src="/assets/img/boy.png">
         <img *ngIf="information.gender == 'Female'" src="/assets/img/girl.png">
     </div>
-    <ion-card-content>
-      This is your current personal information.
-    </ion-card-content>
   </ion-card>
 
   <ion-list *ngIf="(information && !loader)">

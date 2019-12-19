@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import {format} from "date-fns";
+import { format } from "date-fns";
 
 @Component({
   selector: 'app-treatment-record',
@@ -52,7 +52,7 @@ export class TreatmentRecordPage implements OnInit {
       if (this.router.getCurrentNavigation().extras.state){
         this.track_record = this.router.getCurrentNavigation().extras.state.track_record;
       }
-    })
+    });
   }
 
   ngOnInit() {

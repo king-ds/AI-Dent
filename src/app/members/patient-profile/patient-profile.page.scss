@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+.header-text {
+    margin: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    text-align: left;
+    font-weight: 300;
+}
+
+.patient-avatar {
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 120px;
+    border: 5px solid #20B2FF;
+    border-radius: 100px;
+    box-shadow: 0 3px 3px #888;
+    background-color: whitesmoke;
+}
+
+.loader {
+    position: relative;
+    float: left;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.patient-avatar img {
+    padding: 15px;
+}
+
+.personal-information {
+    background-color: #20B2FF;
+    color: white;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 1000;
+}
+
+.first-type {
+    margin: 10px;
+}
+
+.third-type {
+    --background: whitesmoke;
+    --border-color: whitesmoke;
+}
+
+.gender {
+    margin-left: 5px;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+}
+
+ion-input, ion-textarea {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+.error-prompt {
+    background-color: transparent;
+    color: #ff4545;
+    margin: 20px;
+    font-size: 12px;
+    font-family: 'Noto Sans', sans-serif;
+    border-radius: 5px;
+}
+
+.error-message { 
+    margin-top: -5px;
+}
+
+.emergency-contact {
+    background-color: #20B2FF;
+    color: white;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 1000;
+}

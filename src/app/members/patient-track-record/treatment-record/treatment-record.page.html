@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title class="toolbar-title">Treatment Record</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="crescent">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card>
+    <div class="treatment-record-logo">
+        <img src="/assets/treatment_record.png">
+    </div>
+    <ion-card-content>
+      This is the list of treatment records.
+    </ion-card-content>
+  </ion-card>
+
+  <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <ngx-datatable
+    [rows]="treatmentRecords"
+    [ngClass]="tableStyle"
+    [rowHeight]="'auto'"
+    [headerHeight]="50"
+    [columnMode]="'force'">
+    <ngx-datatable-column name="Date"></ngx-datatable-column>
+    <ngx-datatable-column name="Procedure"></ngx-datatable-column>
+    <ngx-datatable-column name="Clinician"></ngx-datatable-column>
+    <ngx-datatable-column>
+      <ng-template ngx-datatable-header-template>
+        <span>Signature</span>
+      </ng-template>
+      <ng-template let-row="row" ngx-datatable-cell-template style="text-align: center;">
+        <!-- <ion-button size="small" fill="outline" *ngIf=" row.approved  == false" (click)="approve(row)">Accept</ion-button> -->
+        <ion-icon style="text-align: center; color: black; width: 20px; height: 20px;" name="log-in" *ngIf=" row.approved  == false" (click)="approve(row)"></ion-icon>
+        <ion-icon style="text-align: center; color: #31e040; width: 20px; height: 20px;" name="checkmark-circle-outline" *ngIf=" row.approved  == true"></ion-icon>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+
+  
+</ion-content>
