@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { format } from "date-fns";
 
@@ -18,12 +18,12 @@ export class TreatmentRecordPage implements OnInit {
   isReadOnly = true;
   isEmpty : boolean;
 
-  submitAttempt : boolean;
   addTreatMentRecordMode : boolean;
   addClinicalInstructorMode : boolean;
 
   treatmentRecords : any;
   cleanedTreatmentRecords : any[] = [];
+  selectedTreatmentRecord : any;
 
   tableStyle = 'bootstrap';
 
@@ -47,7 +47,8 @@ export class TreatmentRecordPage implements OnInit {
   constructor(private router : Router,
               private activatedRoute : ActivatedRoute,
               private apiService : ApiService,
-              private alertController : AlertController,) { 
+              private alertController : AlertController,
+              private toastController : ToastController) { 
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state){
         this.track_record = this.router.getCurrentNavigation().extras.state.track_record;
@@ -74,11 +75,26 @@ export class TreatmentRecordPage implements OnInit {
         this.isEmpty = false;
         this.treatmentRecords = JSON.parse(JSON.stringify(val));
         for(var i=0; i<this.treatmentRecords.length; i++){
-          this.cleanedTreatmentRecords.push({ 'date' : this.treatmentRecords[i]['date'],
-                                              'instructor' : this.treatmentRecords[i]['clinical_instructor']['last_name'] + ", " + this.treatmentRecords[i]['clinical_instructor']['first_name'],
-                                              'procedure' : this.treatmentRecords[i]['procedure'],
-                                              'clinician' : this.treatmentRecords[i]['clinician']['last_name'],
-                                              'approved' : this.treatmentRecords[i]['patient_signature'],})
+          var id = this.treatmentRecords[i]['id']
+          var date = this.treatmentRecords[i]['date']
+          var clinician = this.treatmentRecords[i]['clinician']['last_name']
+          var procedure = this.treatmentRecords[i]['procedure']
+          var approved = this.treatmentRecords[i]['patient_signature']
+
+          try {
+            var instructor = this.treatmentRecords[i]['clinical_instructor']['last_name'] + ", " + this.treatmentRecords[i]['clinical_instructor']['first_name']
+          }
+          catch(err){
+            var instructor = 'No instructor yet'
+            console.log(err);
+          }
+          console.log(instructor);
+          this.cleanedTreatmentRecords.push({ 'id' : id,
+                                              'date' : date,
+                                              'instructor' : instructor,
+                                              'procedure' : procedure,
+                                              'clinician' : clinician,
+                                              'approved' : approved,})
         }
         this.treatmentRecords = this.cleanedTreatmentRecords;
       }
@@ -91,8 +107,6 @@ export class TreatmentRecordPage implements OnInit {
 
   cancelTreatmentRecord(){
     this.addTreatMentRecordMode = false;
-    this.instructorId = '';
-    this.instructorLastName = '';
     this.hasSelectedInstructor = false;
     this.date = '';
     this.procedure = '';
@@ -108,15 +122,12 @@ export class TreatmentRecordPage implements OnInit {
     }, 2000)
   }
 
-  cancelAddClinicalInstructor(){
+  cancelAddInstructor(){
     this.addClinicalInstructorMode = false;
-    this.addTreatMentRecordMode = true;
   }
 
   searchInstructor(){
-    this.loader = true;
     this.instructors = this.apiService.searchInstructor(this.searchTerm);
-    this.loader = false;
   }
 
   checkInstructor(){
@@ -130,22 +141,51 @@ export class TreatmentRecordPage implements OnInit {
     });
   }
 
+  initiateAddInstructor(data){
+    this.addClinicalInstructorMode = true;
+    this.addTreatMentRecordMode = false;
+    this.selectedTreatmentRecord = data;
+    this.loader = true;
+    this.debouncer = setTimeout(() => {
+      this.checkInstructor();
+      this.loader = false;
+    }, 2000)
+  }
+
+  updateTreatmentRecord(){
+    this.loader = true;
+    this.hasSelectedInstructor = true;
+    this.addClinicalInstructorMode = false;
+    this.debouncer = setTimeout(() => {
+      let treatmentRecordData = {
+        "id" : this.selectedTreatmentRecord['id'],
+        "clinical_instructor" : this.instructorId,
+      }
+
+      this.apiService.updateTreatmentRecord(treatmentRecordData, this.selectedTreatmentRecord['id']).then((res) => {
+        this.updateSuccessMessage();
+      })
+      .catch(error => {
+        console.log(error);
+        this.errorMessage();
+      });
+    }, 2000)
+  }
+
   addTreatmentRecord(){
-    if(this.date === undefined || this.procedure === undefined || this.instructorId === undefined
-      || this.procedure === '' || this.date === '' || this.instructorId === ''){
-      console.log('All fields are required');
+    if(this.date === undefined || this.procedure === undefined || this.procedure === '' || this.date === ''){
+      this.allRequired()
     }else{
       let treatmentRecordData = {
         "procedure": this.procedure,
         "date": format(new Date(this.date), "yyyy-MM-dd"),
         "patient_signature": false,
         "clinician": this.clinicianId,
-        "clinical_instructor": this.instructorId,
         "track_record": this.track_record['id'],
         "patient": this.patientId
       }
       this.apiService.addTreatmentRecord(treatmentRecordData).then(res => {
-        this.successMessage();
+        this.addSuccessMessage();
       })
       .catch(error => {
         this.errorMessage();
@@ -158,7 +198,7 @@ export class TreatmentRecordPage implements OnInit {
 
     const alert = await this.alertController.create({
       header: 'Confirmation',
-      message: 'Do you want to assign this record to '+details['first_name']+' '+details['last_name']+' ?',
+      message: 'Do you want to assign '+details['first_name']+' '+details['last_name']+'?',
       cssClass: 'add-patient',
       buttons: [
         {
@@ -173,9 +213,7 @@ export class TreatmentRecordPage implements OnInit {
           handler: () => {
             this.instructorId = details['id'];
             this.instructorLastName = details['last_name'];
-            this.hasSelectedInstructor = true;
-            this.addClinicalInstructorMode = false;
-            this.addTreatMentRecordMode = true;
+            this.updateTreatmentRecord();
           }
         }
       ]
@@ -183,14 +221,33 @@ export class TreatmentRecordPage implements OnInit {
     await alert.present();
   }
 
-  async successMessage() {
+  async addSuccessMessage() {
     const alert = await this.alertController.create({
-      header: 'Awesome',
+      header: 'Success',
       message: 'New treatment record has been added.',
       buttons: [{
         text:'Ok',
         handler: () => {
           this.addTreatMentRecordMode = false;
+          this.loader = false;
+          this.date = '';
+          this.procedure = '';
+          this.ionViewWillEnter();
+        }
+      }],
+    });
+    await alert.present();
+  }
+
+  async updateSuccessMessage() {
+    const alert = await this.alertController.create({
+      header: 'Success',
+      message: 'New instructor has been assigned',
+      buttons: [{
+        text:'Ok',
+        handler: () => {
+          this.addTreatMentRecordMode = false;
+          this.loader = false;
           this.ionViewWillEnter();
         }
       }],
@@ -205,6 +262,7 @@ export class TreatmentRecordPage implements OnInit {
       buttons: [{
         text:'Ok',
         handler: () => {
+          this.loader = false;
         }
       }],
     });
@@ -217,5 +275,13 @@ export class TreatmentRecordPage implements OnInit {
     setTimeout(() => {
       event.target.complete();
     }, 2000);
+  }
+
+  async allRequired() {
+    const toast = await this.toastController.create({
+      message: 'All fields are required',
+      duration: 2000
+    });
+    toast.present();
   }
 }
