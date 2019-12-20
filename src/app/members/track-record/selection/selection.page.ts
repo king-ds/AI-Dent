@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../../services/api.service';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-selection',
@@ -18,7 +18,8 @@ export class SelectionPage implements OnInit {
   constructor(private apiService : ApiService,
               private activatedRoute : ActivatedRoute,
               private router : Router,
-              private alertController : AlertController,) { }
+              private alertController : AlertController,
+              private toastController: ToastController,) { }
 
   ngOnInit() {
     this.getPatientDetails();
@@ -292,5 +293,13 @@ export class SelectionPage implements OnInit {
       }],
     });
     await alert.present();
+  }
+
+  async notFemale() {
+    const toast = await this.toastController.create({
+      message: 'This selection is only applicable for female patient.',
+      duration: 2000
+    });
+    toast.present();
   }
 }

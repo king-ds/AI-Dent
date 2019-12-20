@@ -163,7 +163,18 @@ export class TreatmentRecordPage implements OnInit {
       }
 
       this.apiService.updateTreatmentRecord(treatmentRecordData, this.selectedTreatmentRecord['id']).then((res) => {
-        this.updateSuccessMessage();
+        let cdarData = {
+          "procedure": this.selectedTreatmentRecord['procedure'],
+          "date": this.selectedTreatmentRecord['date'],
+          "clinical_instructor": this.instructorId,
+          "clinician": this.clinicianId,
+          "track_record": this.track_record['id'],
+          "patient": this.patientId
+        }
+        console.log(cdarData);
+        this.apiService.addCDAR(cdarData).then((res) => {
+          this.updateSuccessMessage();
+        });        
       })
       .catch(error => {
         console.log(error);

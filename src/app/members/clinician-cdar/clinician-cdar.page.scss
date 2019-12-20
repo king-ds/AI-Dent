@@ -3,7 +3,6 @@
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 
-
 .header-text {
     margin: 20px;
     font-family: 'Montserrat', sans-serif;
@@ -19,8 +18,15 @@
     text-align: left;
 }
 
-.item {
+.date-today {
+    margin: 20px;
     font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    text-align: left;
+}
+
+.item {
+    font-family: 'Lato', sans-serif;
 }
 
 .ion-text-wrap {
@@ -41,33 +47,13 @@
     transform: translate(-50%, -50%);
 }
 
-.no-patient-available{
+.no-record {
     position: relative;
     float: left;
-    margin-top: 150px;
+    margin-top: 80px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #989a9c;
     font-family: "Noto Sans", sans-serif;
 }
-
-ion-card-title{
-    margin: 10px;
-    font-family: "Montserrat", sans-serif;
-}
-
-.consent-form {
-    text-align: center;
-    margin-top: 10px;
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-bottom: 20px;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 13px;
-    color: #888;
-}
-
-ion-checkbox.button-disabled {
-    --opacity: 1;
- }

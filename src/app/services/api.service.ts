@@ -269,6 +269,14 @@ getGingiva(track_record){
     })
     ).toPromise();
   }
+
+  updateCDAR(data, cdar){
+    return this.http_client.patch(this.url+'track-record/treatment-record-detail/'+cdar, JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    ).toPromise();
+  }
   
   /*
   * SETUP TRACK RECORD
@@ -399,6 +407,14 @@ addGingiva(data){
   .toPromise();
 }
 
+addCDAR(data){
+  return this.http_client.post(this.url+'track-record/cdar', JSON.stringify(data), http_options)
+  .pipe( tap(res => {
+    console.log(res);
+  })
+  ).toPromise();
+}
+
  deleteVitalSign(vitalSignId){
    return this.http_client.delete(this.url+'track-record/vital-sign-detail/'+vitalSignId, http_options)
    .pipe( tap(res => {
@@ -475,6 +491,30 @@ addGingiva(data){
 
   getClinicianList(){
     return this.http_client.get(this.url+'clinician-list/').pipe(
+      map(results => results)
+    )
+  }
+
+  getTodayCdar(id){
+    return this.http_client.get(this.url+'track-record/clinician-today-cdar/'+id).pipe(
+      map(results => results)
+    )
+  }
+
+  getAllCdar(id){
+    return this.http_client.get(this.url+'track-record/clinician-all-cdar/'+id).pipe(
+      map(results => results)
+    )
+  }
+
+  searchTodayCdar(title : string, clinician_id : string) : Observable<any> {
+    return this.http_client.get(this.url+'track-record/clinician-today-cdar/'+clinician_id+'?search='+title).pipe(
+      map(results => results)
+    )
+  }
+
+  searchAllCdar(title : string, clinician_id : string) : Observable<any> {
+    return this.http_client.get(this.url+'track-record/clinician-all-cdar/'+clinician_id+'?search='+title).pipe(
       map(results => results)
     )
   }

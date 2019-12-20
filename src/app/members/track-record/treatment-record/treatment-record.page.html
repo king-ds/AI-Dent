@@ -99,7 +99,7 @@
   </ion-card>
 
   <ion-card *ngIf="( !loader && !addTreatMentRecordMode && addClinicalInstructorMode )">
-
+    <ion-card-title>Choose Instructor</ion-card-title>
     <ion-item-divider>
       <ion-icon slot="start" name="arrow-back" (click)="cancelAddInstructor()" style="margin-right: -3px;"></ion-icon>
       <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchInstructor($event)" placeholder="Search Instructor" animated></ion-searchbar>

@@ -1,0 +1,88 @@
+<ion-content>
+  <div class="header">
+    <div class="header-text">Daily Achievement Record</div>
+
+    <div class="greet-user" *ngIf="clinician">
+      Hi {{ clinician.last_name }}, here is the list of your daily achievement records.
+    </div>
+
+    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)" animated></ion-searchbar>
+    <ion-item-divider></ion-item-divider>
+  </div>
+
+  <ion-segment>
+    <ion-segment-button (click)="activateToday()" checked="true"> 
+      <ion-label>Today</ion-label>
+    </ion-segment-button>
+    <ion-segment-button (click)="activateAll()">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="loader">
+    <div class="ion-padding custom-skeleton">
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    </div>
+    <div class="ion-padding custom-skeleton">
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    </div>
+    <div class="ion-padding custom-skeleton">
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    </div>
+  </div>
+
+
+  <div *ngIf="(today && !all && !loader)">
+    <div class="header">
+      <div class="date-today">
+        <ion-icon name="calendar" style="margin-right: 10px; color:grey;"></ion-icon>{{ date }}
+      </div>
+    </div>
+    <div class="no-record" *ngIf="emptyTodayCdar">
+      NO DATA TO DISPLAY
+    </div>
+    <ion-list *ngFor="let item of (todayCdar | async)">
+
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h3 style="color: #c9c9c9">Id : {{ item.id }}</h3>
+          <h3>Procedure: {{ item.procedure }}</h3>
+          <h3>Clinical Instructor: {{ item.clinical_instructor.first_name }} {{ item.clinical_instructor.last_name }}</h3>
+          <h3>Patient: {{ item.patient.first_name }} {{ item.patient.last_name }}</h3>
+          <h3 *ngIf="item.instructor_signature == false">Status: <span style="color: red;">Unapproved</span> </h3>
+          <h3 *ngIf="item.instructor_signature == true">Status: <span style="color:chartreuse;">Approved</span> </h3>
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+  </div>
+
+  <div *ngIf="(!today && all && !loader)">
+    <div class="no-record" *ngIf="emptyAllCdar">
+      NO DATA TO DISPLAY
+    </div>
+    <ion-list *ngFor="let item of (allCdar | async)">
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h3 style="color: #c9c9c9">Id : {{ item.id }}</h3>
+          <h3>Procedure: {{ item.procedure }}</h3>
+          <h3>Clinical Instructor: {{ item.clinical_instructor.first_name }} {{ item.clinical_instructor.last_name }}</h3>
+          <h3>Patient: {{ item.patient.first_name }} {{ item.patient.last_name }}</h3>
+          <h3 *ngIf="item.instructor_signature == false">Status: <span style="color: red;">Unapproved</span> </h3>
+          <h3 *ngIf="item.instructor_signature == true">Status: <span style="color:chartreuse;">Approved</span> </h3>
+          <h3>Date: {{ item.date }}</h3>
+        </ion-label>
+      </ion-item>
+  
+    </ion-list>
+  </div>
+  
+</ion-content>

@@ -1,12 +1,12 @@
 <ion-content>
   <div class="header">
-    <div class="header-text">PATIENT LISTS</div>
+    <div class="header-text">MY PATIENTS</div>
 
     <div class="greet-user" *ngIf="clinician">
       Hi {{ clinician.last_name }}, here is the current list of your patients.
     </div>
 
-    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)" [disabled]="chooseInstructorMode"></ion-searchbar>
     <ion-item-divider></ion-item-divider>
   </div>
 
@@ -22,8 +22,9 @@
     <ion-spinner name="crescent"></ion-spinner>
   </div>
 
-  <ion-list *ngIf="!loader">
-    <ion-item class="item" button *ngFor="let item of (results | async)" [routerLink]="['/', 'members', 'selection', item.id]">
+  <ion-list *ngIf="( !loader && !requestMode && !chooseInstructorMode)">
+    <ion-item-sliding button *ngFor="let item of (results | async)">
+      <ion-item>
       
       <!-- Female Avatar -->
       <ion-avatar *ngIf="item.patient.gender == 'Female'" slot="start">
@@ -41,9 +42,78 @@
           <h3>{{ item.patient.phone_num }}</h3>
       </ion-label>
 
-      <ion-icon slot="end" name="arrow-dropright"></ion-icon>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="secondary" (click)="intitiateCDAR(item)"><ion-icon style="width:30px; height:30px;" name="add-circle-outline"></ion-icon></ion-item-option>
+        <ion-item-option color="primary" [routerLink]="['/', 'members', 'selection', item.id]"><ion-icon style="width:30px; height:30px;" name="arrow-dropright"></ion-icon></ion-item-option>
+      </ion-item-options>
+      
+    </ion-item-sliding>
+  </ion-list>
+</div>
+
+<!-- CDAR FORM -->
+<ion-list *ngIf="(!loader && requestMode)">
+  <ion-card>
+    <ion-card-title>Request CDAR Form</ion-card-title>
+    <ion-item>
+      <ion-label>Date:</ion-label>
+      <ion-datetime [(ngModel)]="date" displayFormat="MM/DD/YYYY" placeholder="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacking">Procedure:</ion-label>
+      <ion-textarea [(ngModel)]="procedure" rows="2" placeholder="Enter procedure here..."></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Clinician:</ion-label>
+      <ion-input [(ngModel)]="clinicianLastName" [readonly]="true"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!instructorLastName">
+      <ion-label>Instructor:</ion-label>
+      <ion-button size="small" fill="outline" (click)="initiateChooseInstructor()">Choose Instructor</ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="instructorLastName">
+      <ion-label>Instructor:</ion-label>
+      <ion-input [(ngModel)]="instructorLastName" readonly></ion-input>
+      <ion-button size="small" fill="outline" (click)="initiateChooseInstructor()">Change</ion-button>
+    </ion-item>
+
+    <div class="consent-form">
+      <ion-checkbox [checked]='consentForm' disabled='disabled' style="float: left;"></ion-checkbox> By tapping "Request" patient must read and agree with the <a (click)="showConsentForm()">consent form</a>
+    </div>
+
+  <div style="text-align: center; margin: 10px;">
+    <ion-button color="primary" (click)="showConfirmationMessage()">Request</ion-button>
+    <ion-button color="danger" (click)="cancelCDAR()">Cancel</ion-button>
+  </div>
+  </ion-card>
+</ion-list>
+
+<ion-card *ngIf = "(!loader && !requestMode && chooseInstructorMode)">
+  <ion-card-title>Choose Instructor</ion-card-title>
+  <ion-item-divider>
+    <ion-icon slot="start" name="arrow-back" (click)="cancelChooseInstructor()"></ion-icon><ion-searchbar class="searchbar" [(ngModel)]="searchInstructorTerm" (ionChange)="searchInstructor($event)" placeholder="Search Instructor" animated></ion-searchbar>
+  </ion-item-divider>
+
+  <ion-list>
+    <ion-item class="item" button *ngFor="let item of (instructors | async)" (click)="showChooseInstructorMessage(item)">
+
+      <ion-avatar slot="start">
+          <img src='/assets/register-clinician-instructor.png'>
+      </ion-avatar>
+
+      <ion-label class="ion-text-wrap">
+          <h3>{{ item.first_name }} {{ item.last_name }}</h3>
+      </ion-label>
+
     </ion-item>
   </ion-list>
+</ion-card>
 
-</div>
+
+
 </ion-content>
