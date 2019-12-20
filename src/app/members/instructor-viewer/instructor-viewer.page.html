@@ -32,7 +32,7 @@
   </div>
 
   <ion-list>
-    <ion-item class="item" button *ngFor="let item of (instructors | async)">
+    <ion-item class="item" button *ngFor="let item of (instructors | async)" [routerLink]="['/', 'members', 'instructor-details', item.id]">
 
       <ion-avatar slot="start">
           <img src='/assets/register-clinician-instructor.png'>

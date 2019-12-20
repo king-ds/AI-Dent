@@ -7,6 +7,7 @@ const routes: Routes = [
   { path : 'instructor-dashboard', loadChildren : './instructor-dashboard/instructor-dashboard.module#InstructorDashboardPageModule' },
   { path : 'patient-dashboard', loadChildren : './patient-dashboard/patient-dashboard.module#PatientDashboardPageModule' },
   { path : 'add-patients/:id', loadChildren: './patient-details/patient-details.module#PatientDetailsPageModule' },
+  { path : 'instructor-details/:id', loadChildren: './instructor-details/instructor-details.module#InstructorDetailsPageModule' },
   { path : 'selection/:id', loadChildren: './track-record/selection/selection.module#SelectionPageModule' },
   { path : 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
   { path : 'complaint', loadChildren: './track-record/complaint/complaint.module#ComplaintPageModule' },
@@ -86,22 +87,6 @@ const routes: Routes = [
     path: 'patient-treatment-record',
     loadChildren: () => import('./patient-track-record/treatment-record/treatment-record.module').then( m => m.TreatmentRecordPageModule)
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ];
 
 @NgModule({

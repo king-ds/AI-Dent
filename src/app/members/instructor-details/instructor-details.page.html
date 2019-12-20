@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+    <ion-buttons style="color: white;" class="menu-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title class="toolbar-title" >A.I. Dent</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="header">
+      <div class="header-text">
+          INSTRUCTOR
+      </div>
+      
+      <ion-item-divider></ion-item-divider>
+  </div>
+  <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <div *ngIf="(!loader && instructor)">
+      <ion-card>
+        <div class="instructor-avatar">
+            <img src="/assets/register-clinician-instructor.png">
+        </div>
+        <ion-card-content>
+          This is the current details of the instructor.
+        </ion-card-content>
+      </ion-card>
+
+      <ion-list>
+        <ion-item class="first-type">
+          <ion-icon name="person" slot="start" ion-align-self-center></ion-icon>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input value="{{ instructor.first_name }}" readonly></ion-input>
+        </ion-item>
+
+        <ion-item class="first-type">
+          <ion-icon name="person" slot="start" ion-align-self-center></ion-icon>
+          <ion-label position="floating">Middle Name</ion-label>
+          <ion-input value="{{ instructor.middle_name }}" readonly></ion-input>
+        </ion-item>
+
+        <ion-item class="first-type">
+          <ion-icon name="person" slot="start" ion-align-self-center></ion-icon>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input value="{{ instructor.last_name }}" readonly></ion-input>
+        </ion-item>
+
+        <ion-item class="first-type">
+          <ion-icon name="calendar" slot="start" ion-align-self-center></ion-icon>
+          <ion-label position="floating">Date Joined</ion-label>
+          <ion-input value="{{ instructor.datetime_joined }}" readonly></ion-input>
+        </ion-item>
+
+      </ion-list>
+  </div>
+</ion-content>
