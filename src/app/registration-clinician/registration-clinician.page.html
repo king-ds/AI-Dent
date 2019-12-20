@@ -69,14 +69,14 @@
         <ion-item>
             <ion-label class="label" position="floating">Clinic Level</ion-label>
             <ion-select formControlName='clinic_level' cancelText="Cancel">
-              <ion-select-option value="clinic_1a">Clinic 1A</ion-select-option>
-              <ion-select-option value="clinic_1b">Clinic 1B</ion-select-option>
-              <ion-select-option value="clinic_2a">Clinic 2A</ion-select-option>
-              <ion-select-option value="clinic_2b">Clinic 2B</ion-select-option>
-              <ion-select-option value="clinic_3a">Clinic 3A</ion-select-option>
-              <ion-select-option value="clinic_3b">Clinic 3B</ion-select-option>
-              <ion-select-option value="clinic_4a">Clinic 4A</ion-select-option>
-              <ion-select-option value="clinic_4b">Clinic 4B</ion-select-option>
+              <ion-select-option value="Clinic 1A">Clinic 1A</ion-select-option>
+              <ion-select-option value="Clinic 1B">Clinic 1B</ion-select-option>
+              <ion-select-option value="Clinic 2A">Clinic 2A</ion-select-option>
+              <ion-select-option value="Clinic 2B">Clinic 2B</ion-select-option>
+              <ion-select-option value="Clinic 3A">Clinic 3A</ion-select-option>
+              <ion-select-option value="Clinic 3B">Clinic 3B</ion-select-option>
+              <ion-select-option value="Clinic 4A">Clinic 4A</ion-select-option>
+              <ion-select-option value="Clinic 4B">Clinic 4B</ion-select-option>
             </ion-select>
           </ion-item>
           <div class="error-prompt" *ngIf="!register_form.controls.clinic_level.valid  && ( register_form.get('clinic_level').touched || register_form.controls.clinic_level.dirty || submit_attempt)">
