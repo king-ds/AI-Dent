@@ -10,16 +10,13 @@
     <ion-item-divider></ion-item-divider>
   </div>
 
-  
-<div class="container">
-
-  <div class="no-patient-available" *ngIf="(!loader && empty)">
-    NO PATIENTS WERE ADDED
-  </div>
-
   <!-- Loader -->
   <div class="loader" *ngIf="loader">
     <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <div class="no-patient-available" *ngIf="(!loader && empty)">
+    NO PATIENTS WERE ADDED
   </div>
 
   <ion-list *ngIf="( !loader && !requestMode && !chooseInstructorMode)">
@@ -50,7 +47,6 @@
       
     </ion-item-sliding>
   </ion-list>
-</div>
 
 <!-- CDAR FORM -->
 <ion-list *ngIf="(!loader && requestMode)">

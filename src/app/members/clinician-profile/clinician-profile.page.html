@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white;" class="menu-button"></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title class="toolbar-title">A.I. Dent</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="header">
+    <div class="header-text">
+        PROFILE
+        <ion-icon style="float:right;" slot="end" name="create" (click)="editProfile()" *ngIf="isReadOnly"></ion-icon>
+        <ion-icon style="float: right;" slot="end" name="checkmark" (click)="confirmationMessage()" *ngIf="!isReadOnly"></ion-icon>
+        <ion-icon style="float: right;" slot="end" name="close" (click)="cancelEdit()" *ngIf="!isReadOnly"></ion-icon>
+    </div>
+    
+    <ion-item-divider></ion-item-divider>
+  </div>
+
+  <div class="loader" *ngIf="loader">
+      <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <ion-list *ngIf="(!loader && clinicianDetails && isReadOnly)">
+
+  <ion-card>
+      <div class="clinician-avatar">
+          <img src="/assets/register-clinician.png">
+      </div>
+  </ion-card>
+
+    <div class="personal-information">
+      Clinician Information
+    </div>
+
+    <ion-item class="first-type">
+      <ion-icon name="person" slot="start" ion-align-self-center></ion-icon>
+      <ion-label position="floating">Student Number</ion-label>
+      <ion-input value="{{ clinicianDetails.student_number }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item class="first-type">
+      <ion-icon name="information-circle-outline" slot="start" ion-align-self-center></ion-icon>
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input value="{{ clinicianDetails.first_name }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item class="first-type">
+      <ion-icon name="information-circle-outline" slot="start" ion-align-self-center></ion-icon>
+      <ion-label position="floating">Middle Name</ion-label>
+      <ion-input value="{{ clinicianDetails.middle_name }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item class="first-type">
+      <ion-icon name="information-circle-outline" slot="start" ion-align-self-center></ion-icon>
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-input value="{{ clinicianDetails.last_name }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item class="first-type">
+      <ion-icon name="medal" slot="start" ion-align-self-center></ion-icon>
+      <ion-label position="floating">Clinic Level</ion-label>
+      <ion-input value="{{ clinicianDetails.clinic_level }}" readonly></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+
+  <!-- UPDATE FORM -->
+
+  <form [formGroup] = 'clinicianUpdateForm' *ngIf="(!loader && clinicianDetails && !isReadOnly)">
+    <ion-item class="first-type">
+        <ion-label class="label" position="floating">Clinic Level</ion-label>
+        <ion-select formControlName='clinic_level' cancelText="Cancel">
+          <ion-select-option value="Clinic 1A">Clinic 1A</ion-select-option>
+          <ion-select-option value="Clinic 2B">Clinic 1B</ion-select-option>
+          <ion-select-option value="Clinic 2A">Clinic 2A</ion-select-option>
+          <ion-select-option value="Clinic 2B">Clinic 2B</ion-select-option>
+          <ion-select-option value="Clinic 3A">Clinic 3A</ion-select-option>
+          <ion-select-option value="Clinic 3B">Clinic 3B</ion-select-option>
+          <ion-select-option value="Clinic 4A">Clinic 4A</ion-select-option>
+          <ion-select-option value="Clinic 4B">Clinic 4B</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="error-prompt" *ngIf="!clinicianUpdateForm.controls.clinic_level.valid  && ( clinicianUpdateForm.get('clinic_level').touched || clinicianUpdateForm.controls.clinic_level.dirty || submitAttempt)">
+          &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp;Clinic level is required
+      </div>
+
+    <ion-item class="first-type">
+      <ion-label class="label" position="floating">First Name</ion-label>
+      <ion-input ngModel="{{ clinicianDetails.first_name }}" formControlName="first_name" id="first_name" type="text" required></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let validation of validation_messages.first_name">
+      <div class="error-prompt" *ngIf="clinicianUpdateForm.get('first_name').hasError(validation.type) && (clinicianUpdateForm.get('first_name').touched || clinicianUpdateForm.controls.first_name.dirty || submitAttempt)">
+          &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+      </div>
+    </ng-container>
+
+    <ion-item class="first-type">
+        <ion-label class="label" position="floating">Middle Name</ion-label>
+        <ion-input ngModel="{{ clinicianDetails.middle_name }}" formControlName="middle_name" id="middle_name" type="text" required></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let validation of validation_messages.middle_name">
+        <div class="error-prompt" *ngIf="clinicianUpdateForm.get('middle_name').hasError(validation.type) && (clinicianUpdateForm.get('middle_name').touched || clinicianUpdateForm.controls.middle_name.dirty || submitAttempt)">
+            &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+        </div>
+    </ng-container>
+
+    <ion-item class="first-type">
+        <ion-label class="label" position="floating">Last Name</ion-label>
+        <ion-input ngModel="{{ clinicianDetails.last_name }}" formControlName="last_name" id="last_name" type="text" required></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let validation of validation_messages.last_name">
+        <div class="error-prompt" *ngIf="clinicianUpdateForm.get('last_name').hasError(validation.type) && (clinicianUpdateForm.get('last_name').touched || clinicianUpdateForm.controls.last_name.dirty || submitAttempt)">
+            &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+        </div>
+    </ng-container>
+  </form>
+
+</ion-content>

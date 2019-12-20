@@ -1,12 +1,51 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar class="toolbar">
+
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button style="color: white;" class="menu-button"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Search Instructor</ion-title>
+    
+    <ion-title class="toolbar-title">A.I. Dent</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="header">
+    <div class="header-text">
+        CLINICAL INSTRUCTORS
+    </div>
 
+    <div class="greet-user" *ngIf="clinician">
+      Hi {{ clinician.last_name }}, would like to search and check something about your instructor?
+    </div>
+
+    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+    <ion-item-divider></ion-item-divider>
+  </div>
+
+  <div class="container">
+
+    <div class="no-patient-available" *ngIf="(!loader && empty)">
+      NO DATA TO DISPLAY
+    </div>
+
+    <div class="loader" *ngIf="loader">
+        <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+    </div>
+
+    <ion-list>
+      <ion-item class="item" button *ngFor="let item of (instructors | async)">
+  
+        <ion-avatar slot="start">
+            <img src='/assets/register-clinician-instructor.png'>
+        </ion-avatar>
+  
+        <ion-label class="ion-text-wrap">
+            <h3>{{ item.first_name }} {{ item.last_name }}</h3>
+        </ion-label>
+  
+      </ion-item>
+    </ion-list>
+
+  </div>
 </ion-content>

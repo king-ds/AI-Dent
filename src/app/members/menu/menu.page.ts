@@ -15,6 +15,10 @@ export class MenuPage implements OnInit {
       url : '/members/menu/clinician-dashboard'
     },
     {
+      title : 'Profile',
+      url : '/members/menu/clinician-profile'
+    },
+    {
       title : 'Instructor',
       url : '/members/menu/instructor-viewer'
     },

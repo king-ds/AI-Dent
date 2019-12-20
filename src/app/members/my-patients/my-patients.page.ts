@@ -51,15 +51,17 @@ export class MyPatientsPage implements OnInit {
     this.debouncer = setTimeout(() => {
       this.storageService.getObject('clinician').then((result) => {
         this.clinician = result;
+        this.checkMyPatient();
+        this.loader = false;
         console.log(this.clinician);
 
       })
     }, 2000)
 
-    this.debouncer = setTimeout(() => {
-      this.checkMyPatient();
-      this.loader = false;
-    }, 3000)
+    // this.debouncer = setTimeout(() => {
+    //   this.checkMyPatient();
+    //   this.loader = false;
+    // }, 3000)
   }
 
   searchChanged(){

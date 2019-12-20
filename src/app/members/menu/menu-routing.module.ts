@@ -11,7 +11,10 @@ const routes: Routes = [
       {
         path: 'clinician-dashboard',
         loadChildren: '../clinician-dashboard/clinician-dashboard.module#ClinicianDashboardPageModule',
-
+      },
+      {
+        path: 'clinician-profile',
+        loadChildren: '../clinician-profile/clinician-profile.module#ClinicianProfilePageModule',
       },
       {
         path: 'instructor-viewer',

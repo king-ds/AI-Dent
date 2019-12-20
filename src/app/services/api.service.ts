@@ -495,6 +495,19 @@ addCDAR(data){
     )
   }
 
+  getClinicianDetails(id){
+    return this.http_client.get(this.url+'clinician-list/'+id);
+  }
+
+  updateClinician(id, data){
+    return this.http_client.patch(this.url+'update/clinician-details/'+id, JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
+
   getTodayCdar(id){
     return this.http_client.get(this.url+'track-record/clinician-today-cdar/'+id).pipe(
       map(results => results)

@@ -149,7 +149,6 @@ export class PatientProfilePage implements OnInit {
       this.debouncer = setTimeout(() => {
         this.apiService.getPatientDetails(this.currentPatient['id']).subscribe((val) => {
           this.patientDetails = val;
-          console.log(this.patientDetails);
           this.loader = false;
         });
       }, 2000);
@@ -199,6 +198,7 @@ export class PatientProfilePage implements OnInit {
           this.successMessage();
         })
         .catch(error => {
+          this.errorMessage();
           console.log(error);
         });
       }, 2000)
