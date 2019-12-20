@@ -48,7 +48,7 @@ export class InstructorViewerPage implements OnInit {
   }
 
   searchChanged(){
-    this.instructors = this.apiService.searchPatient(this.searchTerm);
+    this.instructors = this.apiService.searchInstructor(this.searchTerm);
   }
 
 }
