@@ -585,6 +585,15 @@ addCDAR(data){
     )
   }
 
+  updateInstructor(id, data){
+    return this.http_client.patch(this.url+'update/instructor-details/'+id, JSON.stringify(data), http_options)
+    .pipe( tap(res => {
+      console.log(res);
+    })
+    )
+    .toPromise();
+  }
+
   /*
   * PATIENT
   */

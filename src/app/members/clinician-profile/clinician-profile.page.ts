@@ -110,6 +110,7 @@ export class ClinicianProfilePage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Awesome!',
       message: 'Your profile has been successfully updated.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {

@@ -1,9 +1,79 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>instructor-profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="header">
+    <div class="header-text">
+        PROFILE
+        <ion-icon style="float:right; background-color: whitesmoke; border-radius: 50%; padding: 10px; width: 20px; height: 20px;" slot="end" name="create" (click)="editProfile()" *ngIf="isReadOnly"></ion-icon>
+        <ion-icon style="float: right; background-color: whitesmoke; border-radius: 50%; padding: 10px; width: 20px; height: 20px;" slot="end" name="checkmark" (click)="confirmationMessage()" *ngIf="!isReadOnly"></ion-icon>
+        <ion-icon style="float: right; background-color: whitesmoke; border-radius: 50%; padding: 10px; width: 20px; height: 20px; margin-right: 5px;" slot="end" name="close" (click)="cancelEdit()" *ngIf="!isReadOnly"></ion-icon>
+    </div>
+    
+    <ion-item-divider></ion-item-divider>
+  </div>
 
+  <div class="loader" *ngIf="loader">
+    <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+
+  <ion-list *ngIf="(!loader && instructorDetails && isReadOnly)">
+    <ion-card>
+      <div class="instructor-avatar">
+          <img src="/assets/register-clinician-instructor.png">
+      </div>
+    </ion-card>
+
+    <div class="personal-information">
+      Your Information
+    </div>
+
+    <ion-item class="first-type">
+      <ion-icon name="information-circle-outline" slot="start" ion-align-self-center></ion-icon>
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input value="{{ instructorDetails.first_name }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item class="first-type">
+      <ion-icon name="information-circle-outline" slot="start" ion-align-self-center></ion-icon>
+      <ion-label position="floating">Middle Name</ion-label>
+      <ion-input value="{{ instructorDetails.middle_name }}" readonly></ion-input>
+    </ion-item>
+
+    <ion-item class="first-type">
+      <ion-icon name="information-circle-outline" slot="start" ion-align-self-center></ion-icon>
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-input value="{{ instructorDetails.last_name }}" readonly></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <form [formGroup] = 'instructorUpdateForm' *ngIf="(!loader && instructorDetails && !isReadOnly)">
+  
+      <ion-item class="first-type">
+        <ion-label class="label" position="floating">First Name</ion-label>
+        <ion-input ngModel="{{ instructorDetails.first_name }}" formControlName="first_name" id="first_name" type="text" required></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of validation_messages.first_name">
+        <div class="error-prompt" *ngIf="instructorUpdateForm.get('first_name').hasError(validation.type) && (instructorUpdateForm.get('first_name').touched || instructorUpdateForm.controls.first_name.dirty || submitAttempt)">
+            &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+        </div>
+      </ng-container>
+  
+      <ion-item class="first-type">
+          <ion-label class="label" position="floating">Middle Name</ion-label>
+          <ion-input ngModel="{{ instructorDetails.middle_name }}" formControlName="middle_name" id="middle_name" type="text" required></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of validation_messages.middle_name">
+          <div class="error-prompt" *ngIf="instructorUpdateForm.get('middle_name').hasError(validation.type) && (instructorUpdateForm.get('middle_name').touched || instructorUpdateForm.controls.middle_name.dirty || submitAttempt)">
+              &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+          </div>
+      </ng-container>
+  
+      <ion-item class="first-type">
+          <ion-label class="label" position="floating">Last Name</ion-label>
+          <ion-input ngModel="{{ instructorDetails.last_name }}" formControlName="last_name" id="last_name" type="text" required></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of validation_messages.last_name">
+          <div class="error-prompt" *ngIf="instructorUpdateForm.get('last_name').hasError(validation.type) && (instructorUpdateForm.get('last_name').touched || instructorUpdateForm.controls.last_name.dirty || submitAttempt)">
+              &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
+          </div>
+      </ng-container>
+    </form>
 </ion-content>
