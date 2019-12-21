@@ -29,7 +29,7 @@ export class MedicalHealthQuestionnairePage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.medicalHealthQuestionnaire = this.track_record[0]['medical_health_questionnaire']
+      this.medicalHealthQuestionnaire = this.track_record['medical_health_questionnaire']
       this.loader = false;
     }, 2000)
   }

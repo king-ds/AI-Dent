@@ -3,10 +3,12 @@
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 
-
 .toolbar {
     --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
-    // --background: #46c4d6;
+}
+
+.toolbar-button {
+    color: white;
 }
 
 .toolbar-title {
@@ -14,15 +16,22 @@
     color: white;
 }
 
-.tabs {
-    --background: #20B2FF;
-    --color: white;
-    --color-selected: black;
-    --ripple-color: red;
-    font-family: 'Lato', sans-serif;
-    font-size: 15px;
+.selections img{
+    width: 100px;
+    display: block;
+    margin: 10px auto;
 }
 
-.menu-button {
-    color: white;
+.selections {
+    --background : #f2f2f2;
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-right: 10px
+}
+
+ion-card-title {
+    --color : black;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
 }

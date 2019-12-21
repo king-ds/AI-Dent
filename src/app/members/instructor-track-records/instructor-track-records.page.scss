@@ -3,14 +3,6 @@
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 
-.toolbar {
-    --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
-}
-
-.toolbar-title {
-    font-family: 'Lato', sans-serif;
-    color: white;
-}
 
 .header-text {
     margin: 20px;
@@ -20,26 +12,24 @@
     font-weight: 300;
 }
 
-.instructor-avatar {
-    margin: 0 auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 120px;
-    border: 5px solid #20B2FF;
-    border-radius: 100px;
-    box-shadow: 0 3px 3px #888;
-    background-color: whitesmoke;
-}
-
-.instructor-avatar img {
-    padding: 15px;
-}
-
 .greet-user {
     margin: 20px;
     font-family: 'Lato', sans-serif;
     font-size: 15px;
     text-align: left;
+}
+
+.item {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.ion-text-wrap {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+.searchbar {
+    --placeholder-font-style: 'Lato', sans-serif;
 }
 
 .loader {
@@ -50,7 +40,12 @@
     transform: translate(-50%, -50%);
 }
 
-ion-input {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
+.no-patient-available{
+    position: relative;
+    float: left;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #989a9c;
+    font-family: "Noto Sans", sans-serif;
 }

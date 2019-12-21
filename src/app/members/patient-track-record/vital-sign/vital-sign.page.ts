@@ -34,7 +34,7 @@ export class VitalSignPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() =>{
-      this.vitalSign = this.apiService.getVitalSign(this.track_record[0]['id']);
+      this.vitalSign = this.apiService.getVitalSign(this.track_record['id']);
       this.vitalSign.subscribe(val => {
         console.log(val);
         if(val == ''){

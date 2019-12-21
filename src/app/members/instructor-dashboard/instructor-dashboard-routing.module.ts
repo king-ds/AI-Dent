@@ -6,7 +6,22 @@ import { InstructorDashboardPage } from './instructor-dashboard.page';
 const routes: Routes = [
   {
     path: '',
-    component: InstructorDashboardPage
+    component: InstructorDashboardPage,
+    children : [
+      { path: 'instructor-track-records', loadChildren: '../instructor-track-records/instructor-track-records.module#InstructorTrackRecordsPageModule'},
+      { path: 'instructor-profile', loadChildren:'../instructor-profile/instructor-profile.module#InstructorProfilePageModule' },
+      { path: 'instructor-cdar', loadChildren:'../instructor-cdar/instructor-cdar.module#InstructorCdarPageModule' },
+      {
+        path: '',
+        redirectTo: '/members/instructor-dashboard/instructor-track-records',
+        pathMatch: 'full',
+      }
+    ]
+  },
+  {
+    path: '',
+    redirectTo: '/members/instructor-dashboard/instructor-track-records',
+    pathMatch: 'full',
   }
 ];
 

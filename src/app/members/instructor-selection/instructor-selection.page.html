@@ -1,0 +1,136 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+      <ion-buttons class="toolbar-button" slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="toolbar-title" *ngIf="track_record">{{ track_record.patient.first_name }} {{ track_record.patient.last_name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list>
+  
+        <ion-grid *ngIf="!loader">
+            <ion-row>
+              <ion-col>
+                <ion-card class="selections" (click)="goToPatientInformation()">
+                  <img src="assets/personal_information.png">
+                  <ion-card-title>Personal Information</ion-card-title>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card class="selections" (click)="goToComplaint()">
+                  <img src="/assets/add_complaint.jpg">
+                  <ion-card-title>Complaint</ion-card-title>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+        
+            <ion-row>
+              <ion-col>
+                <ion-card class="selections" (click)="goToVitalSign()">
+                  <img src="/assets/vital_sign.png">
+                  <ion-card-title>Vital Sign</ion-card-title>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card class="selections" (click)="goToMedicalHistory()">
+                  <img src="/assets/medical_history.png">
+                  <ion-card-title>Medical History</ion-card-title>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+        
+            <ion-row>
+              <ion-col>
+                <ion-card class="selections" (click)="goToMedicalHealthQuestionnaire()">
+                  <img src="/assets/medical_history_questionnaire.jpg">
+                  <ion-card-title>Medical Health</ion-card-title>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card class="selections" (click)="goToAllergies()">
+                  <img src="/assets/allergies.png">
+                  <ion-card-title>Allergies</ion-card-title>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+        
+            <ion-row *ngIf="isFemale">
+              <ion-col>
+                <ion-card class="selections" (click)="goToFemale()">
+                  <img src="/assets/female.png">
+                  <ion-card-title>Female</ion-card-title>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card class="selections" (click)="goToDentalChart()">
+                  <img src="/assets/dental_chart.png">
+                  <ion-card-title>Dental Chart</ion-card-title>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+        
+            <ion-row *ngIf="!isFemale" >
+              <ion-col>
+                <ion-card class="selections" (click)="notFemale()">
+                  <img src="/assets/female.png">
+                  <ion-card-title>Female</ion-card-title>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card class="selections" (click)="goToDentalChart()">
+                  <img src="/assets/dental_chart.png">
+                  <ion-card-title>Dental Chart</ion-card-title>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+        
+            <ion-row>
+              <ion-col>
+                <ion-card class="selections" (click)="goToOralAssessment()">
+                  <img src="/assets/oral_assessment.png">
+                  <ion-card-title>Oral Assessment</ion-card-title>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card class="selections" (click)="goToSocialHistory()">
+                  <img src="/assets/social_history.png">
+                  <ion-card-title>Social History</ion-card-title>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+        
+            <ion-row>
+              <ion-col>
+                <ion-card class="selections" (click)="goToDentalHistory()">
+                  <img src="/assets/dental_history.png">
+                  <ion-card-title>Dental History</ion-card-title>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card class="selections" (click)="goToOcclusion()">
+                  <img src="/assets/occlusion.png">
+                  <ion-card-title>Occlusion</ion-card-title>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+        
+            <ion-row>
+              <ion-col>
+                <ion-card class="selections" (click)="goToGingiva()">
+                  <img src="/assets/gingiva.png">
+                  <ion-card-title>Gingiva</ion-card-title>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card class="selections" (click)="goToTreatmentRecord()">
+                  <img src="/assets/treatment_record.png">
+                  <ion-card-title>Treatment Record</ion-card-title>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+  
+    </ion-list>
+  </ion-content>

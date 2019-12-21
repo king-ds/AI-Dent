@@ -28,7 +28,7 @@ export class DentalHistoryPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.dentalHistory = this.track_record[0]['dental_history'];
+      this.dentalHistory = this.track_record['dental_history'];
       this.loader = false;
     }, 2000)
   }

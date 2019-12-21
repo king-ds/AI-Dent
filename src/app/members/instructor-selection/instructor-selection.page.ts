@@ -1,57 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './../../services/api.service';
-import { StorageService } from './../../services/storage.service';
-import { ActivatedRoute, Router, NavigationExtras, Route } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-patient-track-records',
-  templateUrl: './patient-track-records.page.html',
-  styleUrls: ['./patient-track-records.page.scss'],
+  selector: 'app-instructor-selection',
+  templateUrl: './instructor-selection.page.html',
+  styleUrls: ['./instructor-selection.page.scss'],
 })
-export class PatientTrackRecordsPage implements OnInit {
-
-  debouncer : any;
-  loader : boolean;
+export class InstructorSelectionPage implements OnInit {
 
   track_record : any;
-  empty : boolean;
-  patient : string;
-  isFemale : boolean;
+  isFemale : boolean = false;
 
-  constructor(private apiService : ApiService,
-              private storageService : StorageService,
+  constructor(private activatedRoute : ActivatedRoute,
               private router : Router,
-              public toastController: ToastController) { }
-
-  ngOnInit() {
-  }
-
-  ionViewWillEnter(){
-    this.loader = true;
-
-    this.storageService.getObject('patient').then((result) => {
-      this.patient = result;
-      
-      this.debouncer = setTimeout(() => {
-        this.checkMyTrackRecord();
-        this.loader = false;
-      }, 2000)
-    })
-  }
-
-  checkMyTrackRecord(){
-    this.apiService.getMyTrackRecord(this.patient['id']).subscribe(val => {
-      if(val == ''){
-        this.empty = true;
-      }else{
-        this.empty = false;
-        this.track_record = val;
-        if(this.track_record['patient']['gender'] == 'Female'){
-          this.isFemale = true;
-        }
+              private toastController : ToastController) { 
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.track_record = this.router.getCurrentNavigation().extras.state.track_record;
       }
     });
+  }
+
+  ngOnInit() {
+    if(this.track_record['patient']['gender'] == 'Female'){
+      this.isFemale = true;
+    }
   }
 
   goToPatientInformation(){

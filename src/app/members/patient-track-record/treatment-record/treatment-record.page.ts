@@ -36,7 +36,7 @@ export class TreatmentRecordPage implements OnInit {
 
   ionViewWillEnter(){
     this.cleanedTreatmentRecords = [];
-    this.apiService.getTreatmentRecord(this.track_record[0]['id']).subscribe(val => {
+    this.apiService.getTreatmentRecord(this.track_record['id']).subscribe(val => {
       if(val == ''){
         this.isEmpty = true;
       }else{

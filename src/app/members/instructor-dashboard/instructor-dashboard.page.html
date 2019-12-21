@@ -1,9 +1,33 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>instructor-dashboard</ion-title>
+  <ion-toolbar class="toolbar">
+    <ion-title class="toolbar-title">A.I. Dent</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-tabs>
 
+    <ion-tab-bar slot="bottom" class="tabs">
+      <ion-tab-button tab="instructor-track-records">
+        <ion-icon name="paper"></ion-icon>
+        <ion-label>Record</ion-label>
+      </ion-tab-button>
+      
+      <ion-tab-button tab="instructor-cdar">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>CDAR</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="instructor-profile">
+        <ion-icon name="person"></ion-icon>
+        <ion-label>Profile</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+
+  </ion-tabs>
 </ion-content>

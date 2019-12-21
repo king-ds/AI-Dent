@@ -29,7 +29,7 @@ export class FemalePage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.female = this.track_record[0]['female'];
+      this.female = this.track_record['female'];
       this.loader = false;
     }, 2000)
   }

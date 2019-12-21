@@ -1,9 +1,9 @@
 <ion-content>
   <div class="header">
-    <div class="header-text">Daily Achievement Record</div>
+    <div class="header-text">ACHIEVEMENT RECORDS</div>
 
     <div class="greet-user" *ngIf="clinician">
-      Hi {{ clinician.last_name }}, here is the list of your daily achievement records.
+      Hi {{ clinician.last_name }}, here is the list of your achievement records.
     </div>
 
     <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)" animated></ion-searchbar>
@@ -11,7 +11,7 @@
   </div>
 
   <ion-segment>
-    <ion-segment-button (click)="activateToday()" checked="true"> 
+    <ion-segment-button (click)="activateToday()" checked="today"> 
       <ion-label>Today</ion-label>
     </ion-segment-button>
     <ion-segment-button (click)="activateAll()">

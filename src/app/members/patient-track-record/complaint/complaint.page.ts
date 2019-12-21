@@ -29,7 +29,7 @@ export class ComplaintPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.complaint = this.track_record[0]['additional_personal_data'];
+      this.complaint = this.track_record['additional_personal_data'];
       this.loader = false;
     }, 2000)
   }

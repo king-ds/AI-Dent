@@ -29,7 +29,7 @@ export class GingivaPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.gingiva = this.track_record[0]['gingiva'];
+      this.gingiva = this.track_record['gingiva'];
       this.loader = false;
     }, 2000)
   }

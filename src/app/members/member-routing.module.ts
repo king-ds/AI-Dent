@@ -87,6 +87,23 @@ const routes: Routes = [
     path: 'patient-treatment-record',
     loadChildren: () => import('./patient-track-record/treatment-record/treatment-record.module').then( m => m.TreatmentRecordPageModule)
   },
+  {
+    path: 'instructor-track-records',
+    loadChildren: () => import('./instructor-track-records/instructor-track-records.module').then( m => m.InstructorTrackRecordsPageModule)
+  },
+  {
+    path: 'instructor-profile',
+    loadChildren: () => import('./instructor-profile/instructor-profile.module').then( m => m.InstructorProfilePageModule)
+  },  {
+    path: 'instructor-cdar',
+    loadChildren: () => import('./instructor-cdar/instructor-cdar.module').then( m => m.InstructorCdarPageModule)
+  },
+  {
+    path: 'instructor-selection',
+    loadChildren: () => import('./instructor-selection/instructor-selection.module').then( m => m.InstructorSelectionPageModule)
+  },
+
+
 ];
 
 @NgModule({

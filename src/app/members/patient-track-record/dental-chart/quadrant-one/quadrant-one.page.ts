@@ -33,7 +33,7 @@ export class QuadrantOnePage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.dentalCharts = this.apiService.getDentalChartQ1(this.trackRecord[0]['id']);
+      this.dentalCharts = this.apiService.getDentalChartQ1(this.trackRecord['id']);
       this.dentalCharts.subscribe(val => {
         console.log(val);
         if(val == ''){

@@ -29,7 +29,7 @@ export class OralAssessmentPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.oralAssessment = this.track_record[0]['oral_assessment'];
+      this.oralAssessment = this.track_record['oral_assessment'];
       this.loader = false;
     }, 2000)
   }

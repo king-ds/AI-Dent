@@ -21,6 +21,7 @@ export class MyPatientsPage implements OnInit {
 
   requestMode : boolean = false;
   chooseInstructorMode : boolean = false;
+  chooseInstructorCompletionMode : boolean = false;
   consentForm : boolean = false;
 
   instructors : any;
@@ -57,16 +58,11 @@ export class MyPatientsPage implements OnInit {
 
       })
     }, 2000)
-
-    // this.debouncer = setTimeout(() => {
-    //   this.checkMyPatient();
-    //   this.loader = false;
-    // }, 3000)
   }
 
   searchChanged(){
     this.loader = true;
-    this.results = this.apiService.searchMyPatient(this.searchTerm, this.clinician['id']);
+    this.results = this.apiService.searchInstructorTrackRecord(this.searchTerm, this.clinician['id']);
     this.loader = false;
   }
 
@@ -130,6 +126,7 @@ export class MyPatientsPage implements OnInit {
   cancelCDAR(){
     this.requestMode = false;
     this.chooseInstructorMode = false;
+    this.consentForm = false;
     this.procedure = '';
     this.date = '';
     this.instructorLastName = '';
@@ -165,13 +162,66 @@ export class MyPatientsPage implements OnInit {
     }
   }
 
+  cancelChooseInstructorCompletion(){
+    this.chooseInstructorCompletionMode = false;
+  }
+
+  submitCompletion(item){
+    this.loader = true;
+    console.log(item);
+    setTimeout(() => {
+      let trackRecordData = {
+        'is_approved_patient' : true,
+        'pending_for_approval' : true,
+        'clinical_instructor' : item['id']
+      }
+
+      this.apiService.updateTrackRecord(trackRecordData, this.trackRecordId).then((res) => {
+        this.successMessage();
+      })
+      .catch(error => {
+        this.errorMessage();
+        console.log(error);
+      })
+      this.loader = false;
+    }, 2000)
+  }
+  async showConsentCompletionForm(item){
+    const alert = await this.alertController.create({
+      header: 'Consent Form',
+      message: 'I verify that the given information are true and accurate.'
+      +' I understand this information will be used to determine the dental treatment'+
+      ' I will receive in this dental infirmary and it may be shared with other medical officers only if necessary.'+
+      ' I will notify this dental office should any information changed. <br><br>'+
+      'I hereby authorize the clinician to perform any recommended services and to store my private data for safekeeping.',
+      cssClass: 'add-patient',
+      buttons: [
+        {
+          text: 'Disagree',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            this.chooseInstructorCompletionMode = false;
+          }
+        }, {
+          text: 'Agree',
+          handler: () => {
+            this.chooseInstructorCompletionMode = true;
+            this.trackRecordId = item['id'];
+            this.checkInstructor();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
   async showConsentForm(){
 
     const alert = await this.alertController.create({
       header: 'Consent Form',
       message: 'I verify that the given information are true and accurate.'
       +' I understand this information will be used to determine the dental treatment'+
-      'I will receive in this dental infirmary and it may be shared with other medical officers only if necessary.'+
+      ' I will receive in this dental infirmary and it may be shared with other medical officers only if necessary.'+
       ' I will notify this dental office should any information changed. <br><br>'+
       'I hereby authorize the clinician to perform any recommended services and to store my private data for safekeeping.',
       cssClass: 'add-patient',
@@ -210,6 +260,31 @@ export class MyPatientsPage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.acceptChosenInstructor(data)
+            this.chooseInstructorMode = false;
+            this.consentForm = false;
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  async showChooseInstructorCompletionMessage(item){
+
+    const alert = await this.alertController.create({
+      header: 'Confirmation',
+      message: 'Do you want to send request to '+item['first_name']+' '+item['last_name']+'?',
+      cssClass: 'add-patient',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.submitCompletion(item)
           }
         }
       ]
@@ -222,7 +297,7 @@ export class MyPatientsPage implements OnInit {
       duration: 2000
     });
     toast.present();
-  }
+  } 
   async agreeConsentForm(){
     const toast = await this.toastController.create({
       message: 'Patient must agree to consent form first.',
@@ -258,6 +333,7 @@ export class MyPatientsPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Success',
       message: 'New Clinician Daily Achievement Record has been sent.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -266,6 +342,26 @@ export class MyPatientsPage implements OnInit {
           this.loader = false;
           this.date = '';
           this.procedure = '';
+          this.instructorId = '';
+          this.instructorLastName = '';
+          this.ionViewWillEnter();
+        }
+      }],
+    });
+    await alert.present();
+  }
+  async successMessage() {
+    const alert = await this.alertController.create({
+      header: 'Track Record',
+      message: 'Request for completion of track record has been sent.',
+      backdropDismiss: false,
+      buttons: [{
+        text:'Ok',
+        handler: () => {
+          this.requestMode = false;
+          this.chooseInstructorCompletionMode = false;
+          this.loader = false;
+          this.trackRecordId = '';
           this.ionViewWillEnter();
         }
       }],

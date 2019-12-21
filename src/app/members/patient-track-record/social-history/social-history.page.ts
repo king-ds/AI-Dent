@@ -28,7 +28,7 @@ export class SocialHistoryPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.socialHistory = this.track_record[0]['social_history'];
+      this.socialHistory = this.track_record['social_history'];
       this.loader = false;
     }, 2000)
   }

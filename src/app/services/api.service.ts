@@ -271,7 +271,7 @@ getGingiva(track_record){
   }
 
   updateCDAR(data, cdar){
-    return this.http_client.patch(this.url+'track-record/treatment-record-detail/'+cdar, JSON.stringify(data), http_options)
+    return this.http_client.patch(this.url+'track-record/cdar-detail/'+cdar, JSON.stringify(data), http_options)
     .pipe( tap(res => {
       console.log(res);
     })
@@ -549,6 +549,40 @@ addCDAR(data){
 
   getInstructorDetails(id){
     return this.http_client.get(this.url+'instructor-list/'+id);
+  }
+
+  getInstructorTrackRecord(id){
+    return this.http_client.get(this.url+'track-record/instructor-track-records/'+id);
+  }
+
+  searchInstructorTrackRecord(title : string, instructor_id : string) : Observable<any> {
+    return this.http_client.get(this.url+'track-record/instructor-track-records/'+instructor_id+'?search='+title).pipe(
+      map(results => results)
+    )
+  }
+
+  getInstructorTodayCdar(id){
+    return this.http_client.get(this.url+'track-record/instructor-today-cdar/'+id).pipe(
+      map(results => results)
+    )
+  }
+
+  getInstructorAllCdar(id){
+    return this.http_client.get(this.url+'track-record/instructor-all-cdar/'+id).pipe(
+      map(results => results)
+    )
+  }
+
+  searchInstructorTodayCdar(title : string, clinician_id : string) : Observable<any> {
+    return this.http_client.get(this.url+'track-record/instructor-today-cdar/'+clinician_id+'?search='+title).pipe(
+      map(results => results)
+    )
+  }
+
+  searchInstructorAllCdar(title : string, clinician_id : string) : Observable<any> {
+    return this.http_client.get(this.url+'track-record/instructor-all-cdar/'+clinician_id+'?search='+title).pipe(
+      map(results => results)
+    )
   }
 
   /*

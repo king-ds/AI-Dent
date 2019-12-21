@@ -27,7 +27,7 @@ export class MedicalHistoryPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.medicalHistory = this.track_record[0]['medical_history'];
+      this.medicalHistory = this.track_record['medical_history'];
       this.loader = false;
     }, 2000)
   }

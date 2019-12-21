@@ -32,7 +32,7 @@ export class QuadrantThreePage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.dentalCharts = this.apiService.getDentalChartQ3(this.trackRecord[0]['id']);
+      this.dentalCharts = this.apiService.getDentalChartQ3(this.trackRecord['id']);
       this.dentalCharts.subscribe(val => {
         console.log(val);
         if(val == ''){

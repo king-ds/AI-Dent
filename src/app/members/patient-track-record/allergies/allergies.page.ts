@@ -28,7 +28,7 @@ export class AllergiesPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.allergies = this.track_record[0]['allergy'];
+      this.allergies = this.track_record['allergy'];
       this.loader = false;
     }, 2000);
   }

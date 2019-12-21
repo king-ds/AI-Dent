@@ -24,7 +24,6 @@ export class ClinicianCdarPage implements OnInit {
   debouncer : any;
   loader : boolean;
 
-
   date : any;
 
   constructor(private apiService : ApiService,
@@ -36,7 +35,7 @@ export class ClinicianCdarPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.today = true;
-    this.date = format(new Date(new Date()), "MMMM dd yyyy")
+    this.date = format(new Date(new Date()), "MMMM dd yyyy");
     this.storageService.getObject('clinician').then((result) => {
       this.clinician = result;
       

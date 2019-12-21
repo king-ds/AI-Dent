@@ -28,7 +28,7 @@ export class OcclusionPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() => {
-      this.occlusion = this.track_record[0]['occlusion'];
+      this.occlusion = this.track_record['occlusion'];
       this.loader = false;
     }, 2000);
   }

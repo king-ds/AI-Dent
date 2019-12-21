@@ -28,7 +28,7 @@ export class PersonalInformationPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() =>{
-      this.information = this.track_record[0]['patient']
+      this.information = this.track_record['patient']
       console.log(this.track_record);
       this.loader = false;
     }, 2000)
