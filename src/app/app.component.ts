@@ -28,34 +28,32 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      setTimeout(() => {
-        this.authenticationService.authenticationState.subscribe(state => {
-          if(state){
-            console.log(state)
-            this.authenticationService.isClinician.subscribe(clinician => {
-              if(clinician){
-                this.router.navigate(['members', 'menu', 'clinician-dashboard']);
-                console.log('clinician')
-              }
-            });
-            this.authenticationService.isInstructor.subscribe(instructor => {
-              if(instructor){
-                this.router.navigate(['members', 'instructor-dashboard'])
-                console.log('instructor')
-              }
-            });
-            this.authenticationService.isPatient.subscribe(patient => {
-              if(patient){
-                this.router.navigate(['members', 'patient-dashboard'])
-                console.log('patient')
-              }
-            });
-          } else {
-            this.router.navigate(['login']);
-            console.log('User has not authenticated yet.')
-          }
-        });
-      }, 2000)
+      this.authenticationService.authenticationState.subscribe(state => {
+        if(state){
+          console.log(state)
+          this.authenticationService.isClinician.subscribe(clinician => {
+            if(clinician){
+              this.router.navigate(['members', 'menu', 'clinician-dashboard']);
+              console.log('clinician')
+            }
+          });
+          this.authenticationService.isInstructor.subscribe(instructor => {
+            if(instructor){
+              this.router.navigate(['members', 'instructor-dashboard'])
+              console.log('instructor')
+            }
+          });
+          this.authenticationService.isPatient.subscribe(patient => {
+            if(patient){
+              this.router.navigate(['members', 'patient-dashboard'])
+              console.log('patient')
+            }
+          });
+        } else {
+          this.router.navigate(['login']);
+          console.log('User has not authenticated yet.')
+        }
+      });
     });
   }
 }
