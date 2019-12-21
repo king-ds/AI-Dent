@@ -36,15 +36,35 @@ export class AuthenticationService {
                 private storageService : StorageService,
                 ) {
       this.plt.ready().then(() =>{
-        this.checkToken();
+        this.checkClinicianToken();
+        this.checkPatientToken();
+        this.checkInstructorToken();
       })
     }
 
-  checkToken(){
-    this.storage.get('token').then(res => {
+  checkClinicianToken(){
+    this.storage.get('auth-clinician').then(res => {
       if(res){
-        console.log(res);
         this.authenticationState.next(true);
+        this.isClinician.next(true);
+      }
+    })
+  }
+
+  checkPatientToken(){
+    this.storage.get('auth-patient').then(res => {
+      if(res){
+        this.authenticationState.next(true);
+        this.isPatient.next(true);
+      }
+    })
+  }
+
+  checkInstructorToken(){
+    this.storage.get('auth-instructor').then(res => {
+      if(res){
+        this.authenticationState.next(true);
+        this.isInstructor.next(true);
       }
     })
   }
@@ -52,16 +72,12 @@ export class AuthenticationService {
   loginAsClinician(data) {
     return this.httpClient.post(this.url+'authenticate/clinicians', JSON.stringify(data), httpOptions)
     .pipe( tap(res => {
-      // this.storageService.storage.clear();
-      this.success = true;
-      this.authenticationState.next(true);
-      this.isClinician.next(true);
-      // Save clinician details to data storage
-      this.storageService.setObject('clinician', res);
-      // var resKeys = Object.keys(res);
-      // for( var i in resKeys ){
-      //   this.storage.set(resKeys[i], res[resKeys[i]]);
-      // }
+      this.storage.set('auth-clinician', res['token']).then(() => {
+        this.success = true;
+        this.authenticationState.next(true);
+        this.isClinician.next(true);
+        this.storageService.setObject('clinician', res);
+        })
       })
     )
     .toPromise();
@@ -70,14 +86,12 @@ export class AuthenticationService {
   loginAsInstructor(data) {
     return this.httpClient.post(this.url+'authenticate/instructors', JSON.stringify(data), httpOptions)
     .pipe( tap(res => {
+      this.storage.set('auth-instructor', res['token']).then(() => {
         this.success = true;
         this.authenticationState.next(true);
         this.isInstructor.next(true);
-        // Save instructor details to data storage
-        var resKeys = Object.keys(res);
-        for( var i in resKeys ){
-          this.storage.set(resKeys[i], res[resKeys[i]]);
-        }
+        this.storageService.setObject('instructor', res);
+        })
       })
     )
     .toPromise();
@@ -86,28 +100,45 @@ export class AuthenticationService {
   loginAsPatient(data) {
     return this.httpClient.post(this.url+'authenticate/patients', JSON.stringify(data), httpOptions)
     .pipe( tap(res => {
+      this.storage.set('auth-patient', res['token']).then(() => {
         this.success = true;
         this.authenticationState.next(true);
         this.isPatient.next(true);
-        // Save instructor details to data storage
         this.storageService.setObject('patient', res);
-        // var resKeys = Object.keys(res);
-        // for( var i in resKeys ){
-        //   this.storage.set(resKeys[i], res[resKeys[i]]);
-        // }
+        })
       })
-
     )
     .toPromise();
   }
 
   logoutAnyUser(){
-    return this.storage.remove('token').then(() => {
+    return this.storage.remove('auth-clinician').then(() => {
       this.authenticationState.next(false);
       this.isPatient.next(false);
       this.isClinician.next(false);
       this.isInstructor.next(false);
     });
+  }
+
+  logoutClinician(){
+    return this.storage.remove('auth-clinician').then(() => {
+      this.authenticationState.next(false);
+      this.isClinician.next(false);
+    })
+  }
+
+  logoutPatient(){
+    return this.storage.remove('auth-patient').then(() => {
+      this.authenticationState.next(false);
+      this.isPatient.next(false);
+    })
+  }
+
+  logoutInstructor(){
+    return this.storage.remove('auth-instructor').then(() => {
+      this.authenticationState.next(false);
+      this.isInstructor.next(false);
+    })
   }
 
   isAuthenticated(){

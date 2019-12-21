@@ -22,7 +22,7 @@ export class PatientDashboardPage implements OnInit {
   }
 
   logout(){
-    this.authService.logoutAnyUser();
+    this.authService.logoutPatient();
   }
 
   getUserDetails(){

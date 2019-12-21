@@ -43,6 +43,6 @@ export class MenuPage implements OnInit {
   }
 
   logoutUser(){
-    this.authenticationService.logoutAnyUser();
+    this.authenticationService.logoutClinician();
   }
 }

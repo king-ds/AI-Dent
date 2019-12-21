@@ -23,10 +23,6 @@ export class ClinicianDashboardPage implements OnInit {
     this.getUserDetails();
   }
 
-  logout(){
-    this.authService.logoutAnyUser();
-  }
-
   getUserDetails(){
     this.debouncer = setTimeout(() =>{
       this.storageService.getObject('clinician').then(result => {
@@ -36,12 +32,4 @@ export class ClinicianDashboardPage implements OnInit {
       })
     }, 2000);
   }
-
-  // initiateAddPatient(){
-  //   this.router.navigate(['members', 'add-patients']);
-  // }
-
-  // viewMyPatients(){
-  //   this.router.navigate(['members', 'my-patients']);
-  // }
 }
