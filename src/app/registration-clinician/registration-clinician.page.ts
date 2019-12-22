@@ -110,7 +110,23 @@ export class RegistrationClinicianPage implements OnInit {
   async present_terms_conditions() {
     const alert = await this.alert_controller.create({
       header: 'Terms & Conditions',
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      message: 'The patient, clinician, clinical instructor agrees to create an account through the application.'+
+
+      '<br><br>The application is only available to android platform only.'+
+      '<br><br>Improper use of the application will be prohibited from further use.'+
+      
+      '<br><br>Misinformation may be used for ground legal actions.'+
+      
+      '<br><br>The patients information provided herein is true and will be held confidential. However, the patient agrees to share his/her information to other clinicians but not to any third party.'+
+      
+      '<br><br>The patient agrees he/she cannot change nor edit other information except his/her personal information provided with climician supervision.'+
+      
+      '<br><br>Clinicians are authorize to edit their chart without prior notice to the patient if it doesnt concern him/her.'+
+      
+      '<br><br>Clinicians who are not duly or havent enrolled, already graduated in the university will have their account nullified.'+
+      
+      '<br><br>Any participation in the service will constitute acceptance to the agreement.',
+
       cssClass: 'terms-conditions',
       buttons: [
         {
