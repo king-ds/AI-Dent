@@ -211,6 +211,7 @@ export class TreatmentRecordPage implements OnInit {
       header: 'Confirmation',
       message: 'Do you want to assign '+details['first_name']+' '+details['last_name']+'?',
       cssClass: 'add-patient',
+      backdropDismiss: false,
       buttons: [
         {
           text: 'No',
@@ -236,6 +237,7 @@ export class TreatmentRecordPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Success',
       message: 'New treatment record has been added.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -254,6 +256,7 @@ export class TreatmentRecordPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Success',
       message: 'New instructor has been assigned',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -270,6 +273,7 @@ export class TreatmentRecordPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Ooooops',
       message: 'Something went wrong. Please try again later.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {

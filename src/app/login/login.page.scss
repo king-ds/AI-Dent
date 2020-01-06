@@ -1,7 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
-
 ion-content {
     --background: linear-gradient(180deg, rgba(56,170,255,1) 19%, rgba(34,34,34,1) 74%);
 }
@@ -14,7 +10,7 @@ ion-item {
 ion-toolbar {
     --background : #222222;
     color: white;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Light';
     text-align: center;
 }
 
@@ -46,7 +42,7 @@ ion-icon {
 
 .app-name{
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Bold';
     font-size: 30px;
     color: white;
 }
@@ -55,7 +51,7 @@ ion-icon {
     text-align: center;
     margin-bottom: 80px;
     margin-top: 5px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Light';
     color: white;
 }
 
@@ -64,7 +60,7 @@ ion-icon {
 }
 
 #username{
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Light';
 }
 
 .contact {
@@ -80,17 +76,16 @@ ion-icon {
     font-size: 15px;
     text-align: center;
     border-radius: 30px;
-    // border: 1px solid black;
     font-size: 15px;
     color: white;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Light';
 }
 
 .forgot-password-container{
     margin-top: -10px;
     color: white;
     text-align: center;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Light';
 }
 
 .login-btn-container {
@@ -106,10 +101,9 @@ ion-icon {
     font-size: 15px;
     text-align: center;
     border-radius: 30px;
-    // border: 1px solid black;
     font-size: 15px;
     color: white;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Light';
 }
 
 #login-clinician-instructor-btn {
@@ -121,10 +115,9 @@ ion-icon {
     font-size: 15px;
     text-align: center;
     border-radius: 30px;
-    // border: 1px solid black;
     font-size: 15px;
     color: white;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Light';
 }
 
 #login-patient-btn {
@@ -136,10 +129,9 @@ ion-icon {
     font-size: 15px;
     text-align: center;
     border-radius: 30px;
-    // border: 1px solid black;
     font-size: 15px;
     color: black;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Light';
 }
 
 #selection-btn {
@@ -151,8 +143,7 @@ ion-icon {
     font-size: 15px;
     text-align: center;
     border-radius: 30px;
-    // border: 1px solid black;
     font-size: 15px;
     color: black;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Light';
 }

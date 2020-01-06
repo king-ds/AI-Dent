@@ -2,9 +2,9 @@
   <div class="header">
     <div class="header-text">MY PATIENTS</div>
 
-    <!-- <div class="greet-user" *ngIf="clinician">
+    <div class="greet-user" *ngIf="clinician">
       Hi {{ clinician.last_name }}, here is the current list of your patients.
-    </div> -->
+    </div>
 
     <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)" [disabled]="( chooseInstructorMode || chooseInstructorCompletionMode )"></ion-searchbar>
     <ion-item-divider></ion-item-divider>

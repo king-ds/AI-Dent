@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-dental-chart',
@@ -9,9 +10,16 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 export class DentalChartPage implements OnInit {
 
   track_record : any;
+  dentalCharts : any;
+  isMixed : boolean = false;
+  isPedia : boolean = false;
+  isAdult : boolean = false;
+  isEmpty : boolean = false;
+  kind : string;
 
   constructor(private activatedRoute : ActivatedRoute,
-              private router : Router,) { 
+              private router : Router,
+              private apiService : ApiService) { 
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.track_record = this.router.getCurrentNavigation().extras.state.track_record;
@@ -22,17 +30,40 @@ export class DentalChartPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewWillEnter(){
+    try{
+      this.dentalCharts = this.apiService.getDentalChartQ1(this.track_record['id']);
+      this.dentalCharts.subscribe(val => {
+        this.isEmpty = false;
+        if(val[0]['kind'] == 'Mixed'){
+          this.kind = 'Mixed';
+          this.isMixed = true;
+        }
+        else if(val[0]['kind'] == 'Pediatric'){
+          this.kind = 'Pediatric';
+          this.isPedia = true;
+        }else{
+          this.kind = 'Adult';
+          this.isAdult = true;
+        }
+      });
+    }catch{
+      this.isEmpty = true;
+    }
+  }
+
   goToQuadrant1(){
+    this.track_record['type'] = this.kind;
     let navigationExtras : NavigationExtras = {
       state : {
         track_record : this.track_record
       }
     };
-
     this.router.navigate(['members', 'patient-dental-chart', 'quadrant-one'], navigationExtras);
   }
 
   goToQuadrant2(){
+    this.track_record['type'] = this.kind;
     let navigationExtras : NavigationExtras = {
       state : {
         track_record : this.track_record
@@ -43,6 +74,7 @@ export class DentalChartPage implements OnInit {
   }
 
   goToQuadrant3(){
+    this.track_record['type'] = this.kind;
     let navigationExtras : NavigationExtras = {
       state : {
         track_record : this.track_record
@@ -53,6 +85,7 @@ export class DentalChartPage implements OnInit {
   }
 
   goToQuadrant4(){
+    this.track_record['type'] = this.kind;
     let navigationExtras : NavigationExtras = {
       state : {
         track_record : this.track_record
@@ -61,5 +94,4 @@ export class DentalChartPage implements OnInit {
 
     this.router.navigate(['members', 'patient-dental-chart', 'quadrant-four'], navigationExtras);   
   }
-
 }

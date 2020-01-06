@@ -16,7 +16,7 @@
         <img src="/assets/occlusion.png">
     </div>
     <ion-card-content>
-        This is the recent details for your occlusion.
+        These are the recent details for your occlusion.
     </ion-card-content>
   </ion-card>
 
@@ -65,7 +65,7 @@
     <ion-item>
       <ion-label>Localized:</ion-label>
       <ion-icon name="checkmark-circle-outline" slot="start" *ngIf="occlusion.localized === true"></ion-icon>
-      <ion-icon name="close" *ngIf="occlusion.localized === false"></ion-icon>
+      <ion-icon name="close" slot="start" *ngIf="occlusion.localized === false"></ion-icon>
       <ion-input value="{{ occlusion.localized_desc }}" placeholder="Description" readonly></ion-input>
     </ion-item>
 

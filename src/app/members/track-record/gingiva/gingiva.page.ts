@@ -193,6 +193,7 @@ export class GingivaPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Gingiva',
       message: 'Successfully updated',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -206,6 +207,7 @@ export class GingivaPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Ooooops',
       message: 'Something went wrong. Please try again later.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -221,6 +223,7 @@ export class GingivaPage implements OnInit {
       header: 'Gingiva',
       message: 'Do you want to send this update?',
       cssClass: 'add-patient',
+      backdropDismiss: false,
       buttons: [
         {
           text: 'No',

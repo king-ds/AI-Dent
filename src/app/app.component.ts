@@ -32,8 +32,6 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      // timer(3000).subscribe(() => this.showSplash = false)
-
       setTimeout(() => {
         this.authenticationService.authenticationState.subscribe(state => {
           if(state){
@@ -42,21 +40,17 @@ export class AppComponent {
               if(clinician){
                 this.router.navigate(['members', 'menu', 'clinician-dashboard']);
                 this.showSplash = false;
-                console.log('clinician')
               }
             });
             this.authenticationService.isInstructor.subscribe(instructor => {
               if(instructor){
                 this.router.navigate(['members', 'instructor-dashboard']);
-                this.showSplash = false;
-                console.log('instructor')
               }
             });
             this.authenticationService.isPatient.subscribe(patient => {
               if(patient){
-                this.router.navigate(['members', 'patient-dashboard']);
+                this.router.navigate(['members', 'patient-dashboard', 'patient-track-records']);
                 this.showSplash = false;
-                console.log('patient')
               }
             });
           } else {

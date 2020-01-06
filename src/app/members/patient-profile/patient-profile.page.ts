@@ -55,7 +55,8 @@ export class PatientProfilePage implements OnInit {
       { type : 'required', message : 'Number of kids is required but put 0 if none' }
     ],
     'height' : [
-      { type : 'required', message : 'Height is required' }
+      { type : 'required', message : 'Height is required' },
+      { type : 'pattern', message : "Height must be in feet and inches format e.g (5'2'')." },
     ],
     'weight' : [
       { type : 'required', message : 'Weight is required' }
@@ -119,7 +120,7 @@ export class PatientProfilePage implements OnInit {
       marital_status : ['', Validators.required],
       occupation : ['', Validators.required],
       number_of_kids : ['', Validators.required],
-      height : ['', Validators.required],
+      height : ['', Validators.compose([Validators.required, Validators.pattern("[1-9]['][0-9][0-9]?['][']")])],
       weight : ['', Validators.required],
       permanent_address : ['', Validators.required],
       telephone_num : ['', Validators.compose([Validators.minLength(8), Validators.maxLength(8), Validators.pattern('[0-9]*')])],

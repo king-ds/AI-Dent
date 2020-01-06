@@ -10,9 +10,13 @@
 </ion-header>
   
 <ion-content>
-  <div class="cards">
-    <ion-grid>
 
+  <div class="no-record" *ngIf="(isEmpty)">
+    NO RECORD TO SHOW
+  </div>
+
+  <div class="cards" *ngIf="isAdult">
+    <ion-grid>
       <ion-row>
         <ion-col>
           <ion-card>
@@ -39,6 +43,76 @@
           <ion-card>
             <img src="/assets/quadrant_3.png" (click)="goToQuadrant3()">
             <ion-card-title>Quadrant 3</ion-card-title>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+
+  <div class="cards" *ngIf="isPedia">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+              <img src="/assets/quadrant_1.png" (click)="goToQuadrant1()">
+              <ion-card-title>Quadrant 5</ion-card-title>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card>
+            <img src="/assets/quadrant_2.png" (click)="goToQuadrant2()">
+            <ion-card-title>Quadrant 6</ion-card-title>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <img src="/assets/quadrant_4.png" (click)="goToQuadrant4()">
+            <ion-card-title>Quadrant 8</ion-card-title>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card>
+            <img src="/assets/quadrant_3.png" (click)="goToQuadrant3()">
+            <ion-card-title>Quadrant 7</ion-card-title>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+
+  <div class="cards" *ngIf="isMixed">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+              <img src="/assets/quadrant_1.png" (click)="goToQuadrant1()">
+              <ion-card-title>Quadrant 1&5</ion-card-title>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card>
+            <img src="/assets/quadrant_2.png" (click)="goToQuadrant2()">
+            <ion-card-title>Quadrant 2&6</ion-card-title>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <img src="/assets/quadrant_4.png" (click)="goToQuadrant4()">
+            <ion-card-title>Quadrant 4&8</ion-card-title>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card>
+            <img src="/assets/quadrant_3.png" (click)="goToQuadrant3()">
+            <ion-card-title>Quadrant 3&7</ion-card-title>
           </ion-card>
         </ion-col>
       </ion-row>

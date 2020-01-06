@@ -29,19 +29,18 @@ export class PatientTrackRecordsPage implements OnInit {
 
   ionViewWillEnter(){
     this.loader = true;
-
+    this.debouncer = setTimeout(() => {
     this.storageService.getObject('patient').then((result) => {
       this.patient = result;
-      
-      this.debouncer = setTimeout(() => {
-        this.checkMyTrackRecord();
-        this.loader = false;
-      }, 2000)
-    })
+      this.checkMyTrackRecord();
+      this.loader = false;
+      })
+    }, 2000);
   }
 
   checkMyTrackRecord(){
     this.apiService.getMyTrackRecord(this.patient['id']).subscribe(val => {
+      console.log(val);
       if(val == ''){
         this.empty = true;
       }else{

@@ -131,6 +131,7 @@ export class MedicalHistoryPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Medical History',
       message: 'Successfully updated',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -144,6 +145,7 @@ export class MedicalHistoryPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Ooooops',
       message: 'Something went wrong. Please try again later.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -159,6 +161,7 @@ export class MedicalHistoryPage implements OnInit {
       header: 'Medical History',
       message: 'Do you want to send this update?',
       cssClass: 'add-patient',
+      backdropDismiss: false,
       buttons: [
         {
           text: 'No',

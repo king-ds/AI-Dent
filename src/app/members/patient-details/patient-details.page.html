@@ -1,9 +1,9 @@
-<ion-header *ngIf="!loader">
+<ion-header>
   <ion-toolbar class="toolbar">
     <ion-buttons class="menu-button" slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-buttons class="menu-button" slot="end">
+    <ion-buttons class="menu-button" slot="end" *ngIf="!loader">
       <ion-button (click)="confirmationMessage()">
           <ion-icon name="add"></ion-icon>
       </ion-button>

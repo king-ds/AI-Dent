@@ -149,6 +149,7 @@ export class VitalSignPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Successful',
       message: 'New vital sign has been added.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -164,6 +165,7 @@ export class VitalSignPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Successful',
       message: 'Vital sign has been removed.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {

@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/members/patient-dashboard/patient-track-records',
+    redirectTo: '/members/patient-track-records',
     pathMatch: 'full',
   }
 ];

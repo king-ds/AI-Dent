@@ -5,7 +5,9 @@
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     
-    <ion-title class="toolbar-title">Quadrant 1</ion-title>
+    <ion-title class="toolbar-title" *ngIf="isAdult">Quadrant 1</ion-title>
+    <ion-title class="toolbar-title" *ngIf="isPedia">Quadrant 5</ion-title>
+    <ion-title class="toolbar-title" *ngIf="isMixed">Quadrant 1&5</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,8 +16,14 @@
     <div class="dental-chart-logo">
       <img src="/assets/dental_chart.png">
     </div>
-    <ion-card-content>
+    <ion-card-content *ngIf="isAdult">
       These are your recent dental chart records for quadrant one. 
+    </ion-card-content>
+    <ion-card-content *ngIf="isPedia">
+      These are your recent dental chart records for quadrant five. 
+    </ion-card-content>
+    <ion-card-content *ngIf="isMixed">
+      These are your recent dental chart records for quadrant one and five. 
     </ion-card-content>
   </ion-card>
   

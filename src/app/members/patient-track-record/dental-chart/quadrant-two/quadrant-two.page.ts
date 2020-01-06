@@ -15,6 +15,9 @@ export class QuadrantTwoPage implements OnInit {
   loader : boolean;
   debouncer : any;
   isEmpty : boolean;
+  isMixed : boolean = false;
+  isPedia : boolean = false;
+  isAdult : boolean = false;
 
   constructor(private apiService : ApiService,
               private activatedRoute : ActivatedRoute,
@@ -30,6 +33,14 @@ export class QuadrantTwoPage implements OnInit {
   }
 
   ionViewWillEnter(){
+    if(this.trackRecord['type'] == 'Mixed'){
+      this.isMixed = true;
+    }
+    else if(this.trackRecord['type'] == 'Pediatric'){
+      this.isPedia = true;
+    }else{
+      this.isAdult = true;
+    }
     this.loader = true;
     this.debouncer = setTimeout(() => {
       this.dentalCharts = this.apiService.getDentalChartQ2(this.trackRecord['id']);

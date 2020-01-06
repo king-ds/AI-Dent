@@ -133,6 +133,7 @@ export class PatientDetailsPage implements OnInit {
       header: 'Add Patient',
       message: 'Do you want to add this patient?',
       cssClass: 'add-patient',
+      backdropDismiss: false,
       buttons: [
         {
           text: 'No',

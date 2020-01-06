@@ -291,6 +291,7 @@ export class MedicalHealthQuestionnairePage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Success',
       message: 'Successfully updated',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -304,6 +305,7 @@ export class MedicalHealthQuestionnairePage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Ooooops',
       message: 'Something went wrong. Please try again later.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -319,6 +321,7 @@ export class MedicalHealthQuestionnairePage implements OnInit {
       header: 'Medical Health Questionnaire',
       message: 'Do you want to send this update?',
       cssClass: 'add-patient',
+      backdropDismiss: false,
       buttons: [
         {
           text: 'No',

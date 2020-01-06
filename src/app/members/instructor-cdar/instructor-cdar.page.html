@@ -4,7 +4,7 @@
       <div class="header-text">ACHIEVEMENT RECORDS</div>
 
       <div class="greet-user" *ngIf="instructor">
-          Hi {{ instructor.last_name }}, here is list for achievement records.
+          Hi Doc {{ instructor.last_name }}, here is list for achievement records.
       </div>
 
       <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>

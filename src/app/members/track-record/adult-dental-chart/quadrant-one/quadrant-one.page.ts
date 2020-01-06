@@ -591,6 +591,7 @@ export class QuadrantOnePage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Dental Chart',
       message: 'Successfully updated',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -604,6 +605,7 @@ export class QuadrantOnePage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Ooooops',
       message: 'Something went wrong. Please try again later.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {

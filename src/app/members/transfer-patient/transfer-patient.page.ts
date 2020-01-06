@@ -147,7 +147,8 @@ export class TransferPatientPage implements OnInit {
   async successMessage() {
     const alert = await this.alertController.create({
       header: 'Awesome',
-      message: 'Patient has been successfully transfer.',
+      message: 'Patient has been successfully transferred.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -163,6 +164,7 @@ export class TransferPatientPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Ooooops',
       message: 'Something went wrong. Please try again later.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {

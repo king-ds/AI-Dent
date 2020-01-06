@@ -81,7 +81,7 @@
         </ion-col>
         <ion-col>
             <ion-item class="second-type">
-                <ion-label position="floating">Height (cm)</ion-label>
+                <ion-label position="floating">Height (ft&in)</ion-label>
                 <ion-input value="{{ patientDetails.height }}" readonly></ion-input>
             </ion-item>
         </ion-col>
@@ -269,8 +269,8 @@
             </ion-col>
             <ion-col>
                 <ion-item class="third-type">
-                    <ion-label position="floating" class="label">Height (cm)</ion-label>
-                    <ion-input formControlName="height" id="height" type="number" ngModel="{{ patientDetails.height }}" placeholder="cm" required></ion-input>
+                    <ion-label position="floating" class="label">Height (ft&in)</ion-label>
+                    <ion-input formControlName="height" id="height" type="text" ngModel="{{ patientDetails.height }}" placeholder="cm" required></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col>

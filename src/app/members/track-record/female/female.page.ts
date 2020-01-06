@@ -140,6 +140,7 @@ export class FemalePage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Female',
       message: 'Successfully updated',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -153,6 +154,7 @@ export class FemalePage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Ooooops',
       message: 'Something went wrong. Please try again later.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -168,6 +170,7 @@ export class FemalePage implements OnInit {
       header: 'Female',
       message: 'Do you want to send this update?',
       cssClass: 'add-patient',
+      backdropDismiss: false,
       buttons: [
         {
           text: 'No',

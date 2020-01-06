@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -16,6 +15,9 @@ export class QuadrantOnePage implements OnInit {
   loader : boolean;
   debouncer : any;
   isEmpty : boolean;
+  isMixed : boolean = false;
+  isPedia : boolean = false;
+  isAdult : boolean = false;
 
   constructor(private apiService : ApiService,
               private activatedRoute : ActivatedRoute,
@@ -23,6 +25,7 @@ export class QuadrantOnePage implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.trackRecord = this.router.getCurrentNavigation().extras.state.track_record;
+        console.log(this.trackRecord);
       }
     });
   }
@@ -31,11 +34,18 @@ export class QuadrantOnePage implements OnInit {
   }
 
   ionViewWillEnter(){
+    if(this.trackRecord['type'] == 'Mixed'){
+      this.isMixed = true;
+    }
+    else if(this.trackRecord['type'] == 'Pediatric'){
+      this.isPedia = true;
+    }else{
+      this.isAdult = true;
+    }
     this.loader = true;
     this.debouncer = setTimeout(() => {
       this.dentalCharts = this.apiService.getDentalChartQ1(this.trackRecord['id']);
       this.dentalCharts.subscribe(val => {
-        console.log(val);
         if(val == ''){
           this.isEmpty = true;
         }else{
