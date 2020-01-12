@@ -43,7 +43,8 @@
 
           <ion-item class="first-type">
               <ion-label position="floating" class="label">Password</ion-label>
-              <ion-input formControlName="password" id="password" clearInput type="password" required></ion-input>
+              <ion-input formControlName="password" id="password" [type]="passwordType" required></ion-input>
+              <ion-icon name="eye" [color]="passwordShown === true ? 'danger' : 'secondary'" slot="end" (click)="togglePassword()" ion-align-self-center></ion-icon>
           </ion-item>
           <div class="error-prompt">
               <ng-container *ngFor="let validation of validation_messages.password">
@@ -55,7 +56,7 @@
 
           <ion-item class="first-type">
               <ion-label position="floating" class="label">Confirm Password</ion-label>
-              <ion-input formControlName="password_again" id="password_again" clearInput type="password" required></ion-input>
+              <ion-input formControlName="password_again" id="password_again" [type]="passwordType" required></ion-input>
           </ion-item>
           <div class="error-prompt" *ngIf="register_form.hasError('mismatchedPasswords') && (register_form.get('password_again').touched || submit_attempt )">
               &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp;Password mismatch
@@ -89,11 +90,11 @@
           </ng-container>
 
           <ion-item class="first-type">
-              <ion-label position="floating" class="label">Middle Name</ion-label>
-              <ion-input formControlName="middle_name" id="middle_name" clearInput type="text" required></ion-input>
+              <ion-label position="floating" class="label">Middle Initial</ion-label>
+              <ion-input formControlName="middle_initial" id="middle_initial" clearInput type="text"></ion-input>
           </ion-item>
-          <ng-container *ngFor="let validation of validation_messages.middle_name">
-              <div class="error-prompt" *ngIf="register_form.get('middle_name').hasError(validation.type) && (register_form.get('middle_name').touched || register_form.controls.middle_name.dirty || submit_attempt)">
+          <ng-container *ngFor="let validation of validation_messages.middle_initial">
+              <div class="error-prompt" *ngIf="register_form.get('middle_initial').hasError(validation.type) && (register_form.get('middle_initial').touched || register_form.controls.middle_initial.dirty || submit_attempt)">
                   &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
               </div>
           </ng-container>
@@ -176,30 +177,30 @@
           </ng-container>
 
           <ion-row>
-            <ion-col>
+            <!-- <ion-col>
                 <ion-item class="third-type">
                     <ion-label position="stacked" class="label"># of Kids</ion-label>
                     <ion-input formControlName="number_of_kids" id="number_of_kids" type="number" required></ion-input>
                 </ion-item>
-            </ion-col>
+            </ion-col> -->
             <ion-col>
                 <ion-item class="third-type">
                     <ion-label position="floating" class="label">Height (ft&in)</ion-label>
-                    <ion-input formControlName="height" id="height" type="text" placeholder="ft&in" required></ion-input>
+                    <ion-input formControlName="height" id="height" type="text" placeholder="ft&in"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col>
                 <ion-item class="third-type">
                     <ion-label position="floating" class="label">Weight (kg)</ion-label>
-                    <ion-input formControlName="weight" id="weight" type="number" placeholder="kg" required></ion-input>
+                    <ion-input formControlName="weight" id="weight" type="number" placeholder="kg"></ion-input>
                 </ion-item>
             </ion-col>
           </ion-row>
-          <ng-container *ngFor="let validation of validation_messages.number_of_kids">
+          <!-- <ng-container *ngFor="let validation of validation_messages.number_of_kids">
               <div class="error-prompt" *ngIf="register_form.get('number_of_kids').hasError(validation.type) && (register_form.get('number_of_kids').touched || register_form.controls.number_of_kids.dirty || submit_attempt)">
                   &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
               </div>
-          </ng-container>
+          </ng-container> -->
           <ng-container *ngFor="let validation of validation_messages.height">
               <div class="error-prompt" *ngIf="register_form.get('height').hasError(validation.type) && (register_form.get('height').touched || register_form.controls.height.dirty || submit_attempt)">
                   &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
@@ -257,15 +258,15 @@
           </div>
 
             <ion-item class="first-type">
-              <ion-label position="floating" class="label">First Name</ion-label>
-              <ion-input formControlName="emergency_first_name" id="emergency_first_name" clearInput type="text" required></ion-input>
+              <ion-label position="floating" class="label">Full Name</ion-label>
+              <ion-input formControlName="emergency_full_name" id="emergency_full_name" clearInput type="text" required></ion-input>
             </ion-item>
-            <ng-container *ngFor="let validation of validation_messages.emergency_first_name">
-                <div class="error-prompt" *ngIf="register_form.get('emergency_first_name').hasError(validation.type) && (register_form.get('emergency_first_name').touched || register_form.controls.emergency_first_name.dirty || submit_attempt)">
+            <ng-container *ngFor="let validation of validation_messages.emergency_full_name">
+                <div class="error-prompt" *ngIf="register_form.get('emergency_full_name').hasError(validation.type) && (register_form.get('emergency_full_name').touched || register_form.controls.emergency_full_name.dirty || submit_attempt)">
                     &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
                 </div>
             </ng-container>
-
+<!-- 
             <ion-item class="first-type">
                 <ion-label position="floating" class="label">Middle Name</ion-label>
                 <ion-input formControlName="emergency_middle_name" id="emergency_middle_name" clearInput type="text" required></ion-input>
@@ -284,7 +285,7 @@
                 <div class="error-prompt" *ngIf="register_form.get('emergency_last_name').hasError(validation.type) && (register_form.get('emergency_last_name').touched || register_form.controls.emergency_last_name.dirty || submit_attempt)">
                     &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp; {{ validation.message }}
                 </div>
-            </ng-container>
+            </ng-container> -->
 
             <ion-item class="first-type">
                 <ion-label position="floating" class="label">Relationship to patient</ion-label>
@@ -298,7 +299,7 @@
 
             <ion-item class="first-type">
                 <ion-label position="floating" class="label">Address</ion-label>
-                <ion-textarea formControlName="emergency_address" id="emergency_address" required></ion-textarea>
+                <ion-textarea formControlName="emergency_address" id="emergency_address"></ion-textarea>
             </ion-item>
             <ng-container *ngFor="let validation of validation_messages.emergency_address">
                 <div class="error-prompt" *ngIf="register_form.get('emergency_address').hasError(validation.type) && (register_form.get('emergency_address').touched || register_form.controls.emergency_address.dirty || submit_attempt)">

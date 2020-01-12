@@ -17,8 +17,8 @@ const httpOptions = {
 })
 export class AuthenticationService {
 
-  // url = 'http://127.0.0.1:8000/';
-  url = 'http://54.250.113.39/';
+  url = 'http://127.0.0.1:8000/';
+  // url = 'http://54.250.113.39/';
   
   public success : boolean = false;
   debouncer : any;
