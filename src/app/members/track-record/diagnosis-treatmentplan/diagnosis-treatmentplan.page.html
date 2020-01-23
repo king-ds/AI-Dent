@@ -30,7 +30,7 @@
   </div>
 
   <div class="diagnosis" *ngIf="!loader" style="margin-top: 20px;">
-    <ion-item-divider>Diagnosis</ion-item-divider>
+    <ion-item-divider class="label">Diagnosis</ion-item-divider>
     <ion-list *ngIf="(!loader && isEmptyDiagnosis)">
       <ion-item>
         <ion-label>
@@ -62,7 +62,7 @@
   </div>
 
   <div class="treatment-plan" *ngIf="!loader">
-    <ion-item-divider>Treatment Plan</ion-item-divider>
+    <ion-item-divider class="label">Treatment Plan</ion-item-divider>
     <ion-list *ngIf="(!loader && isEmptyTreatmentPlan)">
       <ion-item>
         <ion-label>

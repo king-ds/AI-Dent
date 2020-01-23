@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons class="toolbar-button" slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title class="toolbar-title">Diagnosis & Treatment Plan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="!loader">
+    <div class="diagnosis-treatmentplan-logo">
+        <img src="/assets/diagnosis_treatment_plan.png">
+    </div>
+    <ion-card-content>
+      These are the current recorded list to your diagnosis and treatment plan.
+    </ion-card-content>
+  </ion-card>
+
+  <div class="loader" *ngIf="loader">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <div class="diagnosis" *ngIf="!loader" style="margin-top: 20px;">
+    <ion-item-divider class="label">Diagnosis</ion-item-divider>
+    <ion-list *ngIf="(!loader && isEmptyDiagnosis)">
+      <ion-item>
+        <ion-label>
+          <h3><span class="bullet"></span>No data to show.</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="(!loader && !isEmptyDiagnosis)">
+
+      <ion-item *ngFor="let item of (diagnosis | async)">
+        <ion-label>
+            <h3><span class="bullet"></span>{{ item.description }}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="treatment-plan" *ngIf="!loader">
+    <ion-item-divider class="label">Treatment Plan</ion-item-divider>
+    <ion-list *ngIf="(!loader && isEmptyTreatmentPlan)">
+      <ion-item>
+        <ion-label>
+          <h3><span class="bullet"></span>No data to show.</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="(!loader && !isEmptyTreatmentPlan)">
+      <ion-item *ngFor="let item of (treatmentPlan | async)">
+        <ion-label>
+            <h3><span class="bullet"></span>{{ item.description }}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

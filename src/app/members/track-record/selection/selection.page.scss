@@ -11,6 +11,14 @@
     color: white;
 }
 
+.loader {
+    position: relative;
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .selections img{
     width: 100px;
     display: block;
@@ -29,4 +37,11 @@ ion-card-title {
     text-align: center;
     font-family: 'Montserrat-Regular';
     font-size: 12px;
+}
+
+.label {
+    padding: 13px;
+    background-color: whitesmoke;
+    color: black;
+    font-family: 'Lato-Bold';  
 }

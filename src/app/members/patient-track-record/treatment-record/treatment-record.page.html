@@ -23,7 +23,7 @@
         <img src="/assets/treatment_record.png">
     </div>
     <ion-card-content>
-      This is the list of treatment records.
+      This is the list of treatment records. Click the procedure to expand and show the corresponding treatment notes.
     </ion-card-content>
   </ion-card>
 
@@ -38,11 +38,15 @@
     [headerHeight]="50"
     [columnMode]="'force'">
     <ngx-datatable-column name="Date"></ngx-datatable-column>
-    <ngx-datatable-column name="Procedure"></ngx-datatable-column>
+    <ngx-datatable-column name="Procedure">
+      <ng-template let-row="row" ngx-datatable-cell-template style="text-align: center;">
+        <span (click)="showTreatmentNotes(row)">{{ row.procedure }}</span>
+      </ng-template>
+    </ngx-datatable-column>
     <ngx-datatable-column name="Clinician"></ngx-datatable-column>
     <ngx-datatable-column>
       <ng-template ngx-datatable-header-template>
-        <span>Signature</span>
+        <span>Your Signature</span>
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template style="text-align: center;">
         <!-- <ion-button size="small" fill="outline" *ngIf=" row.approved  == false" (click)="approve(row)">Accept</ion-button> -->

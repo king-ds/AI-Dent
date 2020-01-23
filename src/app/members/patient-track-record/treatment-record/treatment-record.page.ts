@@ -59,6 +59,7 @@ export class TreatmentRecordPage implements OnInit {
                                       'date' : this.treatmentRecords[i]['date'],
                                       'clinician' : this.treatmentRecords[i]['clinician']['last_name'],
                                       'procedure' : this.treatmentRecords[i]['procedure'],
+                                      'treatment_notes' : this.treatmentRecords[i]['treatment_notes'],
                                       'approved' : this.treatmentRecords[i]['patient_signature'], })
         }
         this.treatmentRecords = this.cleanedTreatmentRecords;
@@ -103,6 +104,19 @@ export class TreatmentRecordPage implements OnInit {
           }
         }
       ]
+    });
+    await alert.present();
+  }
+
+  async showTreatmentNotes(item){
+    const alert = await this.alertController.create({
+      header: 'Treatment Notes',
+      message: item['treatment_notes'],
+      buttons: [{
+        text:'Ok',
+        handler: () => {
+        }
+      }],
     });
     await alert.present();
   }

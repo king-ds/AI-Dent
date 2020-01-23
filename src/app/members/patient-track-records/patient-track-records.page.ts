@@ -17,7 +17,10 @@ export class PatientTrackRecordsPage implements OnInit {
   track_record : any;
   empty : boolean;
   patient : string;
+
   isFemale : boolean;
+  isApproved : boolean = false;
+  isPending : boolean = false;
 
   constructor(private apiService : ApiService,
               private storageService : StorageService,
@@ -48,6 +51,14 @@ export class PatientTrackRecordsPage implements OnInit {
         this.track_record = val;
         if(this.track_record['patient']['gender'] == 'Female'){
           this.isFemale = true;
+        }
+
+        if(this.track_record['is_approved_instructor']){
+          this.isApproved = true;
+        }
+  
+        if(this.track_record['pending_for_approval']){
+          this.isPending = true;
         }
       }
     });
@@ -176,7 +187,21 @@ export class PatientTrackRecordsPage implements OnInit {
         track_record : this.track_record
       }
     };
-    this.router.navigate(['members', 'patient-treatment-record'], navigationExtras); 
+
+    if(this.isApproved){
+      this.router.navigate(['members', 'patient-treatment-record'], navigationExtras); 
+    }else{
+      this.notApproved();
+    }
+  }
+
+  goToDiagnosisTreatmentPlan(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+    this.router.navigate(['members', 'patient-diagnosis-treatmentplan'], navigationExtras);
   }
   
   async notFemale() {
@@ -185,5 +210,21 @@ export class PatientTrackRecordsPage implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  async notApproved() {
+    const toast = await this.toastController.create({
+      message: 'This selection is only available upon completion of track record.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  /* Utility function for refreshing the current page. */
+  doRefresh(event){
+    setTimeout(() => {
+      this.checkMyTrackRecord();
+      event.target.complete();
+    }, 2000);
   }
 }

@@ -43,12 +43,16 @@ ion-label, ion-item, ion-input, ion-textarea {
     font-family: 'Lato-Regular';
 }
 
-.no-border {
-    --border-color : white;
+.label {
+    padding: 13px;
+    background-color: whitesmoke;
+    color: black;
+    font-family: 'Lato-Bold';  
 }
 
-ion-item-divider {
-    font-family: 'Montserrat-Regular';
-    font-size: 15px;
-    color: black;
+.last-update {
+    font-family: 'NotoSans-Regular';
+    color: gray;
+    font-size: 13px;
+    text-align: center;
 }

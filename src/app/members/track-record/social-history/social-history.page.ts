@@ -54,6 +54,8 @@ export class SocialHistoryPage implements OnInit {
   yearsAlcoholic : string;
   stopAlcoholic : string;
 
+  dateTimeAdded : string;
+
   constructor(private router : Router,
               private activatedRoute : ActivatedRoute,
               private apiService : ApiService,
@@ -116,6 +118,8 @@ export class SocialHistoryPage implements OnInit {
           this.oftenAlcoholic = val['often_alcoholic']
           this.yearsAlcoholic = val['years_alcoholic']
           this.stopAlcoholic = val['stop_alcoholic']
+
+          this.dateTimeAdded = val['datetime_added']
         }
         this.loader = false;
       })
@@ -167,6 +171,7 @@ export class SocialHistoryPage implements OnInit {
           "using_recreation": this.drugsForRecreation,
           "using_therapeutic": this.drugsForTherapeutic,
           "drink_alcoholic": this.alcoholicBeverages,
+          "datetime_added": new Date()
         }
       }
 
@@ -213,6 +218,7 @@ export class SocialHistoryPage implements OnInit {
         "using_recreation": this.drugsForRecreation,
         "using_therapeutic": this.drugsForTherapeutic,
         "drink_alcoholic": this.alcoholicBeverages,
+        "datetime_added": new Date(),
       }
 
       this.debouncer = setTimeout(() => {

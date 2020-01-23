@@ -10,11 +10,11 @@
     <ion-item-divider></ion-item-divider>
   </div>
 
-  <ion-segment>
-    <ion-segment-button (click)="activateToday()" checked="today"> 
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button (click)="activateToday()" value="today" checked="today"> 
       <ion-label>Today</ion-label>
     </ion-segment-button>
-    <ion-segment-button (click)="activateAll()">
+    <ion-segment-button (click)="activateAll()" value="all">
       <ion-label>All</ion-label>
     </ion-segment-button>
   </ion-segment>

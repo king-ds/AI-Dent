@@ -45,42 +45,38 @@
     </ion-card>
 
     <ion-list>
-        <ion-item>
-            <ion-label>Under a physician's care?</ion-label>
+        <ion-item style="margin-left: -16px;">
+            <ion-label style="padding-left: 16px;">Under a physician's care?</ion-label>
             <ion-checkbox color="light" [(ngModel)]="physicianCare" [disabled] = "isReadOnly"></ion-checkbox>
         </ion-item>
 
+        <ion-item-divider class="label">Hospitalization:</ion-item-divider>
         <ion-item>
-            <ion-label position="stacking">Hospitalization:</ion-label>
             <ion-textarea rows="2" [(ngModel)]="hospitalization" [readonly] = "isReadOnly"  placeholder="Enter hospitalization here..."></ion-textarea>
         </ion-item>
 
+        <ion-item-divider class="label">Allergies:</ion-item-divider>
         <ion-item>
-            <ion-label position="stacking">Allergies:</ion-label>
             <ion-textarea rows="2" [(ngModel)]="allergies" [readonly] = "isReadOnly" placeholder="Enter allergies here..."></ion-textarea>
         </ion-item>
 
+        <ion-item-divider class="label">Illnesses:</ion-item-divider>
         <ion-item>
-            <ion-label position="stacking">Illnesses:</ion-label>
             <ion-textarea rows="2" [(ngModel)]="illnesses" [readonly] = "isReadOnly" placeholder="Enter illnesses here..."></ion-textarea>
         </ion-item>
 
-        <ion-item class="no-border">
-            <ion-label position="stacking" class="ion-text-wrap">List of medications, vitamins or herbal supplements:</ion-label>
-        </ion-item>
-        
+        <ion-item-divider class="label">List of medications, vitamins or herbal supplements:</ion-item-divider>
         <ion-item>
             <ion-textarea rows="4" [(ngModel)]="medications" [readonly] = "isReadOnly" placeholder="Enter list of medications here..."></ion-textarea>
         </ion-item>
-
-        <ion-item class="no-border">
-            <ion-label position="stacking" >Childhood disease History:</ion-label>
-        </ion-item>
         
+        <ion-item-divider class="label">Childhood disease History:</ion-item-divider>
         <ion-item>
           <ion-textarea rows="4" [(ngModel)]="childhoodDiseaseHistory" placeholder="Enter childhood disease history here..." [readonly] = "isReadOnly"></ion-textarea>
         </ion-item>
-
     </ion-list>
+
+    <hr>
+    <p class="last-update" *ngIf="dateTimeAdded">Last update: {{ dateTimeAdded }}</p>
   </div>
 </ion-content>

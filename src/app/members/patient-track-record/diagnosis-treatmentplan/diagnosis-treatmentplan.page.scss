@@ -1,0 +1,78 @@
+.toolbar {
+    --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
+}
+
+.toolbar-button {
+    color: white;
+}
+
+.toolbar-title {
+    font-family: 'Lato-Regular';
+    color: white;
+    font-size: 17px;
+}
+
+.loader {
+    position: relative;
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.diagnosis-treatmentplan-logo {
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 130px;
+    border: 5px solid #20B2FF;
+    border-radius: 100px;
+    box-shadow: 0 3px 3px #888;
+    background-color: whitesmoke;
+}
+
+.diagnosis-treatmentplan-logo img {
+    padding: 15px;
+}
+
+.bullet {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+ion-card-content {
+    font-family: 'Montserrat-Regular';
+    text-align: justify;
+}
+
+ion-card-title {
+    font-family: 'Montserrat-Regular';
+}
+
+ion-label {
+    font-family: 'Lato-Regular';
+}
+
+ion-item-divider {
+    margin-top: 10px;
+    font-family: 'Montserrat-Regular';
+    font-size: 16px;
+    color: white;
+    background-color: #20B2FF;
+}
+
+.label {
+    padding: 13px;
+    background-color: whitesmoke;
+    color: black;
+    font-family: 'Lato-Bold';  
+}
+
+h3 {
+    font-family: 'Lato-Regular';
+}

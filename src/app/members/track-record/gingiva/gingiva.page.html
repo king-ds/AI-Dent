@@ -44,47 +44,50 @@
   
   <ion-list *ngIf="!loader">
 
+    <ion-item-divider class="label">Attached Gingiva</ion-item-divider>
     <ion-radio-group (ionChange)="onChangeAttachedGingiva($event)">
-
+<!-- 
       <ion-list-header>
         <ion-label>Attached Gingiva</ion-label>
-      </ion-list-header>
+      </ion-list-header> -->
 
       <ion-item>
         <ion-label>Adequate</ion-label>
         <ion-radio value="Adequate" [checked]="attachedGingivaType.type==='Adequate'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
-      <ion-item>
-        <ion-label>Inadequate</ion-label>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Inadequate</ion-label>
         <ion-radio value="Inadequate" [checked]="attachedGingivaType.type==='Inadequate'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
     </ion-radio-group>
 
+    <ion-item-divider class="label">Frenular Attachment:</ion-item-divider>
     <ion-radio-group (ionChange)="onChangeFrenularAttachment($event)">
 
-      <ion-list-header>
+      <!-- <ion-list-header>
         <ion-label>Frenular Attachment</ion-label>
-      </ion-list-header>
+      </ion-list-header> -->
 
       <ion-item>
         <ion-label>Favorable</ion-label>
         <ion-radio value="Favorable" [checked]="frenularAttachmentType.type==='Favorable'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
-      <ion-item>
-        <ion-label>Unfavorable</ion-label>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Unfavorable</ion-label>
         <ion-radio value="Unfavorable" [checked]="frenularAttachmentType.type==='Unfavorable'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
     </ion-radio-group>
 
+    <ion-item-divider class="label">Radiographic Bone Loss I</ion-item-divider>
     <ion-radio-group (ionChange)="onChangeStages($event)">
 
-      <ion-list-header>
+      <!-- <ion-list-header>
         <ion-label>Radiographic Bone Loss</ion-label>
-      </ion-list-header>
+      </ion-list-header> -->
 
       <ion-item>
         <ion-label>None</ion-label>
@@ -101,77 +104,67 @@
         <ion-radio value="Stage II" [checked]="radioGraphStages.stage==='Stage II'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
-      <ion-item>
-        <ion-label>Stage III</ion-label>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Stage III</ion-label>
         <ion-radio value="Stage III" [checked]="radioGraphStages.stage==='Stage III'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
     </ion-radio-group>
 
+    <ion-item-divider class="label">Radiographic Bone Loss II</ion-item-divider>
     <ion-radio-group (ionChange)="onChangeHV($event)">
 
-      <ion-list-header>
+      <!-- <ion-list-header>
         <ion-label>Radiographic Bone Loss</ion-label>
-      </ion-list-header>
+      </ion-list-header> -->
 
       <ion-item>
         <ion-label>Horizontal</ion-label>
         <ion-radio value="Horizontal" [checked]="radioGraphHVType.type==='Horizontal'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
-      <ion-item>
-        <ion-label>Vertical</ion-label>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Vertical</ion-label>
         <ion-radio value="Vertical" [checked]="radioGraphHVType.type==='Vertical'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
     </ion-radio-group>
 
+    <ion-item-divider class="label">Radiographic Bone Loss III</ion-item-divider>
     <ion-radio-group (ionChange)="onChangeGL($event)">
 
-      <ion-list-header>
+      <!-- <ion-list-header>
         <ion-label>Radiographic Bone Loss</ion-label>
-      </ion-list-header>
+      </ion-list-header> -->
 
       <ion-item>
         <ion-label>Generalized</ion-label>
         <ion-radio value="Generalized" [checked]="radioGraphGLType.type==='Generalized'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
-      <ion-item>
-        <ion-label>Localized</ion-label>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Localized</ion-label>
         <ion-radio value="Localized" [checked]="radioGraphGLType.type==='Localized'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
     </ion-radio-group>
 
-    <ion-item class="no-border">
-      <ion-label>Color</ion-label>
-    </ion-item>
-
+    <ion-item-divider class="label">Color</ion-item-divider>
     <ion-item>
       <ion-textarea rows="3" [(ngModel)]="color" placeholder="Enter color here..." [readonly]="isReadOnly"></ion-textarea>
     </ion-item>
 
-    <ion-item class="no-border">
-      <ion-label>Consistency</ion-label>
-    </ion-item>
-
+    <ion-item-divider class="label">Consistency</ion-item-divider>
     <ion-item>
       <ion-textarea rows="3" [(ngModel)]="consistency" placeholder="Enter consistency here..." [readonly]="isReadOnly"></ion-textarea>
     </ion-item>
 
-    <ion-item class="no-border">
-      <ion-label>Contour</ion-label>
-    </ion-item>
-
+    <ion-item-divider class="label">Contour</ion-item-divider>
     <ion-item>
       <ion-textarea rows="3" [(ngModel)]="contour" placeholder="Enter contour here..." [readonly]="isReadOnly"></ion-textarea>
     </ion-item>
 
-    <ion-item class="no-border">
-      <ion-label>Texture</ion-label>
-    </ion-item>
-
+    <ion-item-divider class="label">Texture</ion-item-divider>
     <ion-item>
       <ion-textarea rows="3" [(ngModel)]="texture" placeholder="Enter texture here..." [readonly]="isReadOnly"></ion-textarea>
     </ion-item>

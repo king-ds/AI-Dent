@@ -14,6 +14,9 @@ export class RegistrationClinicianPage implements OnInit {
   public register_form : FormGroup;
   public submit_attempt : boolean = false;
 
+  passwordType : string = 'password';
+  passwordShown : boolean = false;
+
   validation_messages = {
 
     'student_number' : [
@@ -21,7 +24,7 @@ export class RegistrationClinicianPage implements OnInit {
       { type : 'pattern', message : 'Student Number must contain only numbers.' },
       { type : 'maxlength', message : 'Student Number must be exactly 6 numbers long.' },
       { type : 'minlength', message : 'Student Number must be exactly 6 numbers long.' },
-      { type : 'student_numberInUse', message : 'Student Number is not available' }
+      { type : 'student_numberInUse', message : 'Student Number is already taken' }
     ],
 
     'first_name' : [
@@ -77,6 +80,16 @@ export class RegistrationClinicianPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public togglePassword(){
+    if(this.passwordShown){
+      this.passwordShown = false;
+      this.passwordType = 'password';
+    }else{
+      this.passwordShown = true;
+      this.passwordType = 'text';
+    }
   }
 
   register(){

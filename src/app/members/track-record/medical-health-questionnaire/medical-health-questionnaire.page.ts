@@ -64,6 +64,7 @@ export class MedicalHealthQuestionnairePage implements OnInit {
   faintingSpells : boolean;
   depression : boolean;
   others : string;
+  dateTimeAdded : string;
 
   constructor(private router : Router,
               private activatedRoute : ActivatedRoute,
@@ -134,6 +135,7 @@ export class MedicalHealthQuestionnairePage implements OnInit {
           this.faintingSpells = val['fainting_spells']
           this.depression = val['depression']
           this.others = val['others']
+          this.dateTimeAdded = val['datetime_added']
         }
         this.loader = false;
       })
@@ -199,6 +201,7 @@ export class MedicalHealthQuestionnairePage implements OnInit {
             "hiv_positive": this.hivPositive,
             "fainting_spells": this.faintingSpells,
             "depression": this.depression,
+            "datetime_added": new Date(),
           }
         }
         this.apiService.updateMedicalHealthQuestionnaire(medicalHealthQuestionnaireData, this.track_record['id']).then(res => {
@@ -262,6 +265,7 @@ export class MedicalHealthQuestionnairePage implements OnInit {
         "hiv_positive": this.hivPositive,
         "fainting_spells": this.faintingSpells,
         "depression": this.depression,
+        "datetime_added": new Date(),
       }
 
       this.apiService.addMedicalHistoryQuestionnaire(medicalHealthQuestionnaireData).then(res => {

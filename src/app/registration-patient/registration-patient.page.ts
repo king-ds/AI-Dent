@@ -22,7 +22,7 @@ export class RegistrationPatientPage implements OnInit {
     'username' : [
       { type : 'required', message : 'Username is required.' },
       { type : 'minlength', message : 'Username must be at least 6 characters long.' },
-      { type : 'username_InUse', message : 'Username already taken.' },
+      { type : 'username_InUse', message : 'Username is already taken.' },
     ],
     'first_name' : [
       { type : 'required', message : 'First Name is required.' },

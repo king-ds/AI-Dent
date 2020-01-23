@@ -5,7 +5,7 @@
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
 
-    <ion-buttons class="toolbar-button" slot="end" *ngIf="( !loader && !addTreatMentRecordMode )">
+    <ion-buttons class="toolbar-button" slot="end" *ngIf="( !loader && !addTreatMentRecordMode && !editTreatmentNotesMode && !addClinicalInstructorMode)">
       <ion-button *ngIf="!loader" (click)="attemptAddTreatmentRecord()">
           <ion-icon name="add"></ion-icon>
       </ion-button>
@@ -38,7 +38,7 @@
       <ion-spinner name="crescent"></ion-spinner>
   </div>
 
-  <div class="table" *ngIf="(!loader && !addTreatMentRecordMode && !addClinicalInstructorMode)">
+  <div class="table" *ngIf="(!loader && !addTreatMentRecordMode && !addClinicalInstructorMode && !editTreatmentNotesMode)">
     <ngx-datatable
       [rows]="treatmentRecords"
       [ngClass]="tableStyle"
@@ -46,7 +46,11 @@
       [headerHeight]="50"
       [columnMode]="'force'">
       <ngx-datatable-column name="Date"></ngx-datatable-column>
-      <ngx-datatable-column name="Procedure"></ngx-datatable-column>
+      <ngx-datatable-column name="Procedure">
+        <ng-template let-row="row" ngx-datatable-cell-template style="text-align: center;">
+          <span (click)="optionMessage(row)">{{ row.procedure }}</span>
+        </ng-template>
+      </ngx-datatable-column>
       <ngx-datatable-column name="Clinician"></ngx-datatable-column>
       <ngx-datatable-column>
         <ng-template ngx-datatable-header-template>
@@ -54,7 +58,8 @@
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template style="text-align: center;">
             <ion-button size="small" fill="outline" (click)="initiateAddInstructor(row)" *ngIf="(row.approved == true && row.instructor == 'No instructor yet' )">Add</ion-button>
-            <span *ngIf="(row.approved == true && row.instructor != 'No instructor yet' )">{{ row.instructor }}</span>
+            <span *ngIf="(row.approved == true && row.instructor != 'No instructor yet' && row.instructorsignature == true )">{{ row.instructor }}<br><ion-icon style="color: blue; width: 20px; height: 20px;" name="checkmark-circle-outline"></ion-icon></span>
+            <span *ngIf="(row.approved == true && row.instructor != 'No instructor yet' && row.instructorsignature == false )">{{ row.instructor }}<br><ion-icon style="color: red; width: 20px; height: 20px;" name="close-circle-outline"></ion-icon></span>
             <span *ngIf="row.approved == false">Wait for patient signature.</span>
         </ng-template>
       </ngx-datatable-column>
@@ -71,53 +76,71 @@
     </ngx-datatable>
   </div>
 
-  <ion-card *ngIf="(!loader && addTreatMentRecordMode && !addClinicalInstructorMode)">
-    <ion-list>
-      <ion-item>
-        <ion-label>Date:</ion-label>
-        <ion-datetime [(ngModel)]="date" displayFormat="MM/DD/YYYY" placeholder="MM/DD/YYYY"></ion-datetime>
-      </ion-item>
+  <ion-list *ngIf="(!loader && addTreatMentRecordMode && !addClinicalInstructorMode && !editTreatmentNotesMode)">
+    <ion-item-divider class="header">Add Treatment Record</ion-item-divider>
 
-      <ion-item>
-        <ion-label position="stacking">Procedure:</ion-label>
-        <ion-textarea [(ngModel)]="procedure" rows="2" placeholder="Enter procedure here..."></ion-textarea>
-      </ion-item>
+    <ion-item-divider class="label">Date:</ion-item-divider>
+    <ion-item>
+      <ion-datetime [(ngModel)]="date" displayFormat="MM/DD/YYYY" placeholder="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
 
-      <ion-item>
-        <ion-label>Clinician:</ion-label>
-        <ion-input [(ngModel)]="clinicianLastName" [readonly]="true"></ion-input>
-      </ion-item>
+    <ion-item-divider class="label">Procedure:</ion-item-divider>
+    <ion-item>
+      <ion-textarea [(ngModel)]="procedure" rows="2" placeholder="Enter procedure here..."></ion-textarea>
+    </ion-item>
 
-      <div class="add-treatment-record-container" (click)="addTreatmentRecord()">
-          <button id="add-treatment-record-btn">Add</button>
-      </div>
-      <div class="cancel-treatment-record-container" (click)="cancelTreatmentRecord()">
-          <button id="cancel-treatment-record-btn">Cancel</button>
-      </div>
+    <ion-item-divider class="label">Treatment Notes: </ion-item-divider>
+    <ion-item>
+      <ion-textarea [(ngModel)]="treatmentNotes" rows="6" placeholder="Enter treatment notes here..."></ion-textarea>
+    </ion-item>
 
-    </ion-list>
-  </ion-card>
+    <ion-item-divider class="label">Clincian:</ion-item-divider>
+    <ion-item>
+      <ion-input [(ngModel)]="clinicianLastName" [readonly]="true"></ion-input>
+    </ion-item>
 
-  <ion-card *ngIf="( !loader && !addTreatMentRecordMode && addClinicalInstructorMode )">
-    <ion-card-title>Choose Instructor</ion-card-title>
-    <ion-item-divider>
-      <ion-icon slot="start" name="arrow-back" (click)="cancelAddInstructor()" style="margin-right: -3px;"></ion-icon>
-      <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchInstructor($event)" placeholder="Search Instructor" animated></ion-searchbar>
-    </ion-item-divider>
+    <div class="add-treatment-record-container" (click)="addTreatmentRecord()">
+        <button id="add-treatment-record-btn">Add</button>
+    </div>
+    <div class="cancel-treatment-record-container" (click)="cancelTreatmentRecord()">
+        <button id="cancel-treatment-record-btn">Cancel</button>
+    </div>
+
+  </ion-list>
+
+  <ion-list *ngIf="( !loader && !addTreatMentRecordMode && addClinicalInstructorMode && !editTreatmentNotesMode )">
+    <ion-item-divider class="header" style="padding: -5px;"><ion-icon slot="end" name="close-circle-outline" (click)="cancelAddInstructor()" style="color: white;"></ion-icon>Select Instructor</ion-item-divider>
+
+    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchInstructor($event)" placeholder="Search Instructor" style="margin-top: 10px;" animated></ion-searchbar>
     
-    <ion-list>
-      <ion-item class="item" button *ngFor="let item of (instructors | async)" (click)="confirmationMessage(item)">
-  
-        <ion-avatar slot="start">
-            <img src='/assets/register-clinician-instructor.png'>
-        </ion-avatar>
-  
-        <ion-label class="ion-text-wrap">
-            <h3>{{ item.first_name }} {{ item.last_name }}</h3>
-        </ion-label>
-  
-      </ion-item>
-    </ion-list>
-  </ion-card>
+    <hr style="padding: 0.2px; background-color:whitesmoke;">
+    <ion-item class="item" button *ngFor="let item of (instructors | async)" (click)="confirmationMessage(item)">
+      <ion-avatar slot="start">
+          <img src='/assets/register-clinician-instructor.png'>
+      </ion-avatar>
 
+      <ion-label class="ion-text-wrap">
+          <h3>{{ item.first_name }} {{ item.last_name }}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="( !loader && !addTreatMentRecordMode && !addClinicalInstructorMode && editTreatmentNotesMode)">
+    <ion-item-divider class="header">Update Treatment Notes</ion-item-divider>
+    <ion-item-divider class="label">Procedure:</ion-item-divider>
+    <ion-item>
+      <ion-textarea [(ngModel)]="editProcedure" rows="4" placeholder="Update procedure notes here..."></ion-textarea>
+    </ion-item>
+    <ion-item-divider class="label">Treatment Notes: </ion-item-divider>
+    <ion-item>
+      <ion-textarea [(ngModel)]="editTreatmentNotes" rows="7" placeholder="Update treatment notes here..."></ion-textarea>
+    </ion-item>
+
+    <div class="add-treatment-record-container" (click)="updateTreatmentRecord_2()">
+      <button id="add-treatment-record-btn">Update</button>
+    </div>
+    <div class="cancel-treatment-record-container" (click)="cancelTreatmentRecord()">
+      <button id="cancel-treatment-record-btn">Cancel</button>
+    </div>
+  </ion-list>
 </ion-content>

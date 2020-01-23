@@ -1,12 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
-
-
 .header-text {
     margin: 20px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular';
     font-size: 30px;
     text-align: left;
     font-weight: 300;
@@ -14,22 +8,22 @@
 
 .greet-user {
     margin: 20px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Regular';
     font-size: 15px;
     text-align: left;
 }
 
 .item {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular';
 }
 
 .ion-text-wrap {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular';
     font-size: 20px;
 }
 
 .searchbar {
-    --placeholder-font-style: 'Lato', sans-serif;
+    --placeholder-font-style: 'Lato-Regular';
 }
 
 .loader {
@@ -47,5 +41,5 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: #989a9c;
-    font-family: "Noto Sans", sans-serif;
+    font-family: "NotoSans-Regular";
 }

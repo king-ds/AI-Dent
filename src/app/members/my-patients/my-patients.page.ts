@@ -23,6 +23,7 @@ export class MyPatientsPage implements OnInit {
   chooseInstructorMode : boolean = false;
   chooseInstructorCompletionMode : boolean = false;
   consentForm : boolean = false;
+  hasUnapprovedCDAR : boolean;
 
   instructors : any;
   emptyInstructor : boolean;
@@ -47,6 +48,10 @@ export class MyPatientsPage implements OnInit {
   ngOnInit() {
   }
 
+  /* Everytime the app enter this page, 
+  it will always wait for 2 seconds to check the following values:
+  @ Login credentials
+  @ List of patients */
   ionViewWillEnter() {
     this.loader = true;
     this.debouncer = setTimeout(() => {
@@ -54,23 +59,25 @@ export class MyPatientsPage implements OnInit {
         this.clinician = result;
         this.checkMyPatient();
         this.loader = false;
-        console.log(this.clinician);
-
       })
     }, 2000)
   }
 
+  /* This function is used to search for specific patient from clinician's patients. */
   searchChanged(){
     this.loader = true;
-    this.results = this.apiService.searchInstructorTrackRecord(this.searchTerm, this.clinician['id']);
+    this.results = this.apiService.searchMyPatient(this.searchTerm, this.clinician['id']);
     this.loader = false;
   }
 
+  /* Get all of his/her patients. */
   getMyPatient(){
     this.results = this.apiService.getMyPatient(this.clinician['id']);
   }
 
+  /* Verify if he/she already have a patient. */
   checkMyPatient(){
+    this.hasUnapprovedCDAR = false;
     this.apiService.getMyPatient(this.clinician['id']).subscribe(val => {
       if(val == ''){
         this.empty = true;
@@ -82,13 +89,20 @@ export class MyPatientsPage implements OnInit {
     });
   }
 
-
-  // Request CDAR FORM
-
+  /* These functions below are for CDAR Request form
+  @ searchInstructor - search specific instructor from a list of instructors.
+  @ checkInstructor - check if there is available instructor. 
+  @ initiateChooseInstructor - after add instructor 'button' was clicked, setup the instructor form. 
+  @ acceptChosenInstructor - after choosing instructor, save the instructor information. 
+  @ cancelChooseInstructor - if the clincian cancel choosing instructor, the instructor information reset. 
+  @ initiateCdar - if add cdar button has been clicked, setup the cdar form. However, this form is only restricted
+  to those clinician who have no further cdar approval.
+  @ cancelCdar - cancel cdar transaction and reset all the variables.
+  @ sendCdar - send cdar details to API.
+  */
   searchInstructor(){
     this.instructors = this.apiService.searchInstructor(this.searchInstructorTerm);
   }
-
   checkInstructor(){
     this.apiService.getClinicianList().subscribe(val => {
       if(val == ''){
@@ -99,7 +113,6 @@ export class MyPatientsPage implements OnInit {
       }
     });
   }
-
   initiateChooseInstructor(){
     this.chooseInstructorMode = true;
     this.requestMode = false;
@@ -117,11 +130,25 @@ export class MyPatientsPage implements OnInit {
     this.chooseInstructorMode = false;
   }
   intitiateCDAR(data){
-    this.requestMode = true;
-    this.patientId = data['patient']['id'];
-    this.clinicianId = data['clinician']['id'];
-    this.clinicianLastName = data['clinician']['last_name'];
-    this.trackRecordId = data['id'];
+    this.apiService.getAllCdar(data['clinician']['id']).subscribe((val) => {
+      var cdar = JSON.parse(JSON.stringify(val));
+      for(var i = 0; i<cdar.length; i++){
+        if(!cdar[i]['instructor_signature']){
+          this.hasUnapprovedCDAR = true;
+          console.log(true);
+        }
+      }
+
+      if(!this.hasUnapprovedCDAR){
+        this.requestMode = true;
+        this.patientId = data['patient']['id'];
+        this.clinicianId = data['clinician']['id'];
+        this.clinicianLastName = data['clinician']['last_name'];
+        this.trackRecordId = data['id'];
+      }else{
+        this.hasUnapproved();
+      }
+    })
   }
   cancelCDAR(){
     this.requestMode = false;
@@ -145,13 +172,20 @@ export class MyPatientsPage implements OnInit {
           "procedure": this.procedure,
           "date": format(new Date(this.date), "yyyy-MM-dd"),
           "patient_signature": true,
+          "pending_for_approval": true,
           "clinician": this.clinicianId,
           "clinical_instructor": this.instructorId,
           "track_record": this.trackRecordId,
-          "patient": this.patientId
+          "patient": this.patientId,
+          "treatment_record" : 0,
         }
 
         this.apiService.addCDAR(cdarData).then((res) => {
+          let trackRecordData = {
+            "clinical_instructor" : this.instructorId,
+          }
+
+          this.apiService.updateTrackRecord(trackRecordData, this.trackRecordId);
           this.addSuccessMessage();
         })
         .catch(error => {
@@ -161,62 +195,47 @@ export class MyPatientsPage implements OnInit {
       }, 2000)
     }
   }
+  
+  /* Function for releasing a patient */
+  releasePatient(patient){
 
-  cancelChooseInstructorCompletion(){
-    this.chooseInstructorCompletionMode = false;
-  }
-
-  submitCompletion(item){
     this.loader = true;
-    console.log(item);
-    setTimeout(() => {
-      let trackRecordData = {
-        'is_approved_patient' : true,
-        'pending_for_approval' : true,
-        'clinical_instructor' : item['id']
-      }
+    let trackRecordData = {
+      "clinician": null,
+    }
 
-      this.apiService.updateTrackRecord(trackRecordData, this.trackRecordId).then((res) => {
-        this.successMessage();
+    setTimeout(() => {
+      this.apiService.updateTrackRecord(trackRecordData, patient['id']).then((res) => {
+
+        let patientData = {
+          "has_doctor": false,
+        }
+
+        this.apiService.updatePatient(patient['patient']['id'], patientData).then((res) => {
+          console.log(res);
+          this.releaseSuccessMessage();
+        })
+        .catch(error => {
+          console.log(error);
+          this.errorMessage();
+        })
       })
       .catch(error => {
-        this.errorMessage();
         console.log(error);
       })
-      this.loader = false;
     }, 2000)
   }
-  async showConsentCompletionForm(item){
-    const alert = await this.alertController.create({
-      header: 'Consent Form',
-      message: 'I verify that the given information are true and accurate.'
-      +' I understand this information will be used to determine the dental treatment'+
-      ' I will receive in this dental infirmary and it may be shared with other medical officers only if necessary.'+
-      ' I will notify this dental office should any information changed. <br><br>'+
-      'I hereby authorize the clinician to perform any recommended services and to store my private data for safekeeping.',
-      cssClass: 'add-patient',
-      buttons: [
-        {
-          text: 'Disagree',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            this.chooseInstructorCompletionMode = false;
-          }
-        }, {
-          text: 'Agree',
-          handler: () => {
-            this.chooseInstructorCompletionMode = true;
-            this.trackRecordId = item['id'];
-            this.checkInstructor();
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
-  async showConsentForm(){
 
+  /* Utility function for refreshing the current page. */
+  doRefresh(event){
+    setTimeout(() => {
+      this.checkMyPatient();
+      event.target.complete();
+    }, 2000);
+  }
+
+  /* Pop-up selection window for patient consent  */
+  async showConsentForm(){
     const alert = await this.alertController.create({
       header: 'Consent Form',
       message: 'I verify that the given information are true and accurate.'
@@ -224,7 +243,7 @@ export class MyPatientsPage implements OnInit {
       ' I will receive in this dental infirmary and it may be shared with other medical officers only if necessary.'+
       ' I will notify this dental office should any information changed. <br><br>'+
       'I hereby authorize the clinician to perform any recommended services and to store my private data for safekeeping.',
-      cssClass: 'add-patient',
+      cssClass: 'terms-conditions',
       buttons: [
         {
           text: 'Disagree',
@@ -243,12 +262,14 @@ export class MyPatientsPage implements OnInit {
     });
     await alert.present();
   }
+
+  /* Pop-up confirmation window for finalizing selecting of instructor */
   async showChooseInstructorMessage(data){
 
     const alert = await this.alertController.create({
       header: 'Confirmation',
       message: 'Do you want to assign '+data['first_name']+' '+data['last_name']+'?',
-      cssClass: 'add-patient',
+      cssClass: 'confirmation',
       buttons: [
         {
           text: 'No',
@@ -268,29 +289,33 @@ export class MyPatientsPage implements OnInit {
     });
     await alert.present();
   }
-  async showChooseInstructorCompletionMessage(item){
 
+  /* Pop-up confirmation window for finalizing selecting of instructor */
+  async showReleaseConfirmation(data){
     const alert = await this.alertController.create({
       header: 'Confirmation',
-      message: 'Do you want to send request to '+item['first_name']+' '+item['last_name']+'?',
-      cssClass: 'add-patient',
+      message: 'Do you want to release <b>'+data['patient']['first_name']+' '+data['patient']['last_name']+'</b>? Please remind this cannot be undone.',
+      cssClass: 'release-patient',
       buttons: [
         {
           text: 'No',
           role: 'cancel',
-          cssClass: 'secondary',
+          cssClass: 'cancel',
           handler: () => {
           }
         }, {
           text: 'Yes',
+          cssClass: 'delete',
           handler: () => {
-            this.submitCompletion(item)
+            this.releasePatient(data);
           }
         }
       ]
     });
     await alert.present();
   }
+
+  /* Error handling for empty fields when sending cdar. */
   async allRequired() {
     const toast = await this.toastController.create({
       message: 'All fields are required',
@@ -298,6 +323,8 @@ export class MyPatientsPage implements OnInit {
     });
     toast.present();
   } 
+
+  /* Error handling for patient who did not agree with consent form */
   async agreeConsentForm(){
     const toast = await this.toastController.create({
       message: 'Patient must agree to consent form first.',
@@ -305,12 +332,14 @@ export class MyPatientsPage implements OnInit {
     });
     toast.present();
   }
+
+  /* Pop-up confirmation window for finalizing the cdar. */
   async showConfirmationMessage(){
 
     const alert = await this.alertController.create({
       header: 'CDAR',
-      message: 'Do you want create a new request for your CDAR?',
-      cssClass: 'add-patient',
+      message: 'Do you want to create a new request for your daily achievement record?',
+      cssClass: 'confirmation',
       buttons: [
         {
           text: 'No',
@@ -329,16 +358,20 @@ export class MyPatientsPage implements OnInit {
     });
     await alert.present();
   }
+
+  /* Pop-up window message for successful transaction. */
   async addSuccessMessage() {
     const alert = await this.alertController.create({
       header: 'Success',
       message: 'New Clinician Daily Achievement Record has been sent.',
       backdropDismiss: false,
+      cssClass: 'success-message',
       buttons: [{
         text:'Ok',
         handler: () => {
           this.requestMode = false;
           this.chooseInstructorMode = false;
+          this.consentForm = false;
           this.loader = false;
           this.date = '';
           this.procedure = '';
@@ -350,28 +383,30 @@ export class MyPatientsPage implements OnInit {
     });
     await alert.present();
   }
-  async successMessage() {
+
+  /* Pop-up window message for successful transaction. */
+  async releaseSuccessMessage() {
     const alert = await this.alertController.create({
-      header: 'Track Record',
-      message: 'Request for completion of track record has been sent.',
+      header: 'Success',
+      message: 'Patient has been released.',
       backdropDismiss: false,
+      cssClass: 'success-message',
       buttons: [{
         text:'Ok',
         handler: () => {
-          this.requestMode = false;
-          this.chooseInstructorCompletionMode = false;
-          this.loader = false;
-          this.trackRecordId = '';
           this.ionViewWillEnter();
         }
       }],
     });
     await alert.present();
   }
+
+  /* Pop-up window message for failed transaction */
   async errorMessage() {
     const alert = await this.alertController.create({
       header: 'Ooooops',
       message: 'Something went wrong. Please try again later.',
+      cssClass: 'error-message',
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -380,5 +415,14 @@ export class MyPatientsPage implements OnInit {
       }],
     });
     await alert.present();
+  }
+
+  /* Error handling for having an existing unapproved cdar. */
+  async hasUnapproved() {
+    const toast = await this.toastController.create({
+      message: 'Please make sure to complete first the prior daily achievement record.',
+      duration: 2000
+    });
+    toast.present();
   }
 }

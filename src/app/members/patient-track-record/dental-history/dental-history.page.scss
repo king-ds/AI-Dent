@@ -12,14 +12,14 @@
 }
 
 .toolbar-title {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Regular';
     color: white;
 }
 
 .loader {
     position: relative;
     float: left;
-    top: 25%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -31,7 +31,7 @@
     left: 50%;
     transform: translate(-50%, -50%); 
     color: #989a9c;
-    font-family: "Noto Sans", sans-serif; 
+    font-family: "NotoSans-Regular"; 
 }
 
 .dental-history-logo {
@@ -50,29 +50,28 @@
 }
 
 ion-card-content {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular';
+    text-align: justify;
 }
 
-ion-label {
-    font-family: 'Lato', sans-serif;
-}
-
-ion-input {
-    font-family: 'Lato', sans-serif;
-}
-
-ion-textarea {
-    font-family: 'Lato', sans-serif;
+ion-label, ion-input, ion-textarea, ion-item {
+    font-family: 'Lato-Regular';
 }
 
 .no-border {
     --border-color : white;
 }
 
-ion-item-divider {
-    margin-top: 15px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    color: white;
-    background-color: #20B2FF;
+.last-update {
+    font-family: 'NotoSans-Regular';
+    color: gray;
+    font-size: 13px;
+    text-align: center;
+}
+
+.label {
+    padding: 13px;
+    background-color: whitesmoke;
+    color: black;
+    font-family: 'Lato-Bold';  
 }

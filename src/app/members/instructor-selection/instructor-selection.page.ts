@@ -10,7 +10,10 @@ import { ToastController } from '@ionic/angular';
 export class InstructorSelectionPage implements OnInit {
 
   track_record : any;
-  isFemale : boolean = false;
+
+  isFemale : boolean;
+  isApproved : boolean = false;
+  isPending : boolean = false;
 
   constructor(private activatedRoute : ActivatedRoute,
               private router : Router,
@@ -22,9 +25,19 @@ export class InstructorSelectionPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(){
+
+  }
+
+  ionViewWillEnter() {
     if(this.track_record['patient']['gender'] == 'Female'){
       this.isFemale = true;
+    }
+    if(this.track_record['is_approved_instructor']){
+      this.isApproved = true;
+    }
+    if(this.track_record['pending_for_approval']){
+      this.isPending = true;
     }
   }
 
@@ -151,12 +164,34 @@ export class InstructorSelectionPage implements OnInit {
         track_record : this.track_record
       }
     };
-    this.router.navigate(['members', 'patient-treatment-record'], navigationExtras); 
+
+    if(this.isApproved){
+      this.router.navigate(['members', 'patient-treatment-record'], navigationExtras); 
+    }else{
+      this.notApproved();
+    }
+  }
+
+  goToDiagnosisTreatmentPlan(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+    this.router.navigate(['members', 'patient-diagnosis-treatmentplan'], navigationExtras);
   }
   
   async notFemale() {
     const toast = await this.toastController.create({
       message: 'This selection is only applicable for female patient.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async notApproved() {
+    const toast = await this.toastController.create({
+      message: 'This selection is only available upon completion of track record.',
       duration: 2000
     });
     toast.present();

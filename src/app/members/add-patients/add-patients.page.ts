@@ -21,9 +21,9 @@ export class AddPatientsPage implements OnInit {
               private storageService : StorageService) { }
 
   ngOnInit() {
-  
   }
 
+  /* This page will start by checking the available patient. */
   ionViewWillEnter(){
     this.loader = true;
     this.storageService.getObject('clinician').then((result) => {
@@ -37,10 +37,12 @@ export class AddPatientsPage implements OnInit {
       });
   }
 
+  /* Function for searching specific patient. */
   searchChanged(){
     this.results = this.apiService.searchPatient(this.searchTerm);
   }
 
+  /* Function for checking the list of available/released patient. */
   checkPatientList(){
     this.apiService.getPatientList().subscribe(val => {
       if(val == ''){
@@ -51,8 +53,17 @@ export class AddPatientsPage implements OnInit {
     });
   }
 
+  /* Function for getting the available patient. */
   getPatientList(){
     this.empty = false;
     this.results = this.apiService.getPatientList();
+  }
+
+  /* Refresh function */
+  doRefresh(event){
+    setTimeout(() => {
+      this.checkPatientList();
+      event.target.complete();
+    }, 2000);
   }
 }

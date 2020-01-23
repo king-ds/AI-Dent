@@ -68,14 +68,21 @@ ion-label {
     font-family: 'Lato-Regular';
 }
 
-ion-item-divider {
-    margin-top: 10px;
-    font-family: 'Montserrat-Regular';
-    font-size: 16px;
-    color: white;
-    background-color: #20B2FF;
-}
+// ion-item-divider {
+//     margin-top: 10px;
+//     font-family: 'Montserrat-Regular';
+//     font-size: 16px;
+//     color: white;
+//     background-color: #20B2FF;
+// }
 
 h3 {
     font-family: 'Lato-Regular';
+}
+
+.label {
+    padding: 13px;
+    background-color: whitesmoke;
+    color: black;
+    font-family: 'Lato-Bold';  
 }

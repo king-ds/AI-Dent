@@ -13,6 +13,7 @@ export class ClinicianCdarPage implements OnInit {
 
   all : boolean;
   today : boolean;
+  segment : string;
 
   todayCdar : Observable<any>;
   allCdar : Observable<any>;
@@ -35,6 +36,7 @@ export class ClinicianCdarPage implements OnInit {
   ionViewWillEnter(){
     this.loader = true;
     this.today = true;
+    this.segment = 'today'
     this.date = format(new Date(new Date()), "MMMM dd yyyy");
     this.storageService.getObject('clinician').then((result) => {
       this.clinician = result;

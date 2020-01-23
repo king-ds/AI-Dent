@@ -11,12 +11,12 @@
 
 <ion-content>
 
-  <ion-card>
+  <ion-card *ngIf="!loader">
     <div class="oral-assessment-logo">
         <img src="/assets/oral_assessment.png">
     </div>
     <ion-card-content>
-        These are your recent records for oral assessment. Please note that checkmark indicate abnormality.
+        These are recent records to your oral assessment. Please note that checkmark indicate abnormality.
     </ion-card-content>
   </ion-card>
 
@@ -24,9 +24,106 @@
     <ion-spinner name="crescent" style="color: black;"></ion-spinner>
   </div>
 
-  <div class="no-record" *ngIf="(!loader && !oralAssessment)">
-    NO DATA TO DISPLAY
-  </div>
+  <ion-list *ngIf="(!loader && !oralAssessment)">
+    <ion-item-divider></ion-item-divider>
+    <ion-item>
+      <ion-label class="ion-text-wrap">Skin</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Eyes</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Neck</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">TMD</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Lymph Nodes</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Lips</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Buccal Mucosa</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Vestibule</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Alveolar Ridge</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Hard/Soft Palate</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Oro-Pharynx</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Tongue</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Floor of Mouth</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">Salivary Glands</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="No data to show." readonly></ion-input>
+    </ion-item>
+  </ion-list>
 
   <ion-list *ngIf="(!loader && oralAssessment)">
     <ion-item-divider></ion-item-divider>

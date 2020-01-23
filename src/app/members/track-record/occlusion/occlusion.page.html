@@ -43,13 +43,13 @@
   </ion-card>
 
   <ion-list *ngIf="!loader">
-    <ion-item-divider></ion-item-divider>
 
+    <ion-item-divider class="label">Occlusion</ion-item-divider>
     <ion-radio-group (ionChange)="onChangeClass($event)">
 
-      <ion-list-header>
+      <!-- <ion-list-header>
         <ion-label>Occlusion</ion-label>
-      </ion-list-header>
+      </ion-list-header> -->
 
       <ion-item>
         <ion-label>Class I</ion-label>
@@ -66,34 +66,29 @@
         <ion-radio value="Class II div 2" [checked]="occlusionClass.class==='Class II div 2'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
-      <ion-item>
-        <ion-label>Class III</ion-label>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Class III</ion-label>
         <ion-radio value="Class III" [checked]="occlusionClass.class==='Class III'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
     </ion-radio-group>
 
-    <ion-item-divider></ion-item-divider>
+    <ion-item-divider class="label">Other Occlusal Abnormalities</ion-item-divider>
     <ion-item>
-      <ion-label>Other Occlusal Abnormalities</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-textarea [(ngModel)]="otherOcclusal" placeholder="Enter here..." [readonly]="isReadOnly"></ion-textarea>
+      <ion-textarea [(ngModel)]="otherOcclusal" placeholder="Enter other occlusal abnormalities here..." [readonly]="isReadOnly"></ion-textarea>
     </ion-item>
 
+    <ion-item-divider class="label">Parafunctional Oral Habits</ion-item-divider>
     <ion-item>
-      <ion-label>Parafunctional Oral Habits</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-textarea [(ngModel)]="oralHabits" placeholder="Enter here..." [readonly]="isReadOnly"></ion-textarea>
+      <ion-textarea [(ngModel)]="oralHabits" placeholder="Enter parafunctional oral habits here..." [readonly]="isReadOnly"></ion-textarea>
     </ion-item>
 
-    <ion-item-divider></ion-item-divider>
+    <ion-item-divider class="label">Plaque</ion-item-divider>
     <ion-radio-group (ionChange)="onChangePlaque($event)">
 
-      <ion-list-header>
+      <!-- <ion-list-header>
         <ion-label>Plaque</ion-label>
-      </ion-list-header>
+      </ion-list-header> -->
 
       <ion-item>
         <ion-label>Light</ion-label>
@@ -105,8 +100,8 @@
         <ion-radio value="Moderate" [checked]="plaqueType.type==='Moderate'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
 
-      <ion-item>
-        <ion-label>Heavy</ion-label>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Heavy</ion-label>
         <ion-radio value="Heavy" [checked]="plaqueType.type==='Heavy'" [disabled] = "isReadOnly"></ion-radio>
       </ion-item>
     </ion-radio-group>
@@ -123,15 +118,16 @@
       <ion-input [(ngModel)]="localizedDesc" placeholder="Enter here..." [readonly] = "isReadOnly"></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="isReadOnly">
-      <ion-label>
-        Enamel
+    <ion-item-divider class="label">Enamel</ion-item-divider>
+    <ion-item style="margin-left: -16px;" *ngIf="isReadOnly">
+      <ion-label style="padding-left: 16px;">
         <h3 *ngIf="erosion">Erosion</h3>
         <h3 *ngIf="demineralization">Demineralization</h3>
         <h3 *ngIf="attrtion">Attrition</h3>
         <h3 *ngIf="abfraction">Abfraction</h3>
         <h3 *ngIf="fluorosis">Fluorosis</h3>
         <h3 *ngIf="abrasion">Abrasion</h3>
+        <h3 *ngIf="(!erosion && !demineralization && !attrtion && !abfraction && !fluorosis && !abrasion)">No data to show.</h3>
       </ion-label>
     </ion-item>
 

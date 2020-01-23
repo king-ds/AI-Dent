@@ -11,33 +11,39 @@
 
 <ion-content>
 
-  <ion-card>
+  <ion-card *ngIf="!loader">
     <div class="complaint-logo">
       <img src="/assets/add_complaint.jpg">
     </div>
     <ion-card-content>
-      These are your recent details for complaint.
+      These are the recent details to your complaint.
     </ion-card-content>
   </ion-card>
 
   <div class="loader" *ngIf="loader">
       <ion-spinner name="crescent" style="color: black;"></ion-spinner>
   </div>
-
-  <div class="no-record" *ngIf="(!complaint && !loader)">
-    NO DATA TO DISPLAY
-  </div>
   
-  <ion-item-divider *ngIf="( complaint && !loader )"></ion-item-divider>
+  <ion-list *ngIf="( !complaint && !loader )">
+    <ion-item-divider class="label">Chief Complaint:</ion-item-divider>
+    <ion-item>
+      <ion-textarea rows="3" placeholder="No data to show" readonly></ion-textarea>
+    </ion-item>
+
+    <ion-item-divider class="label">History of Present Illness:</ion-item-divider>
+    <ion-item>
+      <ion-textarea rows="3" placeholder="No data to show" readonly></ion-textarea>
+    </ion-item>
+  </ion-list>
 
   <ion-list *ngIf="( complaint && !loader )">
+    <ion-item-divider class="label">Chief Complaint:</ion-item-divider>
     <ion-item>
-        <ion-label position="floating">Chief Complaint</ion-label>
         <ion-textarea rows="3" value="{{ complaint.chief_complaint }}" placeholder="No data to show" readonly></ion-textarea>
     </ion-item>
 
+    <ion-item-divider class="label">Chief Complaint:</ion-item-divider>
     <ion-item>
-        <ion-label position="floating">History of Present Illness</ion-label>
         <ion-textarea rows="3" value="{{ complaint.history_of_present_illness }}" placeholder="No data to show" readonly></ion-textarea>
     </ion-item>
   </ion-list>

@@ -108,6 +108,11 @@ const routes: Routes = [
     path: 'diagnosis-treatmentplan',
     loadChildren: () => import('./track-record/diagnosis-treatmentplan/diagnosis-treatmentplan.module').then( m => m.DiagnosisTreatmentplanPageModule)
   },
+  {
+    path: 'patient-diagnosis-treatmentplan',
+    loadChildren: () => import('./patient-track-record/diagnosis-treatmentplan/diagnosis-treatmentplan.module').then( m => m.DiagnosisTreatmentplanPageModule)
+  },
+
 
 
 ];

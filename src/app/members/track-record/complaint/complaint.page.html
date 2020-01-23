@@ -43,15 +43,14 @@
   </div>
 
   <ion-list *ngIf="!loader">
-    <ion-item-divider></ion-item-divider>
+    <ion-item-divider class="label">Chief Complaint:</ion-item-divider>
     <ion-item>
-        <ion-label position="floating">Chief Complaint</ion-label>
         <ion-textarea rows="3" [(ngModel)]="chiefComplaint" [readonly] = "isReadOnly" placeholder="Enter chief complaint here..."></ion-textarea>
     </ion-item>
 
+    <ion-item-divider class="label">History of Present Illness:</ion-item-divider>
     <ion-item>
-        <ion-label position="floating">History of Present Illness</ion-label>
-        <ion-textarea rows="3" [(ngModel)]="historyOfPresentIllness" [readonly] = "isReadOnly" placeholder="Enter history of present illness here..."></ion-textarea>
+      <ion-textarea rows="3" [(ngModel)]="historyOfPresentIllness" [readonly] = "isReadOnly" placeholder="Enter history of present illness here..."></ion-textarea>
     </ion-item>
   </ion-list>
 

@@ -15,11 +15,14 @@ export class RegistrationInstructorPage implements OnInit {
   public submit_attempt : boolean = false;
   check_check_box = false;
 
+  passwordType : string = 'password';
+  passwordShown : boolean = false;
+
   validation_messages = {
     'username' : [
       { type : 'required', message : 'Username is required.' },
       { type : 'minlength', message : 'Username must be at least 6 characters long.' },
-      { type : 'username_InUse', message : 'Username is not available' },
+      { type : 'username_InUse', message : 'Username is already taken' },
     ],
     'first_name' : [
       { type : 'required', message : 'First Name is required.' },
@@ -91,6 +94,16 @@ export class RegistrationInstructorPage implements OnInit {
       this.api_service.post_register_clinical_instructor(register_data);
       this.submit_attempt = false;
       this.register_form.reset();
+    }
+  }
+
+  public togglePassword(){
+    if(this.passwordShown){
+      this.passwordShown = false;
+      this.passwordType = 'password';
+    }else{
+      this.passwordShown = true;
+      this.passwordType = 'text';
     }
   }
 

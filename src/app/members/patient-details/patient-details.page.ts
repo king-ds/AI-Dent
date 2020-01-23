@@ -3,7 +3,8 @@ import { ApiService } from './../../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { StorageService } from './../../services/storage.service';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
+import { error } from 'util';
 
 @Component({
   selector: 'app-patient-details',
@@ -18,16 +19,23 @@ export class PatientDetailsPage implements OnInit {
   debouncer : any;
   add_patient : boolean;
   add_complaint : boolean;
-  add_track_record : boolean;
-  track_record_id : string;
+  trackRecordId : string;
+  hasTrackRecord : boolean;
 
   constructor(private activatedRoute : ActivatedRoute,
               private apiService : ApiService,
               private storageService : StorageService,
               private router : Router,
-              private alertController : AlertController) { }
+              private alertController : AlertController,
+              private navController : NavController) { }
 
   ngOnInit() {
+  }
+
+  /* At the very beginning of this page. Get the following details: 
+  @ Clinician
+  @ Patient */
+  ionViewWillEnter(){
     this.loader = true;
     this.debouncer = setTimeout(() =>{
       this.getCurrentClinician();
@@ -36,39 +44,63 @@ export class PatientDetailsPage implements OnInit {
     }, 2000)
   }
 
+  /* Function for assigning patient to clinician. 
+  Adding new track record if not existing and updating if existing. */
   addPatient(){
     this.loader = true;
-    let patient_id = this.information['id'];
+    let patientId = this.information['id'];
 
-    // Add track record
-    this.debouncer = setTimeout(() => {
-    let trackRecord = {
-      "patient" : patient_id,
-      "clinician" : this.clinician,
-    }
-      this.addTrackRecord(trackRecord);
-    }, 2000)
+    this.getPatientTrackRecord(patientId);
 
-    // Update patient status
-    this.debouncer = setTimeout(() =>{
-      let assignedData = {
-        'assigned_to' : this.clinician,
-        'has_doctor' : true,
+    setTimeout(() => {
+      if(this.hasTrackRecord){
+        console.log('has track record')
+        let trackRecordData = {
+          "clinician": this.clinician
+        }
+
+        this.updateTrackRecord(this.trackRecordId, trackRecordData);
+
+        let patientData = {
+          "assigned_to": this.clinician,
+          "has_doctor": true,
+        }
+  
+        this.updatePatient(patientId, patientData);
+  
+      }else{
+        console.log('no track record')
+        let trackRecordData = {
+            "patient": patientId,
+            "clinician": this.clinician,
+          }
+  
+        this.addTrackRecord(trackRecordData);
+  
+        let patientData = {
+          "has_doctor": true,
+        }
+  
+        this.updatePatient(patientId, patientData);
       }
+    }, 2000)
+  }
 
-      this.updatePatient(patient_id, assignedData);
-      this.loader = false;
-    }, 4000);
+  updateTrackRecord(trackRecordId, trackRecordData){
+    this.apiService.updateTrackRecord(trackRecordData, trackRecordId).then((res) => {
+    console.log(res);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   addTrackRecord(data){
     this.apiService.addTrackRecord(data).then(res => {
-      this.track_record_id = res['id']
-      this.add_track_record = true;
+      this.trackRecordId = res['id']
     })
     .catch(error => {
       console.log(error);
-      this.add_track_record = false;
     });
   }
 
@@ -82,6 +114,16 @@ export class PatientDetailsPage implements OnInit {
       console.log(error);
       this.add_patient = false;
       this.errorMessage();
+    });
+  }
+
+  getPatientTrackRecord(patientId){
+    this.apiService.getMyTrackRecord(patientId).subscribe((val) => {
+      this.hasTrackRecord = true;
+      this.trackRecordId = val['id'];
+    }, 
+    (error) => {
+      this.hasTrackRecord = false;
     });
   }
 
@@ -104,10 +146,11 @@ export class PatientDetailsPage implements OnInit {
       header: 'Success',
       message: this.information['first_name']+' '+this.information['last_name']+' added to your patient',
       backdropDismiss: false,
+      cssClass: 'success-message',
       buttons: [{
         text:'Ok',
         handler: () => {
-          this.router.navigate(['members', 'menu', 'clinician-dashboard']);
+          this.navController.navigateRoot(['members', 'menu', 'clinician-dashboard']);
         }
       }],
     });
@@ -119,10 +162,11 @@ export class PatientDetailsPage implements OnInit {
       header: 'Ooooops',
       message: 'Something went wrong. Please try again later.',
       backdropDismiss: false,
+      cssClass: 'error-message',
       buttons: [{
         text:'Ok',
         handler: () => {
-          this.router.navigate(['members', 'menu', 'clinician-dashboard']);
+          this.navController.navigateRoot(['members', 'menu', 'clinician-dashboard']);
         }
       }],
     });
@@ -134,7 +178,7 @@ export class PatientDetailsPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Add Patient',
       message: 'Do you want to add this patient?',
-      cssClass: 'add-patient',
+      cssClass: 'confirmation',
       backdropDismiss: false,
       buttons: [
         {

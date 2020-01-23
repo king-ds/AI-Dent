@@ -1,4 +1,13 @@
 <ion-content>
+    
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" *ngIf="!loader">
+        <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="Pull to refresh"
+            refreshingSpinner="crescent">
+        </ion-refresher-content>
+    </ion-refresher>
+
     <div class="header">
         <div class="header-text">TRACK RECORDS</div>
 
@@ -16,7 +25,7 @@
     </div>
 
     <div class="no-patient-available" *ngIf="(!loader && empty)">
-        NO PATIENTS WERE ADDED
+        NO PATIENTS WERE ASSIGNED
     </div>
 
     <ion-list *ngIf="( !loader )">

@@ -44,7 +44,8 @@
 
         <ion-item>
             <ion-label position="floating">Password</ion-label>
-            <ion-input formControlName="password" id="password" clearInput type="password" required></ion-input>
+            <ion-input formControlName="password" id="password" [type]="passwordType" required></ion-input>
+            <ion-icon name="eye" [color]="passwordShown === true ? 'dark' : 'medium'" slot="end" (click)="togglePassword()" ion-align-self-center></ion-icon>
         </ion-item>
         <div class="error-prompt">
             <ng-container *ngFor="let validation of validation_messages.password">
@@ -56,7 +57,7 @@
 
         <ion-item>
             <ion-label position="floating">Confirm password</ion-label>
-            <ion-input formControlName="password_again" id="password_again" clearInput type="password" required></ion-input>
+            <ion-input formControlName="password_again" id="password_again" [type]="passwordType" required></ion-input>
         </ion-item>
         <div class="error-prompt" *ngIf="register_form.hasError('mismatchedPasswords') && (register_form.get('password_again').touched || submit_attempt )">
             &nbsp;&nbsp;<ion-icon name="alert"></ion-icon>&nbsp;&nbsp;Password mismatch

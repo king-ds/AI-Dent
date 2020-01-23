@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { AlertController } from '@ionic/angular';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-medical-history',
@@ -22,6 +23,7 @@ export class MedicalHistoryPage implements OnInit {
   childhoodDiseaseHistory : string;
   hasMedicalHistory : boolean;
   medicalHistoryId : string;
+  dateTimeAdded : string;
 
   constructor(private router : Router,
               private activatedRoute : ActivatedRoute,
@@ -52,6 +54,7 @@ export class MedicalHistoryPage implements OnInit {
           this.illnesses = val['illnesses']
           this.medications = val['medications']
           this.childhoodDiseaseHistory = val['childhood_disease_history']
+          this.dateTimeAdded = val['datetime_added']
         }
         this.loader = false;
       })
@@ -79,7 +82,7 @@ export class MedicalHistoryPage implements OnInit {
           "illnesses" : this.illnesses,
           "medications" : this.medications,
           "childhood_disease_history" : this.childhoodDiseaseHistory,
-          "datetime_added" : new Date(),
+          "datetime_added" : new Date()
         }
       }
     
@@ -103,7 +106,7 @@ export class MedicalHistoryPage implements OnInit {
         "illnesses" : this.illnesses,
         "medications" : this.medications,
         "childhood_disease_history" : this.childhoodDiseaseHistory,
-        "datetime_added" : new Date(),
+        "datetime_added" : new Date()
       }
 
       this.debouncer = setTimeout(() => {

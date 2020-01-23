@@ -39,6 +39,13 @@ ion-card-content {
     text-align: justify;
 }
 
-ion-label, ion-item, ion-textarea {
+ion-item, ion-textarea {
     font-family: 'Lato-Regular';
+}
+
+.label {
+    padding: 13px;
+    background-color: whitesmoke;
+    color: black;
+    font-family: 'Lato-Bold';  
 }

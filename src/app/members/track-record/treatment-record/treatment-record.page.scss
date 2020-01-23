@@ -74,9 +74,25 @@
 
 ion-card-content {
     font-family: 'Montserrat-Regular';
+    text-align: justify;
 }
 
 ion-card-title {
     margin: 10px;
     font-family: 'Montserrat-Regular';
+}
+
+.header {
+    font-family: 'Montserrat-Regular';
+    font-size: 15px;
+    color: white;
+    background-color: #20B2FF;
+    padding: 13px;
+}
+
+.label {
+    padding: 13px;
+    background-color: whitesmoke;
+    color: black;
+    font-family: 'Lato-Bold';  
 }

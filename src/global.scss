@@ -36,6 +36,47 @@
 }
 
 .terms-conditions {
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Lato-Regular';
+    font-size: 12px;
     --width: 700px;
+    text-align: justify;
+}
+
+.success-message, .error-message {
+    font-family: 'Lato-Regular';
+    font-size: 12px;
+    text-align: justify;
+}
+
+.release-patient {
+    font-family: 'Lato-Regular';
+
+    button.alert-button.delete {
+        color: red;
+        font-family: 'Lato-Bold';
+    }
+
+    button.alert-button.cancel {
+        color: blue;
+        font-family: 'Lato-Bold';
+    }
+}
+
+.confirmation {
+    font-family: 'Lato-Regular';
+    text-align: justify;
+}
+
+.alert-tappable.alert-radio {
+    height: auto;
+    contain: content;
+}
+
+.alert-radio-label.sc-ion-alert-md,
+.alert-radio-label.sc-ion-alert-ios {
+    white-space: normal;
+}
+
+.alert-checkbox-label.sc-ion-alert-md{
+    white-space: normal;
 }

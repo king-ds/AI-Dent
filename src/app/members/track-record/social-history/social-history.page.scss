@@ -36,14 +36,24 @@
 
 ion-card-content {
     font-family: 'Montserrat-Regular';
+    text-align: justify;
 }
 
-ion-label {
+ion-label, ion-item {
     font-family: 'Lato-Regular';
 }
 
-ion-item-divider {
-    font-family: 'Montserrat-Regular';
-    font-size: 20px;
+.last-update {
+    font-family: 'NotoSans-Regular';
+    margin-top: -5px;
+    color: gray;
+    font-size: 13px;
+    text-align: center;
+}
+
+.label {
+    padding: 13px;
+    background-color: whitesmoke;
     color: black;
+    font-family: 'Lato-Bold';  
 }

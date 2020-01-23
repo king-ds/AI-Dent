@@ -41,29 +41,32 @@ export class InstructorCdarPage implements OnInit {
     this.all = false;
     this.segment = 'today'
     this.date = format(new Date(new Date()), "MMMM dd yyyy");
-    this.storageService.getObject('instructor').then((result) => {
-      this.instructor = result;
+    setTimeout(() => {
+      this.storageService.getObject('instructor').then((result) => {
+        this.instructor = result;
+        this.getCdar();
+      })
+    }, 2000)
+  }
 
-      this.debouncer = setTimeout(() => {
-        this.todayCdar = this.apiService.getInstructorTodayCdar(this.instructor['id']);
-        this.todayCdar.subscribe((val) => {
-          if(val == ''){
-            this.emptyTodayCdar = true;
-          }else{
-            this.emptyTodayCdar = false;
-          }
-        });
-        this.allCdar = this.apiService.getInstructorAllCdar(this.instructor['id']);
-        this.allCdar.subscribe((val) => {
-          if(val == ''){
-            this.emptyAllCdar = true;
-          }else{
-            this.emptyAllCdar = false;
-          }
-        });
-        this.loader = false;
-      }, 2000)
-    })
+  getCdar(){
+    this.todayCdar = this.apiService.getInstructorTodayCdar(this.instructor['id']);
+    this.todayCdar.subscribe((val) => {
+      if(val == ''){
+        this.emptyTodayCdar = true;
+      }else{
+        this.emptyTodayCdar = false;
+      }
+    });
+    this.allCdar = this.apiService.getInstructorAllCdar(this.instructor['id']);
+    this.allCdar.subscribe((val) => {
+      if(val == ''){
+        this.emptyAllCdar = true;
+      }else{
+        this.emptyAllCdar = false;
+      }
+    });
+    this.loader = false;
   }
 
   activateToday(){
@@ -95,23 +98,43 @@ export class InstructorCdarPage implements OnInit {
     setTimeout(() => {
       let cdarData = {
         'instructor_signature' : true,
+        'pending_for_approval' : false,
       }
-
-      this.apiService.updateCDAR(cdarData, item['id']).then((res) => {
-        this.successMessage();
-      })
-      .catch(error => {
-        this.errorMessage();
-        console.log(error);
-      })
+      if(item['from_treatment_record']){
+        let treatmentRecordData = {
+          'instructor_signature' : true,
+          'pending_for_approval' : false,
+        }
+        this.apiService.updateTreatmentRecord(treatmentRecordData, item['treatment_record']).then((res) => {
+          this.apiService.updateCDAR(cdarData, item['id']).then((res) => {
+            this.successMessage();
+          })
+          .catch(error => {
+            console.log(error);
+            this.errorMessage();
+          })
+        })
+        .catch(error => {
+          console.log(error);
+        })
+      }else{
+        this.apiService.updateCDAR(cdarData, item['id']).then((res) => {
+          this.successMessage();
+        })
+        .catch(error => {
+          console.log(error);
+          this.errorMessage();
+        })
+      }
     }, 2000)
   }
   
   async showApproveCdarMessage(item){
+    console.log(item);
     const alert = await this.alertController.create({
       header: 'CDAR',
-      message: 'Do you want to approve this record? Please note that this cannot be undone.',
-      cssClass: 'add-patient',
+      message: 'Do you want to approve this record? Please note this cannot be undone.',
+      cssClass: 'confirmation',
       buttons: [
         {
           text: 'No',
@@ -134,6 +157,7 @@ export class InstructorCdarPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Great',
       message: 'Clinician daily achievement record has been approved.',
+      cssClass: 'success-message',
       backdropDismiss: false,
       buttons: [{
         text:'Ok',
@@ -149,6 +173,7 @@ export class InstructorCdarPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Ooooops',
       message: 'Something went wrong. Please try again later.',
+      cssClass: 'error-message',
       backdropDismiss: false,
       buttons: [{
         text:'Ok',
@@ -158,5 +183,13 @@ export class InstructorCdarPage implements OnInit {
       }],
     });
     await alert.present();
+  }
+
+  /* Utility function for refreshing the current page. */
+  doRefresh(event){
+    setTimeout(() => {
+      this.getCdar();
+      event.target.complete();
+    }, 2000);
   }
 }

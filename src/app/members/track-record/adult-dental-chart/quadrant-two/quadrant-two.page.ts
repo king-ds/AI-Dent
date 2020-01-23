@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -57,7 +57,8 @@ export class QuadrantTwoPage implements OnInit {
   constructor(private apiService : ApiService,
               private activatedRoute : ActivatedRoute,
               private router : Router,
-              private alertController : AlertController,) { 
+              private alertController : AlertController,
+              private toastController : ToastController) { 
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.trackRecord = this.router.getCurrentNavigation().extras.state.track_record;
@@ -154,124 +155,148 @@ export class QuadrantTwoPage implements OnInit {
     this.CDRS = [
       {
         id : 1,
-        name : "APC",
-        value : this.APC
+        name : "All porcelain crown",
+        value : this.APC,
+        color : 'b',
       },
       {
         id : 2,
-        name : "Ab",
-        value : this.Ab
+        name : "Abutment",
+        value : this.Ab,
+        color : 'b',
       },
       {
         id : 3,
-        name : "Am",
-        value : this.Am
+        name : "Amalgam",
+        value : this.Am,
+        color : 'b',
       },
       {
         id : 4,
-        name : "C",
-        value : this.C
+        name : "Carries",
+        value : this.C,
+        color : 'r',
       },
       {
         id : 5,
-        name : "CD",
-        value : this.CD
+        name : "Complete Denture",
+        value : this.CD,
+        color : 'r',
       },
       {
         id : 6, 
-        name : "CF",
-        value : this.CF
+        name : "Caries Free",
+        value : this.CF,
+        color : 'c',
       },
       {
         id : 7,
-        name : "Co",
-        value : this.Co
+        name : "Composite",
+        value : this.Co,
+        color : 'b',
       },
       {
         id : 8,
-        name : "F",
-        value : this.F
+        name : "Fractured",
+        value : this.F,
+        color : 'r',
       },
       {
         id : 9,
-        name : "GC",
-        value : this.GC
+        name : "Gold crown",
+        value : this.GC,
+        color : 'b',
       },
       {
         id : 10,
-        name : "GI",
-        value : this.GI
+        name : "Glassionomer",
+        value : this.GI,
+        color : 'b',
       },
       {
         id : 11,
-        name : "Imp",
-        value : this.GI
+        name : "Impacted",
+        value : this.Imp,
+        color : 'r',
       },
       {
         id : 12,
-        name : "In",
-        value : this.In
+        name : "Inlay",
+        value : this.In,
+        color : 'r',
       },
       {
         id : 13,
-        name : "M",
-        value : this.M
+        name : "Missing",
+        value : this.M,
+        color : 'bl',
       },
       {
         id : 14,
-        name : "MC",
-        value : this.MC
+        name : "Metal crown",
+        value : this.MC,
+        color : 'b',
       },
       {
         id : 15,
-        name : "P",
-        value : this.P
+        name : "Pontic",
+        value : this.P,
+        color : 'b'
       },
       {
         id : 16,
-        name : "PFG",
-        value : this.PFG
+        name : "Porcelain fused to gold",
+        value : this.PFG,
+        color : 'b',
       },
       {
         id : 17,
-        name : "PFM",
-        value : this.PFM
+        name : "Porcelain fused to metal",
+        value : this.PFM,
+        color : 'b',
       },
       {
         id : 18,
-        name : "PFS",
-        value : this.PFS
+        name : "Pit and fissure sealant",
+        value : this.PFS,
+        color : 'b',
       },
       {
         id : 19,
-        name : "RC",
-        value : this.RC
+        name : "Recurrent caries",
+        value : this.RC,
+        color : 'r',
       },
       {
         id : 20,
-        name : "RPD",
-        value : this.RPD
+        name : "Removable Partial denture",
+        value : this.RPD,
+        color : 'r'
       },
       {
         id : 21,
-        name : "SS",
-        value : this.SS
+        name : "Stainless steel crown",
+        value : this.SS,
+        color : 'b',
       },
       {
         id : 22,
-        name : "Un",
-        value : this.Un
+        name : "Unerupted",
+        value : this.Un,
+        color : 'r',
       },
       {
         id : 23,
-        name : "X",
-        value : this.X
+        name : "Indicated for extraction",
+        value : this.X,
+        color : 'r',
       },
     ]
   }
 
   OnChange(event){
     var selectedData = event.target.value;
+    
     if(selectedData.includes(1)){
       this.APC = true;
     }else{
@@ -299,6 +324,16 @@ export class QuadrantTwoPage implements OnInit {
     }
     if(selectedData.includes(6)){
       this.CF = true;
+      if(selectedData == 6){
+        this.top = '';
+        this.left = '';
+        this.right = '';
+        this.bottom = '';
+        this.middle = '';
+      }else{
+        this.warningMessage("It is impossible to have restoration or caries if caries free is selected.");
+        this.CF = false;
+      }
     }else{
       this.CF = false;
     }
@@ -334,6 +369,21 @@ export class QuadrantTwoPage implements OnInit {
     }
     if(selectedData.includes(13)){
       this.M = true;
+      if(selectedData == 13){
+        this.top = 'bl';
+        this.left = 'bl';
+        this.right = 'bl';
+        this.bottom = 'bl';
+        this.middle = 'bl';
+      }else{
+        this.warningMessage("Missing teeth with caries or restoration is not a valid option.");
+        this.top = '';
+        this.left = '';
+        this.right = '';
+        this.bottom = '';
+        this.middle = '';
+        this.M = false;
+      }
     }else{
       this.M = false;
     }
@@ -384,8 +434,31 @@ export class QuadrantTwoPage implements OnInit {
     }
     if(selectedData.includes(23)){
       this.X = true;
+      if(selectedData == 23){
+        this.top = 'r';
+        this.left = 'r';
+        this.right = 'r';
+        this.bottom = 'r';
+        this.middle = 'r';
+      }else{
+        this.warningMessage("Restoration or having caries is not a right option for extracted teeth.");
+        this.top = '';
+        this.left = '';
+        this.right = '';
+        this.bottom = '';
+        this.middle = '';
+        this.X = false;
+      }
     }else{
       this.X = false;
+    }
+
+    if(selectedData == ''){
+      this.top = '';
+      this.left = '';
+      this.right = '';
+      this.bottom = '';
+      this.middle = '';
     }
   }
 
@@ -614,4 +687,12 @@ export class QuadrantTwoPage implements OnInit {
     await alert.present();
   }
 
+  async warningMessage(message){
+    const toast = await this.toastController.create({
+      message: 'Warning: '+message,
+      position: 'bottom',
+      duration: 5000
+    });
+    toast.present();
+  }
 }

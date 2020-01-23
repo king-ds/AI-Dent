@@ -51,6 +51,8 @@ export class DentalHistoryPage implements OnInit {
   relevantJawPain : string;
   relevantFoodCatch : string;
 
+  dateTimeAdded : string;
+
   constructor(private router : Router,
               private activatedRoute : ActivatedRoute,
               private apiService : ApiService,
@@ -105,6 +107,7 @@ export class DentalHistoryPage implements OnInit {
           this.relevantJawPain = val['relevant_jaw_pain']
           this.foodCatch = val['catch']
           this.relevantFoodCatch = val['relevant_catch']
+          this.dateTimeAdded = val['datetime_added']
         }
         this.loader = false
       })
@@ -155,7 +158,8 @@ export class DentalHistoryPage implements OnInit {
           "bleed": this.bleed,
           "denture": this.denture,
           "jaw_pain": this.jawPain,
-          "catch": this.foodCatch
+          "catch": this.foodCatch,
+          "datetime_added" : new Date(),
         }
       }
 

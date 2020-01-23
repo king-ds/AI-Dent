@@ -1,5 +1,13 @@
 <ion-content>
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" *ngIf="!loader">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="crescent">
+    </ion-refresher-content>
+  </ion-refresher>
+  
   <div class="header">
       <div class="header-text">ACHIEVEMENT RECORDS</div>
 

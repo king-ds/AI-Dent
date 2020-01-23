@@ -9,11 +9,13 @@
 
     <ion-tab-bar slot="bottom" class="tabs">
       <ion-tab-button tab="instructor-track-records">
+        <ion-badge color="danger" *ngIf="trackRecordCount">{{ trackRecordCount }}</ion-badge>
         <ion-icon name="paper"></ion-icon>
         <ion-label>Record</ion-label>
       </ion-tab-button>
       
-      <ion-tab-button tab="instructor-cdar">
+      <ion-tab-button ion-button icon-only tab="instructor-cdar">
+        <ion-badge color="danger" *ngIf="cdarCount">{{ cdarCount }}</ion-badge>
         <ion-icon name="calendar"></ion-icon>
         <ion-label>CDAR</ion-label>
       </ion-tab-button>

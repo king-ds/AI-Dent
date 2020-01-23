@@ -1,4 +1,13 @@
 <ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" *ngIf="!loader">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="crescent">
+    </ion-refresher-content>
+  </ion-refresher>
+  
   <div class="header">
     <div class="header-text">MY PATIENTS</div>
 
@@ -6,7 +15,7 @@
       Hi {{ clinician.last_name }}, here is the current list of your patients.
     </div>
 
-    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)" [disabled]="( chooseInstructorMode || chooseInstructorCompletionMode )"></ion-searchbar>
+    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)" [disabled]="( chooseInstructorMode )"></ion-searchbar>
     <ion-item-divider></ion-item-divider>
   </div>
 
@@ -21,7 +30,7 @@
 
   <div>
   <!-- My Patients -->
-  <ion-list *ngIf="( !loader && !requestMode && !chooseInstructorMode && !chooseInstructorCompletionMode)">
+  <ion-list *ngIf="( !loader && !requestMode && !chooseInstructorMode)">
     <ion-item-sliding button *ngFor="let item of (results | async)">
       <ion-item>
       
@@ -44,8 +53,8 @@
 
       </ion-item>
       <ion-item-options side="end">
+        <ion-item-option color="light" (click)="showReleaseConfirmation(item)"><ion-icon name="return-left" style="width:25px; height:25px;"></ion-icon></ion-item-option>
         <ion-item-option color="secondary" *ngIf="item.is_approved_instructor" (click)="intitiateCDAR(item)"><ion-icon style="width:30px; height:30px;" name="add-circle-outline"></ion-icon></ion-item-option>
-        <ion-item-option color="secondary" *ngIf="(!item.pending_for_approval && !item.is_approved_instructor)" (click)="showConsentCompletionForm(item)"><ion-icon style="width:30px; height:30px;" name="done-all"></ion-icon></ion-item-option>
         <ion-item-option color="secondary" *ngIf="(item.pending_for_approval && !item.is_approved_instructor)" >Pending</ion-item-option>
         <ion-item-option color="primary" [routerLink]="['/', 'members', 'selection', item.id]"><ion-icon style="width:30px; height:30px;" name="arrow-dropright"></ion-icon></ion-item-option>
       </ion-item-options>
@@ -54,7 +63,7 @@
   </ion-list>
 
   <!-- CDAR FORM -->
-  <ion-list *ngIf="(!loader && requestMode && !chooseInstructorMode && !chooseInstructorCompletionMode)">
+  <ion-list *ngIf="(!loader && requestMode && !chooseInstructorMode)">
     <ion-card>
       <ion-card-title>Request CDAR Form</ion-card-title>
       <ion-item>
@@ -95,7 +104,7 @@
   </ion-list>
 
   <!-- Select Instructor (CDAR) -->
-  <ion-card *ngIf = "(!loader && !requestMode && chooseInstructorMode && !chooseInstructorCompletionMode)">
+  <ion-card *ngIf = "(!loader && !requestMode && chooseInstructorMode)">
     <ion-card-title>Choose Instructor</ion-card-title>
     <ion-item-divider>
       <ion-icon slot="start" name="arrow-back" (click)="cancelChooseInstructor()"></ion-icon><ion-searchbar class="searchbar" [(ngModel)]="searchInstructorTerm" (ionChange)="searchInstructor($event)" placeholder="Search Instructor" animated></ion-searchbar>
@@ -116,26 +125,5 @@
     </ion-list>
   </ion-card>
 
-  <!-- Select Instructor (Completion) -->
-  <ion-card *ngIf = "(!loader && !requestMode && !chooseInstructorMode && chooseInstructorCompletionMode)">
-    <ion-card-title>Choose Instructor</ion-card-title>
-    <ion-item-divider>
-      <ion-icon slot="start" name="arrow-back" (click)="cancelChooseInstructorCompletion()"></ion-icon><ion-searchbar class="searchbar" [(ngModel)]="searchInstructorTerm" (ionChange)="searchInstructor($event)" placeholder="Search Instructor" animated></ion-searchbar>
-    </ion-item-divider>
-
-    <ion-list>
-      <ion-item class="item" button *ngFor="let item of (instructors | async)" (click)="showChooseInstructorCompletionMessage(item)">
-
-        <ion-avatar slot="start">
-            <img src='/assets/register-clinician-instructor.png'>
-        </ion-avatar>
-
-        <ion-label class="ion-text-wrap">
-            <h3>{{ item.first_name }} {{ item.last_name }}</h3>
-        </ion-label>
-
-      </ion-item>
-    </ion-list>
-  </ion-card>
   </div>
 </ion-content>

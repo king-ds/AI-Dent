@@ -30,13 +30,13 @@ export class InstructorTrackRecordsPage implements OnInit {
 
   ionViewWillEnter(){
     this.loader = true;
-    this.storageService.getObject('instructor').then((result) => {
-      this.instructor = result;
-      this.debouncer = setTimeout(() => {
+    setTimeout(() => {
+      this.storageService.getObject('instructor').then((result) => {
+        this.instructor = result;
         this.checkMyList();
         this.loader = false;
-      }, 2000)
-    })
+      })
+    }, 2000)
   }
 
   searchChanged(){
@@ -135,5 +135,13 @@ export class InstructorTrackRecordsPage implements OnInit {
       }],
     });
     await alert.present();
+  }
+
+  /* Utility function for refreshing the current page. */
+  doRefresh(event){
+    setTimeout(() => {
+      this.checkMyList();
+      event.target.complete();
+    }, 2000);
   }
 }

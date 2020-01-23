@@ -42,11 +42,10 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-item-divider></ion-item-divider>
     <ion-list>
-      <ion-item-divider>Tobacco</ion-item-divider>
-      <ion-item>
-        <ion-label>Are you using tobacco?</ion-label>
+      <ion-item-divider class="label">Tobacco</ion-item-divider>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Are you using tobacco?</ion-label>
         <ion-checkbox [(ngModel)]="tobacco" [disabled]="isReadOnly"></ion-checkbox>
       </ion-item>
       <ion-item>
@@ -62,9 +61,9 @@
         <ion-input [(ngModel)]="stopTobacco" placeholder="Have stopped. How long?" [readonly]="isReadOnly"></ion-input>
       </ion-item>
 
-      <ion-item-divider>Cigarettes</ion-item-divider>
-      <ion-item>
-        <ion-label>Are you using cigarretes?</ion-label>
+      <ion-item-divider class="label">Cigarettes</ion-item-divider>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Are you using cigarretes?</ion-label>
         <ion-checkbox [(ngModel)]="cigarettes" [disabled]="isReadOnly"></ion-checkbox>
       </ion-item>
       <ion-item>
@@ -80,9 +79,9 @@
         <ion-input [(ngModel)]="stopCigarettes" placeholder="Have stopped. How long?" [readonly]="isReadOnly"></ion-input>
       </ion-item>
 
-      <ion-item-divider>Electronic Cigarette (Vaping)</ion-item-divider>
-      <ion-item>
-        <ion-label>Are you using vape?</ion-label>
+      <ion-item-divider class="label">Electronic Cigarette (Vaping)</ion-item-divider>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Are you using vape?</ion-label>
         <ion-checkbox [(ngModel)]="vape" [disabled]="isReadOnly"></ion-checkbox>
       </ion-item>
       <ion-item>
@@ -98,9 +97,9 @@
         <ion-input [(ngModel)]="stopVape" placeholder="Have stopped. How long?" [readonly]="isReadOnly"></ion-input>
       </ion-item>
 
-      <ion-item-divider>Drugs for recreation</ion-item-divider>
-      <ion-item>
-        <ion-label>Are you using drugs for recreation?</ion-label>
+      <ion-item-divider class="label">Drugs for recreation</ion-item-divider>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Are you using drugs for recreation?</ion-label>
         <ion-checkbox [(ngModel)]="drugsForRecreation" [disabled]="isReadOnly"></ion-checkbox>
       </ion-item>
       <ion-item>
@@ -116,9 +115,9 @@
         <ion-input [(ngModel)]="stopRecreation" placeholder="Have stopped. How long?" [readonly]="isReadOnly"></ion-input>
       </ion-item>
 
-      <ion-item-divider>Drugs for therapeutic</ion-item-divider>
-      <ion-item>
-        <ion-label>Are you using drugs for therapeutic?</ion-label>
+      <ion-item-divider class="label">Drugs for therapeutic</ion-item-divider>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Are you using drugs for therapeutic?</ion-label>
         <ion-checkbox [(ngModel)]="drugsForTherapeutic" [disabled]="isReadOnly"></ion-checkbox>
       </ion-item>
       <ion-item>
@@ -134,9 +133,9 @@
         <ion-input [(ngModel)]="stopTherapeutic" placeholder="Have stopped. How long?" [readonly]="isReadOnly"></ion-input>
       </ion-item>
 
-      <ion-item-divider>Alcoholic Beverages</ion-item-divider>
-      <ion-item>
-        <ion-label>Do you drink alcholic beverages?</ion-label>
+      <ion-item-divider class="label">Alcoholic Beverages</ion-item-divider>
+      <ion-item style="margin-left: -16px;">
+        <ion-label style="padding-left: 16px;">Do you drink alcholic beverages?</ion-label>
         <ion-checkbox [(ngModel)]="alcoholicBeverages" [disabled]="isReadOnly"></ion-checkbox>
       </ion-item>
       <ion-item>
@@ -154,5 +153,7 @@
 
     </ion-list>
 
+    <hr>
+    <p class="last-update" *ngIf="dateTimeAdded">Last update: {{ dateTimeAdded }}</p>
   </div>
 </ion-content>

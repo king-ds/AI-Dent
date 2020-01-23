@@ -11,7 +11,7 @@
   
   <ion-content>
   
-    <ion-card>
+    <ion-card *ngIf="!loader">
       <div class="vital-sign-logo">
           <img src="/assets/vital_sign.png">
       </div>
@@ -21,7 +21,7 @@
     </ion-card>
   
     <div class="loader" *ngIf="loader">
-        <ion-spinner name="crescent"></ion-spinner>
+      <ion-spinner name="crescent"></ion-spinner>
     </div>
   
     <div class="no-record" *ngIf="(!loader && isEmpty)">

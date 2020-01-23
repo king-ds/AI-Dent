@@ -1,8 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
-
 .toolbar {
     --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
 }
@@ -12,14 +7,14 @@
 }
 
 .toolbar-title {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Regular';
     color: white;
 }
 
 .loader {
     position: relative;
     float: left;
-    top: 25%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -31,11 +26,11 @@
     left: 50%;
     transform: translate(-50%, -50%); 
     color: #989a9c;
-    font-family: "Noto Sans", sans-serif; 
+    font-family: "NotoSans-Regular"; 
 }
 
 .header {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular';
     font-size: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -64,15 +59,12 @@ ion-checkbox.checkbox-disabled {
 }
 
 ion-card-content {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular';
+    text-align: justify;
 }
 
-ion-label {
-    font-family: 'Lato', sans-serif;
-}
-
-ion-input {
-    font-family: 'Lato', sans-serif;   
+ion-label, ion-input, ion-item {
+    font-family: 'Lato-Regular';
 }
 
 .no-border {
@@ -81,9 +73,9 @@ ion-input {
     color: white;
 }
 
-ion-item-divider {
-    margin-top: 15px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
+.label {
+    padding: 13px;
+    background-color: whitesmoke;
     color: black;
+    font-family: 'Lato-Bold';  
 }
