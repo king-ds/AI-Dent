@@ -44,7 +44,7 @@
           <ion-item class="first-type">
               <ion-label position="floating" class="label">Password</ion-label>
               <ion-input formControlName="password" id="password" [type]="passwordType" required></ion-input>
-              <ion-icon name="eye" [color]="passwordShown === true ? 'danger' : 'secondary'" slot="end" (click)="togglePassword()" ion-align-self-center></ion-icon>
+              <ion-icon name="eye" [color]="passwordShown === true ? 'dark' : 'medium'" slot="end" (click)="togglePassword()" ion-align-self-center></ion-icon>
           </ion-item>
           <div class="error-prompt">
               <ng-container *ngFor="let validation of validation_messages.password">

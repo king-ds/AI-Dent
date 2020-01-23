@@ -103,6 +103,7 @@ export class PatientDetailsPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Success',
       message: this.information['first_name']+' '+this.information['last_name']+' added to your patient',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {
@@ -117,6 +118,7 @@ export class PatientDetailsPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Ooooops',
       message: 'Something went wrong. Please try again later.',
+      backdropDismiss: false,
       buttons: [{
         text:'Ok',
         handler: () => {

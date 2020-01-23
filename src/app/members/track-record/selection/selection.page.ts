@@ -13,7 +13,9 @@ export class SelectionPage implements OnInit {
   clinician : string;
   track_record = null;
   track_record_id : string;
+
   isFemale : boolean = false;
+  isApproved : boolean = false;
 
   constructor(private apiService : ApiService,
               private activatedRoute : ActivatedRoute,
@@ -22,17 +24,25 @@ export class SelectionPage implements OnInit {
               private toastController: ToastController,) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter(){
     this.getPatientDetails();
   }
 
   getPatientDetails(){
     this.track_record_id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.track_record_id)
     this.apiService.getTrackRecord(this.track_record_id).subscribe(result => {
       this.track_record = result;
+      console.log(this.track_record);
       if(this.track_record['patient']['gender'] == 'Female'){
         this.isFemale = true;
       }
+
+      if(this.track_record['is_approved_instructor']){
+        this.isApproved = true;
+      }
+
     });
   }
 
@@ -163,7 +173,21 @@ export class SelectionPage implements OnInit {
       }
     };
 
-    this.router.navigate(['members', 'treatment-record'], navigationExtras)
+    if(this.isApproved){
+      this.router.navigate(['members', 'treatment-record'], navigationExtras);
+    }else{
+      this.notApproved();
+    }
+  }
+
+  goToDiagnosisTreatmentPlan(){
+    let navigationExtras : NavigationExtras = {
+      state : {
+        track_record : this.track_record
+      }
+    };
+    
+    this.router.navigate(['members', 'diagnosis-treatmentplan'], navigationExtras)
   }
 
   goToDentalChart(){
@@ -298,6 +322,14 @@ export class SelectionPage implements OnInit {
   async notFemale() {
     const toast = await this.toastController.create({
       message: 'This selection is only applicable for female patient.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async notApproved() {
+    const toast = await this.toastController.create({
+      message: 'This selection is only applicable for approved track record.',
       duration: 2000
     });
     toast.present();

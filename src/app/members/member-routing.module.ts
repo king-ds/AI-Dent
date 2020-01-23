@@ -26,6 +26,7 @@ const routes: Routes = [
   { path : 'occlusion', loadChildren : './track-record/occlusion/occlusion.module#OcclusionPageModule' },
   { path : 'gingiva', loadChildren : './track-record/gingiva/gingiva.module#GingivaPageModule' },
   { path : 'treatment-record', loadChildren : './track-record/treatment-record/treatment-record.module#TreatmentRecordPageModule' },
+  { path : 'diagnosis-treatmentplan', loadChildren : './track-record/diagnosis-treatmentplan/diagnosis-treatmentplan.module#DiagnosisTreatmentplanPageModule' },
   { path : 'patient-personal-information', loadChildren : './patient-track-record/personal-information/personal-information.module#PersonalInformationPageModule' },
   {
     path: 'clinician-viewer',
@@ -94,13 +95,18 @@ const routes: Routes = [
   {
     path: 'instructor-profile',
     loadChildren: () => import('./instructor-profile/instructor-profile.module').then( m => m.InstructorProfilePageModule)
-  },  {
+  },
+  {
     path: 'instructor-cdar',
     loadChildren: () => import('./instructor-cdar/instructor-cdar.module').then( m => m.InstructorCdarPageModule)
   },
   {
     path: 'instructor-selection',
     loadChildren: () => import('./instructor-selection/instructor-selection.module').then( m => m.InstructorSelectionPageModule)
+  },
+  {
+    path: 'diagnosis-treatmentplan',
+    loadChildren: () => import('./track-record/diagnosis-treatmentplan/diagnosis-treatmentplan.module').then( m => m.DiagnosisTreatmentplanPageModule)
   },
 
 

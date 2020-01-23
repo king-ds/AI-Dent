@@ -34,17 +34,23 @@ export class DentalChartPage implements OnInit {
     try{
       this.dentalCharts = this.apiService.getDentalChartQ1(this.track_record['id']);
       this.dentalCharts.subscribe(val => {
-        this.isEmpty = false;
-        if(val[0]['kind'] == 'Mixed'){
-          this.kind = 'Mixed';
-          this.isMixed = true;
-        }
-        else if(val[0]['kind'] == 'Pediatric'){
-          this.kind = 'Pediatric';
-          this.isPedia = true;
-        }else{
-          this.kind = 'Adult';
-          this.isAdult = true;
+        try{
+          if(val[0]['kind'] == 'Mixed'){
+            this.isEmpty = false;
+            this.kind = 'Mixed';
+            this.isMixed = true;
+          }
+          else if(val[0]['kind'] == 'Pediatric'){
+            this.isEmpty = false;
+            this.kind = 'Pediatric';
+            this.isPedia = true;
+          }else{
+            this.isEmpty = false;
+            this.kind = 'Adult';
+            this.isAdult = true;
+          }
+        }catch{
+          this.isEmpty = true;
         }
       });
     }catch{

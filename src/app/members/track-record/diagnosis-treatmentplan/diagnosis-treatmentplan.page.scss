@@ -8,6 +8,7 @@
 
 .toolbar-title {
     font-family: 'Lato-Regular';
+    font-size: 17px;
     color: white;
 }
 
@@ -16,10 +17,11 @@
     float: left;
     top: 50%;
     left: 50%;
+    color: #989a9c;
     transform: translate(-50%, -50%);
 }
 
-.social-history-logo {
+.diagnosis-treatmentplan-logo {
     margin: 0 auto;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -30,11 +32,35 @@
     background-color: whitesmoke;
 }
 
-.social-history-logo img {
+.diagnosis-treatmentplan-logo img {
     padding: 15px;
 }
 
+.bullet {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.add-bullet {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+    position: absolute;
+    background-color: black;
+    border-radius: 50%; 
+}
+
 ion-card-content {
+    font-family: 'Montserrat-Regular';
+    text-align: justify;
+}
+
+ion-card-title {
     font-family: 'Montserrat-Regular';
 }
 
@@ -43,7 +69,13 @@ ion-label {
 }
 
 ion-item-divider {
+    margin-top: 10px;
     font-family: 'Montserrat-Regular';
-    font-size: 20px;
-    color: black;
+    font-size: 16px;
+    color: white;
+    background-color: #20B2FF;
+}
+
+h3 {
+    font-family: 'Lato-Regular';
 }

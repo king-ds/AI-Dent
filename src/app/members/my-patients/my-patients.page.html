@@ -37,7 +37,8 @@
 
       <ion-label class="ion-text-wrap">
           <h3>Control Number : {{ item.id }}</h3>
-          <h3>{{ item.patient.first_name }} {{ item.patient.last_name }}</h3>
+          <h3>{{ item.patient.first_name }} {{ item.patient.middle_initial }} {{ item.patient.last_name }}</h3>
+          <h3 *ngIf="!item.patient.phone_num">No registered contact number.</h3>
           <h3>{{ item.patient.phone_num }}</h3>
       </ion-label>
 

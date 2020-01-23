@@ -25,7 +25,7 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-card>
+  <ion-card *ngIf="!loader">
     <div class="treatment-record-logo">
         <img src="/assets/treatment_record.png">
     </div>

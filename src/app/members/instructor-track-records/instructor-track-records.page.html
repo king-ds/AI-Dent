@@ -3,7 +3,7 @@
         <div class="header-text">TRACK RECORDS</div>
 
         <div class="greet-user" *ngIf="instructor">
-            Hi Doc {{ instructor.last_name }}, here is the current list of your assigned track records.
+            Hi Doc {{ instructor.last_name }}, here is the current list of your assigned track record.
         </div>
 
         <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>

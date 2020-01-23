@@ -24,6 +24,16 @@
     transform: translate(-50%, -50%);
 }
 
+.no-record {
+    position: relative;
+    float: left;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    color: #989a9c;
+    font-family: "Noto Sans", sans-serif; 
+}
+
 .header {
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;

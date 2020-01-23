@@ -29,9 +29,9 @@
     <ion-item class="first-type">
       <ion-icon name="person" slot="start" ion-align-self-center></ion-icon>
       <ion-label position="floating">Full Name</ion-label>
-      <ion-input *ngIf="information.title == 'ms'" value="Ms. {{ information.first_name }} {{ information.last_name }}" readonly></ion-input>
-      <ion-input *ngIf="information.title == 'mr'" value="Mr. {{ information.first_name }} {{ information.last_name }}" readonly></ion-input>
-      <ion-input *ngIf="information.title == 'mrs'" value="Mrs. {{ information.first_name }} {{ information.last_name }}" readonly></ion-input>
+      <ion-input *ngIf="information.title == 'ms'" value="Ms. {{ information.first_name }} {{ information.middle_initial }} {{ information.last_name }}" readonly></ion-input>
+      <ion-input *ngIf="information.title == 'mr'" value="Mr. {{ information.first_name }} {{ information.middle_initial }} {{ information.last_name }}" readonly></ion-input>
+      <ion-input *ngIf="information.title == 'mrs'" value="Mrs. {{ information.first_name }} {{ information.middle_initial }} {{ information.last_name }}" readonly></ion-input>
     </ion-item>
 
     <ion-item class="first-type">
@@ -57,7 +57,7 @@
     <ion-item class="first-type">
         <ion-icon name="information-circle" slot="start" ion-align-self-center></ion-icon>
         <ion-label position="floating">Religion</ion-label>
-        <ion-input value="{{ information.religion }}" readonly></ion-input>
+        <ion-input value="{{ information.religion }}" readonly placeholder="No data to show"></ion-input>
     </ion-item>
 
     <ion-item class="first-type">
@@ -75,20 +75,14 @@
     <ion-row>
       <ion-col>
           <ion-item class="second-type">
-              <ion-label position="floating"># of Kids</ion-label>
-              <ion-input value="{{ information.number_of_kids }}" readonly></ion-input>
-          </ion-item>
-      </ion-col>
-      <ion-col>
-          <ion-item class="second-type">
               <ion-label position="floating">Height (ft&in)</ion-label>
-              <ion-input value="{{ information.height }}" readonly></ion-input>
+              <ion-input value="{{ information.height }}" readonly placeholder="No data to show"></ion-input>
           </ion-item>
       </ion-col>
       <ion-col>
           <ion-item class="second-type">
               <ion-label position="floating">Weight (kg)</ion-label>
-              <ion-input value="{{ information.weight }}" readonly></ion-input>
+              <ion-input value="{{ information.weight }}" readonly placeholder="No data to show"></ion-input>
           </ion-item>
       </ion-col>
     </ion-row>
@@ -96,19 +90,19 @@
     <ion-item class="first-type">
         <ion-icon name="call" slot="start" ion-align-self-center></ion-icon>
         <ion-label position="floating">Telephone Number</ion-label>
-        <ion-input value="{{ information.telephone_num }}" readonly></ion-input>
+        <ion-input value="{{ information.telephone_num }}" readonly placeholder="No data to show"></ion-input>
     </ion-item>
 
     <ion-item class="first-type">
         <ion-icon name="phone-portrait" slot="start" ion-align-self-center></ion-icon>
         <ion-label position="floating">Phone Number</ion-label>
-        <ion-input value="{{ information.phone_num }}" readonly></ion-input>
+        <ion-input value="{{ information.phone_num }}" readonly placeholder="No data to show"></ion-input>
     </ion-item>
 
     <ion-item class="first-type">
         <ion-icon name="mail" slot="start" ion-align-self-center></ion-icon>
         <ion-label position="floating">Email Address</ion-label>
-        <ion-input value="{{ information.email_address }}" readonly></ion-input>
+        <ion-input value="{{ information.email_address }}" readonly placeholder="No data to show"></ion-input>
     </ion-item>
 
     <div class="personal-information">
@@ -118,13 +112,13 @@
     <ion-item class="first-type">
         <ion-icon name="person" slot="start" ion-align-self-center></ion-icon>
         <ion-label position="floating">Full Name</ion-label>
-        <ion-input value="{{ information.emergency_first_name }} {{ information.emergency_last_name }}" readonly></ion-input>
+        <ion-input value="{{ information.emergency_full_name }}" readonly></ion-input>
     </ion-item>
 
     <ion-item class="first-type">
         <ion-icon name="pin" slot="start" ion-align-self-center></ion-icon>
         <ion-label position="floating">Address</ion-label>
-        <ion-textarea value="{{ information.emergency_address }}" readonly></ion-textarea>
+        <ion-textarea value="{{ information.emergency_address }}" readonly placeholder="No data to show"></ion-textarea>
     </ion-item>
 
     <ion-item class="first-type">
@@ -136,13 +130,13 @@
     <ion-item class="first-type">
         <ion-icon name="call" slot="start" ion-align-self-center></ion-icon>
         <ion-label position="floating">Telephone Number</ion-label>
-        <ion-input value="{{ information.emergency_telephone_num }}" readonly></ion-input>
+        <ion-input value="{{ information.emergency_telephone_num }}" readonly placeholder="No data to show"></ion-input>
     </ion-item>
 
     <ion-item class="first-type">
         <ion-icon name="phone-portrait" slot="start" ion-align-self-center></ion-icon>
         <ion-label position="floating">Phone Number</ion-label>
-        <ion-input value="{{ information.emergency_phone_num }}" readonly></ion-input>
+        <ion-input value="{{ information.emergency_phone_num }}" readonly placeholder="No data to show"></ion-input>
     </ion-item>
   </ion-list>
 

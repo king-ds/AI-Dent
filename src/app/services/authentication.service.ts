@@ -109,19 +109,11 @@ export class AuthenticationService {
     .toPromise();
   }
 
-  logoutAnyUser(){
-    return this.storage.remove('auth-clinician').then(() => {
-      this.authenticationState.next(false);
-      this.isPatient.next(false);
-      this.isClinician.next(false);
-      this.isInstructor.next(false);
-    });
-  }
-
   logoutClinician(){
     return this.storage.remove('auth-clinician').then(() => {
       this.authenticationState.next(false);
       this.isClinician.next(false);
+      this.storageService.remove('clinician');
     })
   }
 
@@ -129,6 +121,7 @@ export class AuthenticationService {
     return this.storage.remove('auth-patient').then(() => {
       this.authenticationState.next(false);
       this.isPatient.next(false);
+      this.storageService.remove('patient');
     })
   }
 
@@ -136,6 +129,7 @@ export class AuthenticationService {
     return this.storage.remove('auth-instructor').then(() => {
       this.authenticationState.next(false);
       this.isInstructor.next(false);
+      this.storageService.remove('instructor');
     })
   }
 

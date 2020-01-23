@@ -75,6 +75,18 @@ export class ApiService {
    )
  }
 
+ getDiagnosis(track_record){
+   return this.http_client.get(this.url+'track-record/diagnosis/'+track_record).pipe(
+     map ( results => results)
+   )
+ }
+
+ getTreatmentPlan(track_record){
+   return this.http_client.get(this.url+'track-record/treatment-plan/'+track_record).pipe(
+     map ( results => results)
+   )
+ }
+
  getTreatmentRecord(track_record){
    return this.http_client.get(this.url+'track-record/treatment-record/'+track_record).pipe(
      map ( results => results)
@@ -315,6 +327,24 @@ getGingiva(track_record){
   .toPromise();
  }
 
+ addDiagnosis(data){
+  return this.http_client.post(this.url+'track-record/diagnosis', JSON.stringify(data), http_options)
+  .pipe( tap ( res =>{
+    console.log(res);
+   })
+  )
+  .toPromise();
+ }
+
+ addTreatmentPlan(data){
+  return this.http_client.post(this.url+'track-record/treatment-plan', JSON.stringify(data), http_options)
+  .pipe( tap ( res =>{
+    console.log(res);
+   })
+  )
+  .toPromise();
+ }
+
  addTreatmentRecord(data){
    return this.http_client.post(this.url+'track-record/treatment-record', JSON.stringify(data), http_options)
    .pipe( tap ( res=> {
@@ -421,6 +451,24 @@ addCDAR(data){
    )
    .toPromise();
  }
+
+ deleteDiagnosis(diagnosisId){
+   return this.http_client.delete(this.url+'track-record/diagnosis-detail/'+diagnosisId, http_options)
+   .pipe( tap(res => {
+     console.log(res);
+   })
+   )
+   .toPromise();
+ }
+
+ deleteTreatmentPlan(treatmentPlanId){
+  return this.http_client.delete(this.url+'track-record/treatment-plan-detail/'+treatmentPlanId, http_options)
+  .pipe( tap(res => {
+    console.log(res);
+  })
+  )
+  .toPromise();
+}
 
   /*
   * ADD PATIENT

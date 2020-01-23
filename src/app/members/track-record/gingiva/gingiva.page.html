@@ -28,9 +28,6 @@
   </ion-header>
 
 <ion-content>
-  <div class="loader" *ngIf="loader">
-    <ion-spinner name="crescent" style="color: black;"></ion-spinner>
-  </div>
 
   <ion-card *ngIf="!loader">
     <div class="gingiva-logo">
@@ -41,6 +38,10 @@
     </ion-card-content>
   </ion-card>
 
+  <div class="loader" *ngIf="loader">
+    <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+  </div>
+  
   <ion-list *ngIf="!loader">
 
     <ion-radio-group (ionChange)="onChangeAttachedGingiva($event)">

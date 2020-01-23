@@ -45,6 +45,7 @@ export class AppComponent {
             this.authenticationService.isInstructor.subscribe(instructor => {
               if(instructor){
                 this.router.navigate(['members', 'instructor-dashboard']);
+                this.showSplash = false;
               }
             });
             this.authenticationService.isPatient.subscribe(patient => {

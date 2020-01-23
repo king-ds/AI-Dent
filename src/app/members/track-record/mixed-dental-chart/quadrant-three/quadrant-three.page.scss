@@ -1,8 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
-
 .toolbar {
     --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
 }
@@ -12,14 +7,14 @@
 }
 
 .toolbar-title {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Regular';
     color: white;
 }
 
 .loader {
     position: relative;
     float: left;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -60,7 +55,7 @@
     border-radius: 30px;
     font-size: 15px;
     color: white;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Light';
 }
 
 #cancel-teeth-number-btn {
@@ -74,7 +69,7 @@
     border-radius: 30px;
     font-size: 15px;
     color: white;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Light';
 }
 
 .dental-chart {
@@ -85,16 +80,16 @@
 }
 
 .divider {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular';
     font-size: 25px;
     color: black;
 }
 
 ion-card {
-    font-family: 'Montserrat', sans-serif; 
+    font-family: 'Montserrat-Regular';
 }
 
 .item-divider {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular';
     color: black;
 }

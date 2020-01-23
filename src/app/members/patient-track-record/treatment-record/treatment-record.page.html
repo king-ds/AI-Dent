@@ -46,7 +46,8 @@
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template style="text-align: center;">
         <!-- <ion-button size="small" fill="outline" *ngIf=" row.approved  == false" (click)="approve(row)">Accept</ion-button> -->
-        <ion-icon style="text-align: center; color: black; width: 20px; height: 20px;" name="log-in" *ngIf=" row.approved  == false" (click)="approve(row)"></ion-icon>
+        <ion-icon style="text-align: center; color: black; width: 20px; height: 20px;" name="close-circle" *ngIf="(row.approved  == false && !isPatient)"></ion-icon>
+        <ion-icon style="text-align: center; color: black; width: 20px; height: 20px;" name="log-in" *ngIf="(row.approved  == false && isPatient)" (click)="approve(row)"></ion-icon>
         <ion-icon style="text-align: center; color: #31e040; width: 20px; height: 20px;" name="checkmark-circle-outline" *ngIf=" row.approved  == true"></ion-icon>
       </ng-template>
     </ngx-datatable-column>

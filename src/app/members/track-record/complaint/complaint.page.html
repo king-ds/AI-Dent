@@ -29,33 +29,30 @@
 
 <ion-content>
 
+  <ion-card *ngIf="!loader">
+    <div class="complaint-logo">
+      <img src="/assets/add_complaint.jpg">
+    </div>
+    <ion-card-content>
+        Please fill out the following fields appropriately.
+    </ion-card-content>
+  </ion-card>
+
   <div class="loader" *ngIf="loader">
-      <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+    <ion-spinner name="crescent" style="color: black;"></ion-spinner>
   </div>
 
-  <div *ngIf="!loader">
-    <ion-card>
-      <div class="complaint-logo">
-        <img src="/assets/add_complaint.jpg">
-      </div>
-      <ion-card-content>
-          Please fill out the following fields appropriately.
-      </ion-card-content>
-    </ion-card>
+  <ion-list *ngIf="!loader">
+    <ion-item-divider></ion-item-divider>
+    <ion-item>
+        <ion-label position="floating">Chief Complaint</ion-label>
+        <ion-textarea rows="3" [(ngModel)]="chiefComplaint" [readonly] = "isReadOnly" placeholder="Enter chief complaint here..."></ion-textarea>
+    </ion-item>
 
-  <ion-item-divider></ion-item-divider>
-
-  <ion-list>
-      <ion-item>
-          <ion-label position="floating">Chief Complaint</ion-label>
-          <ion-textarea rows="3" [(ngModel)]="chiefComplaint" [readonly] = "isReadOnly" placeholder="Enter chief complaint here..."></ion-textarea>
-      </ion-item>
-
-      <ion-item>
-          <ion-label position="floating">History of Present Illness</ion-label>
-          <ion-textarea rows="3" [(ngModel)]="historyOfPresentIllness" [readonly] = "isReadOnly" placeholder="Enter history of present illness here..."></ion-textarea>
-      </ion-item>
-
+    <ion-item>
+        <ion-label position="floating">History of Present Illness</ion-label>
+        <ion-textarea rows="3" [(ngModel)]="historyOfPresentIllness" [readonly] = "isReadOnly" placeholder="Enter history of present illness here..."></ion-textarea>
+    </ion-item>
   </ion-list>
-  </div>
+
 </ion-content>

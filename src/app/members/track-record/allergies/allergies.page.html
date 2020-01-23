@@ -29,21 +29,20 @@
 
 <ion-content>
 
-  <div class="loader" *ngIf="loader">
-      <ion-spinner name="crescent" style="color: black;"></ion-spinner>
-  </div>
-  
-  <div *ngIf="!loader">
-
-    <ion-card>
-    <div class="allergies-logo">
-        <img src="/assets/allergies.png">
-    </div>
-    <ion-card-content>
-        Check only the applicable fields.
-    </ion-card-content>
+    <ion-card *ngIf="!loader">
+        <div class="allergies-logo">
+            <img src="/assets/allergies.png">
+        </div>
+        <ion-card-content>
+            Check only the applicable fields.
+        </ion-card-content>
     </ion-card>
-    <ion-card>
+
+    <div class="loader" *ngIf="loader">
+        <ion-spinner name="crescent" style="color: black;"></ion-spinner>
+    </div>
+  
+    <ion-card *ngIf="!loader">
         <ion-list>
             <ion-item>
                 <ion-label>Aspirin</ion-label>
@@ -71,5 +70,4 @@
             </ion-item>
         </ion-list>
     </ion-card>
-  </div>
 </ion-content>

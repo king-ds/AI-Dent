@@ -60,10 +60,14 @@ export class TreatmentRecordPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.checkTreatmentRecordFeed();
-    this.clinicianLastName = this.track_record['clinician']['last_name']
-    this.clinicianId = this.track_record['clinician']['id']
-    this.patientId = this.track_record['patient']['id']
+    this.loader = true;
+    setTimeout(() => {
+      this.checkTreatmentRecordFeed();
+      this.clinicianLastName = this.track_record['clinician']['last_name']
+      this.clinicianId = this.track_record['clinician']['id']
+      this.patientId = this.track_record['patient']['id']
+      this.loader = false;
+    }, 2000)
   }
 
   checkTreatmentRecordFeed(){

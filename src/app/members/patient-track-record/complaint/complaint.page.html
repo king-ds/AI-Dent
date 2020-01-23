@@ -33,12 +33,12 @@
   <ion-list *ngIf="( complaint && !loader )">
     <ion-item>
         <ion-label position="floating">Chief Complaint</ion-label>
-        <ion-textarea rows="3" value="{{ complaint.chief_complaint }}" [readonly] = "isReadOnly" placeholder="Enter chief complaint here..."></ion-textarea>
+        <ion-textarea rows="3" value="{{ complaint.chief_complaint }}" placeholder="No data to show" readonly></ion-textarea>
     </ion-item>
 
     <ion-item>
         <ion-label position="floating">History of Present Illness</ion-label>
-        <ion-textarea rows="3" value="{{ complaint.history_of_present_illness }}" [readonly] = "isReadOnly" placeholder="Enter history of present illness here..."></ion-textarea>
+        <ion-textarea rows="3" value="{{ complaint.history_of_present_illness }}" placeholder="No data to show" readonly></ion-textarea>
     </ion-item>
   </ion-list>
 

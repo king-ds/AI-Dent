@@ -1,21 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
-
 .toolbar {
     --background: linear-gradient(97deg, rgba(56,170,255,1) 19%, rgba(54,129,255,1) 86%);
-    // --background: #46c4d6;
 }
 
 .toolbar-title {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Regular';
     color: white;
 }
 
 .header-text {
     margin: 20px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular';
     font-size: 30px;
     text-align: left;
     font-weight: 300;
@@ -23,7 +17,7 @@
 
 .greet-user {
     margin: 20px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato-Regular';
     font-size: 15px;
     text-align: left;
 }
@@ -33,21 +27,13 @@
 }
 
 .ion-text-wrap {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular';
     font-size: 20px;
 }
 
 .searchbar {
-    --placeholder-font-style: 'Lato', sans-serif;
+    --placeholder-font-style: 'Lato-Regular';
 }
-
-// .header {
-//     height: 40%;
-// }
-
-// .container {
-//     height: 55%;
-// }
 
 .loader {
     position: relative;
@@ -66,5 +52,5 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: #989a9c;
-    font-family: "Noto Sans", sans-serif;
+    font-family: "NotoSans-Regular";
 }

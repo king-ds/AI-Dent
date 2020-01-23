@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { AlertController } from '@ionic/angular';
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-treatment-record',
@@ -14,6 +15,7 @@ export class TreatmentRecordPage implements OnInit {
   debouncer : any;
   loader : any;
   isEmpty : boolean;
+  isPatient : boolean;
 
   treatmentRecords : any;
   cleanedTreatmentRecords : any[] = [];
@@ -23,7 +25,8 @@ export class TreatmentRecordPage implements OnInit {
   constructor(private router : Router,
               private activatedRoute : ActivatedRoute,
               private apiService : ApiService,
-              private alertController : AlertController) { 
+              private alertController : AlertController,
+              private storageService : StorageService) { 
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state){
         this.track_record = this.router.getCurrentNavigation().extras.state.track_record;
@@ -36,6 +39,13 @@ export class TreatmentRecordPage implements OnInit {
 
   ionViewWillEnter(){
     this.cleanedTreatmentRecords = [];
+    this.storageService.getObject('patient').then(result => {
+      if(!result){
+        this.isPatient = false;
+      }else{
+        this.isPatient = true;
+      }
+    })
     this.apiService.getTreatmentRecord(this.track_record['id']).subscribe(val => {
       if(val == ''){
         this.isEmpty = true;
