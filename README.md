@@ -2,7 +2,7 @@
 <p align="center"><img src="https://i.imgur.com/JaDB94m.png" width="250px" style="border: solid 2px black;"></p>
 
 ### Brief Information
-AI Dent is a mobile application to digitize the traditional dental encoding procedures. This application handles three different accounts namely as: clinical student, patient, and clinician instructor accounts. Clinical student is responsible for adding and editing of patient's track record, its is a record of the patient during and after dental procedures. On the other side, patient can only view his/her record. Clinician instructor are assigned to verify the track record for approval. The tools used to build the application are Ionic 4 with Angular Js as backend and Django (djangorest to be specific) for Rest API. 
+AI Dent is a mobile application that digitize the traditional dental encoding procedures. This application handles three different accounts namely as: clinical student, patient, and clinician instructor. Clinical student is responsible for adding and editing of patient's track record, its is a record of the patient during and after dental procedures. On the other side, patient can only view his/her record. Clinician instructor are assigned to verify the track record for approval. The tools used to build the application are Ionic 4 with Angular Js as backend and Django (djangorest to be specific) for Rest API. 
 
 ### Objectives
 The objective of this application are:
