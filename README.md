@@ -15,3 +15,6 @@ For backend API please check this <a href="https://github.com/king-ds/dental_api
 
 ### Status
 The current status is under development. This was already proposed to one of the university school in Philippines.
+
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/king-ds/AI-Dent/blob/master/LICENSE)
