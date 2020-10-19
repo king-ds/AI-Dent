@@ -8,7 +8,7 @@ AI Dent is a mobile application that digitize the traditional dental encoding pr
 The main objectives of the application are:
 - Data loss prevention,
 - inhibit paper works, 
-- and data high avaibility.
+- and high data availability.
 
 
 For backend API please check this <a href="https://github.com/king-ds/dental_api">repo</a>.
